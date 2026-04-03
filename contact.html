@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Koa's Lounge</title>
+  <meta name="description" content="Plan your visit to Koa's Lounge in Pāhoa, Hawaiʻi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+        <img data-img-key="logo" alt="Koa's Lounge logo">
+        <div class="brand-lockup">
+          <strong>Koa's Lounge</strong>
+          <span>Taste Aloha</span>
+        </div>
+      </a>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <div class="nav-shell">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="menu.html">Menu</a>
+          <a class="active" href="contact.html">Contact</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn-outline" href="events.html">Events</a>
+          <a class="btn" href="contact.html">Visit Koa's</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-media" style="background-image:url('assets/images/night-exterior.jpg'); background-position:center 35%;"></div>
+      <div class="container page-hero-inner">
+        <div class="panel" style="max-width:760px;">
+          <div class="eyebrow">Contact</div>
+          <h1 style="font-size:clamp(3.2rem,8vw,6.3rem); max-width:10ch;">Plan your visit to Koa's.</h1>
+          <p class="lead">Add your live hours, phone, and social links here, then this page is ready to go.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-layout">
+        <div class="contact-panel">
+          <header>
+            <div class="eyebrow">Visit</div>
+            <h2>Everything guests need in one place.</h2>
+          </header>
+           <ul class="contact-list">
+            <li>
+              <div class="contact-copy"><span>Address</span></div>
+              <div class="contact-meta">15-2929 Pahoa Village Rd<br>Pāhoa, HI 96778</div>
+            </li>
+            <li>
+              <div class="contact-copy"><span>Hours</span></div>
+              <div class="contact-meta">Sunday-Monday<br>CLOSED</div>
+			  <div class="contact-meta">Tuesday-Thursday<br>5 PM – 10 PM</div>
+			  <div class="contact-meta">Friday-Saturday<br>5 PM – 12 AM</div>
+			</li>
+            <li>
+              <div class="contact-copy"><span>Phone</span></div>
+              <div class="contact-meta">(808) 965-6644</div>
+            </li>
+            <li>
+              <div class="contact-copy"><span>Email</span><small>General contact or events inquiries</small></div>
+              <div class="contact-meta"><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></div>
+            </li>
+          </ul>
+
+          <div class="social-row">
+            <a href="https://www.instagram.com/koaslounge">Instagram</a>
+            <a href="https://www.facebook.com/koaslounge/">Facebook</a>
+            <a href="https://www.yelp.com/biz/koas-lounge-pahoa">Yelp!</a>
+          </div>
+        </div>
+
+        <div class="image-frame">
+          <img data-img-key="logo" alt="Exterior seating at Koa's Lounge">
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container panel">
+        <iframe class="map-frame" title="Map to Koa's Lounge" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=15-2929%20Pahoa%20Village%20Rd%2C%20Pahoa%2C%20HI%2096778&z=15&output=embed"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-card">
+        <img data-img-key="logo" alt="Koa's Lounge logo" style="width:120px; margin-bottom:1rem;">
+        <p>Koa's Lounge is a bohemian-style cocktail lounge in Pāhoa built around crafted drinks, live nights, and island hospitality.</p>
+      </div>
+      <div class="footer-card">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-card">
+        <h3>Visit</h3>
+        <ul>
+          <li>15-2929 Pahoa Village Rd</li>
+          <li>Pāhoa, HI 96778</li>
+          <li><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span data-year></span> Koa's Lounge. All rights reserved.</span>
+      <span>Pāhoa, Hawaiʻi</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/image-config.js"></script>
+</body>
+</html>
