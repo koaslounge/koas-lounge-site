@@ -866,3 +866,214 @@ p { margin: 0 0 1rem; color: var(--muted); }
     align-items: flex-start;
   }
 }
+
+
+/* Band booking page */
+.hidden-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.band-booking-layout {
+  align-items: start;
+}
+
+.booking-form-panel {
+  padding: 1.6rem;
+}
+
+.booking-form {
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-field span {
+  color: var(--text-strong);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.form-field small {
+  color: var(--dim);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  border: var(--border-subtle);
+  background: rgba(255,255,255,0.04);
+  color: var(--text-strong);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1rem;
+  outline: none;
+  transition: var(--ease-standard);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--color-line-strong);
+  box-shadow: 0 0 0 4px rgba(3,255,246,0.08);
+  background: rgba(255,255,255,0.06);
+}
+
+@media (max-width: 800px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field-full {
+    grid-column: auto;
+  }
+}
+
+
+/* Business hours + premium footer */
+.footer-visit-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-md);
+}
+
+.footer-open-indicator,
+.contact-open-indicator {
+  display: inline-grid;
+  gap: 0.18rem;
+  margin-bottom: 1rem;
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+}
+
+.footer-open-indicator strong,
+.contact-open-indicator strong {
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+}
+
+.footer-open-indicator span,
+.contact-open-indicator span {
+  font-size: 0.84rem;
+  color: var(--dim);
+}
+
+.footer-open-indicator.is-open,
+.contact-open-indicator.is-open {
+  border-color: rgba(3,255,246,0.35);
+  box-shadow: 0 0 0 1px rgba(3,255,246,0.08) inset;
+}
+
+.footer-open-indicator.is-open strong,
+.contact-open-indicator.is-open strong {
+  color: var(--aqua);
+}
+
+.footer-open-indicator.is-closed strong,
+.contact-open-indicator.is-closed strong {
+  color: #ffd7d7;
+}
+
+.footer-address {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.footer-hours-panel {
+  margin-top: 0.8rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-hours-heading {
+  margin-bottom: 0.7rem;
+  color: var(--text-strong);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.footer-hours-list,
+.contact-hours-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.hours-row strong {
+  color: var(--text-strong);
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.footer-visit-meta {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-visit-meta a {
+  color: var(--text-strong);
+}
+
+.footer-visit-meta a:hover {
+  color: var(--aqua);
+}
+
+.contact-hours-list {
+  margin-top: 0.8rem;
+}
+
+.contact-status {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .hours-row {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .hours-row strong {
+    text-align: left;
+  }
+}

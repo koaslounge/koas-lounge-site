@@ -29,6 +29,7 @@
           <a href="events.html">Events</a>
           <a class="active" href="menu.html">Menu</a>
           <a href="contact.html">Contact</a>
+          <a href="band-booking.html">Band Booking</a>
         </nav>
         <div class="nav-cta">
           <a class="btn-outline" href="events.html">Events</a>
@@ -43,46 +44,25 @@
       <div class="page-hero-media" style="background-image:url('assets/images/citrus-cocktail.jpg'); background-position:center 34%;"></div>
       <div class="container page-hero-inner">
         <div class="panel" style="max-width:760px;">
-          <div class="eyebrow">Menu</div>
-          <h1 style="font-size:clamp(3.2rem,8vw,6.3rem); max-width:10ch;">A cleaner cocktail-program layout.</h1>
-          <p class="lead">This version feels closer to how popular lounge sites present their drinks: more editorial, more structured, and more intentional.</p>
+          <div class="eyebrow" id="menu-hero-eyebrow">Menu</div>
+          <h1 id="menu-hero-title" style="font-size:clamp(3.2rem,8vw,6.3rem); max-width:10ch;">A cleaner cocktail-program layout.</h1>
+          <p class="lead" id="menu-hero-lead">This version feels closer to how popular lounge sites present their drinks: more editorial, more structured, and more intentional.</p>
         </div>
       </div>
     </section>
 
     <section class="section compact">
-      <div class="container info-strip">
-        <div class="info-strip-item"><strong>Well cocktails</strong><span>$8 base tier</span></div>
-        <div class="info-strip-item"><strong>Call cocktails</strong><span>$13 signature pour tier</span></div>
-        <div class="info-strip-item"><strong>Top shelf</strong><span>$15 premium tier · doubles +50%</span></div>
-      </div>
+      <div class="container info-strip" id="menu-pricing-strip"></div>
     </section>
 
     <section class="section">
       <div class="container menu-layout">
         <div class="menu-panel">
           <header>
-            <div class="eyebrow">Signature cocktails</div>
-            <h3>House favorites</h3>
+            <div class="eyebrow" id="signature-eyebrow"></div>
+            <h3 id="signature-title"></h3>
           </header>
-          <ul class="menu-list">
-            <li>
-              <div class="menu-copy"><span>Pāhoa After Dark</span><small>Dark rum, pineapple, lime, island spice</small></div>
-              <div class="price">$13<span class="price-sub">Call tier</span></div>
-            </li>
-            <li>
-              <div class="menu-copy"><span>Blue Lantern</span><small>Vodka, citrus, blue curaçao, sparkling finish</small></div>
-              <div class="price">$13<span class="price-sub">Call tier</span></div>
-            </li>
-            <li>
-              <div class="menu-copy"><span>Koa House Mai Tai</span><small>Bright, tropical, and built for the room</small></div>
-              <div class="price">$15<span class="price-sub">Top shelf tier</span></div>
-            </li>
-            <li>
-              <div class="menu-copy"><span>Velvet Hibiscus</span><small>Gin, hibiscus, lemon, delicate floral notes</small></div>
-              <div class="price">$13<span class="price-sub">Call tier</span></div>
-            </li>
-          </ul>
+          <ul class="menu-list" id="signature-list"></ul>
         </div>
 
         <div class="image-frame">
@@ -94,25 +74,15 @@
     <section class="section compact">
       <div class="container program-grid">
         <div class="program-card">
-          <div class="eyebrow">Core pricing</div>
-          <h3>Built around clear tiers.</h3>
-          <p class="program-note">These tiers reflect the structure you shared and can be expanded with your final live menu at any time.</p>
-          <ul class="menu-list">
-            <li><div class="menu-copy"><span>Well cocktails</span><small>House spirits and core mixed drinks</small></div><div class="price">$8</div></li>
-            <li><div class="menu-copy"><span>Call cocktails</span><small>Mid-tier signatures and upgraded pours</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>Top shelf cocktails</span><small>Premium base spirits and featured builds</small></div><div class="price">$15</div></li>
-            <li><div class="menu-copy"><span>Double shot upcharge</span><small>Priced at 50% above the base cocktail tier</small></div><div class="price">+50%</div></li>
-          </ul>
+          <div class="eyebrow" id="pricing-eyebrow"></div>
+          <h3 id="pricing-title"></h3>
+          <p class="program-note" id="pricing-note"></p>
+          <ul class="menu-list" id="pricing-list"></ul>
         </div>
         <div class="program-card">
-          <div class="eyebrow">Guest favorites</div>
-          <h3>Classics and easy-order pours.</h3>
-          <ul class="menu-list">
-            <li><div class="menu-copy"><span>Old Fashioned</span><small>Bourbon, bitters, orange</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>Espresso Martini</span><small>Vodka, coffee liqueur, espresso</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>Negroni</span><small>Gin, Campari, sweet vermouth</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>House Margarita</span><small>Tequila, lime, orange liqueur</small></div><div class="price">$13</div></li>
-          </ul>
+          <div class="eyebrow" id="classics-eyebrow"></div>
+          <h3 id="classics-title"></h3>
+          <ul class="menu-list" id="classics-list"></ul>
         </div>
       </div>
     </section>
@@ -121,33 +91,23 @@
       <div class="container tasting-grid">
         <div class="menu-panel">
           <header>
-            <div class="eyebrow">Beer, wine & zero-proof</div>
-            <h3>Keep it flexible.</h3>
+            <div class="eyebrow" id="flexible-eyebrow"></div>
+            <h3 id="flexible-title"></h3>
           </header>
-          <ul class="menu-list">
-            <li><div class="menu-copy"><span>Domestic & local beer</span><small>Rotating bottles and cans</small></div><div class="price">$5–8</div></li>
-            <li><div class="menu-copy"><span>Wine by the glass</span><small>Red, white, and sparkling selections</small></div><div class="price">$8–12</div></li>
-            <li><div class="menu-copy"><span>Zero-proof serves</span><small>Citrus-forward and house-refreshed</small></div><div class="price">$8–10</div></li>
-          </ul>
+          <ul class="menu-list" id="flexible-list"></ul>
         </div>
         <div class="menu-panel">
           <header>
-            <div class="eyebrow">Current note</div>
-            <h3>Use this space for live updates.</h3>
+            <div class="eyebrow" id="notes-eyebrow"></div>
+            <h3 id="notes-title"></h3>
           </header>
-          <div class="menu-highlight">
-            <strong>Best next move</strong>
-            <p>Swap these placeholder cocktails for your actual program once your final menu is locked. The layout is already set up to feel like a proper cocktail lounge menu, not a generic restaurant page.</p>
-          </div>
-          <div class="menu-highlight" style="margin-top:1rem;">
-            <strong>Food section</strong>
-            <p>Add your current bites here after finalizing what Koa's is actively serving now. This build intentionally leaves that flexible so it stays accurate to the business.</p>
-          </div>
+          <div id="notes-highlights"></div>
         </div>
       </div>
     </section>
   </main>
 
+  
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-card">
@@ -161,15 +121,21 @@
           <li><a href="events.html">Events</a></li>
           <li><a href="menu.html">Menu</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="band-booking.html">Band Booking</a></li>
         </ul>
       </div>
-      <div class="footer-card">
+      <div class="footer-card footer-visit-card">
+        <div class="footer-open-indicator" data-open-indicator></div>
         <h3>Visit</h3>
-        <ul>
-          <li>15-2929 Pahoa Village Rd</li>
-          <li>Pāhoa, HI 96778</li>
-          <li><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></li>
-        </ul>
+        <div class="footer-address" data-business-address></div>
+        <div class="footer-hours-panel">
+          <div class="footer-hours-heading">Hours</div>
+          <div class="footer-hours-list" data-business-hours></div>
+        </div>
+        <div class="footer-visit-meta">
+          <a data-business-phone href="tel:+18089656644">(808) 965-6644</a>
+          <a data-business-email href="mailto:info@koaslounge.com">info@koaslounge.com</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -178,8 +144,12 @@
     </div>
   </footer>
 
+
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/menu-render.js"></script>
+  <script src="assets/js/business-info.js"></script>
 </body>
 </html>

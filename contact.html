@@ -7,7 +7,7 @@
   <meta name="description" content="Plan your visit to Koa's Lounge in Pāhoa, Hawaiʻi.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
@@ -60,30 +60,28 @@
            <ul class="contact-list">
             <li>
               <div class="contact-copy"><span>Address</span></div>
-              <div class="contact-meta">15-2929 Pahoa Village Rd<br>Pāhoa, HI 96778</div>
+              <div class="contact-meta" data-business-address></div>
             </li>
             <li>
               <div class="contact-copy"><span>Hours</span></div>
-              <div class="contact-meta">Sunday-Monday<br>CLOSED</div>
-			  <div class="contact-meta">Tuesday-Thursday<br>5 PM – 10 PM</div>
-			  <div class="contact-meta">Friday-Saturday<br>5 PM – 12 AM</div>
-			</li>
+              <div class="contact-status contact-open-indicator" data-open-indicator></div>
+              <div class="contact-hours-list" data-business-hours></div>
+            </li>
             <li>
               <div class="contact-copy"><span>Phone</span></div>
-              <div class="contact-meta">(808) 965-6644</div>
+              <div class="contact-meta" data-business-phone></div>
             </li>
             <li>
               <div class="contact-copy"><span>Email</span><small>General contact or events inquiries</small></div>
-              <div class="contact-meta"><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></div>
+              <div class="contact-meta" data-business-email></div>
             </li>
           </ul>
 
           <div class="social-row">
-            <a href="https://www.instagram.com/koaslounge">Instagram</a>
-            <a href="https://www.facebook.com/koaslounge/">Facebook</a>
-            <a href="https://www.yelp.com/biz/koas-lounge-pahoa">Yelp!</a>
-			<a href="https://www.koasevents.com/koas-mobile-bar">Koa's Mobile Bar</a>
-		  </div>
+            <a data-business-instagram href="#">Instagram</a>
+            <a data-business-facebook href="#">Facebook</a>
+            <a data-business-yelp href="#">Yelp!</a>
+          </div>
         </div>
 
         <div class="image-frame">
@@ -99,6 +97,7 @@
     </section>
   </main>
 
+  
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-card">
@@ -112,15 +111,21 @@
           <li><a href="events.html">Events</a></li>
           <li><a href="menu.html">Menu</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="band-booking.html">Band Booking</a></li>
         </ul>
       </div>
-      <div class="footer-card">
+      <div class="footer-card footer-visit-card">
+        <div class="footer-open-indicator" data-open-indicator></div>
         <h3>Visit</h3>
-        <ul>
-          <li>15-2929 Pahoa Village Rd</li>
-          <li>Pāhoa, HI 96778</li>
-          <li><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></li>
-        </ul>
+        <div class="footer-address" data-business-address></div>
+        <div class="footer-hours-panel">
+          <div class="footer-hours-heading">Hours</div>
+          <div class="footer-hours-list" data-business-hours></div>
+        </div>
+        <div class="footer-visit-meta">
+          <a data-business-phone href="tel:+18089656644">(808) 965-6644</a>
+          <a data-business-email href="mailto:info@koaslounge.com">info@koaslounge.com</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -129,8 +134,10 @@
     </div>
   </footer>
 
+
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
+  <script src="assets/js/business-info.js"></script>
 </body>
 </html>

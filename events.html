@@ -7,7 +7,7 @@
   <meta name="description" content="See upcoming events and live nights at Koa's Lounge.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
@@ -29,6 +29,7 @@
           <a class="active" href="events.html">Events</a>
           <a href="menu.html">Menu</a>
           <a href="contact.html">Contact</a>
+          <a href="band-booking.html">Band Booking</a>
         </nav>
         <div class="nav-cta">
           <a class="btn-outline" href="menu.html">Menu</a>
@@ -114,6 +115,7 @@
     </section>
   </main>
 
+  
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-card">
@@ -127,15 +129,21 @@
           <li><a href="events.html">Events</a></li>
           <li><a href="menu.html">Menu</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="band-booking.html">Band Booking</a></li>
         </ul>
       </div>
-      <div class="footer-card">
+      <div class="footer-card footer-visit-card">
+        <div class="footer-open-indicator" data-open-indicator></div>
         <h3>Visit</h3>
-        <ul>
-          <li>15-2929 Pahoa Village Rd</li>
-          <li>Pāhoa, HI 96778</li>
-          <li><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></li>
-        </ul>
+        <div class="footer-address" data-business-address></div>
+        <div class="footer-hours-panel">
+          <div class="footer-hours-heading">Hours</div>
+          <div class="footer-hours-list" data-business-hours></div>
+        </div>
+        <div class="footer-visit-meta">
+          <a data-business-phone href="tel:+18089656644">(808) 965-6644</a>
+          <a data-business-email href="mailto:info@koaslounge.com">info@koaslounge.com</a>
+        </div>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -144,8 +152,10 @@
     </div>
   </footer>
 
+
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
+  <script src="assets/js/business-info.js"></script>
 </body>
 </html>

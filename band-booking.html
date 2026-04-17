@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Band | Koa's Lounge</title>
+  <meta name="description" content="Submit your band for performance consideration at Koa's Lounge in Pāhoa, Hawaiʻi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+        <img data-img-key="logo" alt="Koa's Lounge logo">
+        <div class="brand-lockup">
+          <strong>Koa's Lounge</strong>
+          <span>Taste Aloha</span>
+        </div>
+      </a>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <div class="nav-shell">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="menu.html">Menu</a>
+          <a href="contact.html">Contact</a>
+          <a class="active" href="band-booking.html">Band Booking</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn-outline" href="events.html">Events</a>
+          <a class="btn" href="contact.html">Visit Koa's</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-media" data-bg-key="eventsHero"></div>
+      <div class="container page-hero-inner">
+        <div class="panel" style="max-width:780px;">
+          <div class="eyebrow">Band Booking</div>
+          <h1 style="font-size:clamp(3.2rem,8vw,6.2rem); max-width:10ch;">Want to play at Koa's Lounge?</h1>
+          <p class="lead">Submit your band information, share links that let us hear your sound, and we’ll review whether the fit is right for an upcoming night at Koa’s.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container split-layout band-booking-layout">
+        <div class="text-column">
+          <div class="eyebrow">Before you submit</div>
+          <h2>Give us enough to hear the vibe and evaluate the fit.</h2>
+          <p>Please include your band name, direct contact details, and links to the platforms where we can hear or watch you perform. The more complete your submission is, the easier it is for us to review quickly.</p>
+          <ul class="clean-list">
+            <li>Band name, contact email, and phone are required</li>
+            <li>At least one performance or social link is required</li>
+            <li>You can include Instagram, Facebook, YouTube, Spotify, website, or another useful link</li>
+          </ul>
+          <div class="helper-note">This form is configured for Netlify Forms, so once the site is deployed on Netlify, submissions can be collected directly from your dashboard.</div>
+        </div>
+
+        <div class="panel booking-form-panel">
+          <form name="band-booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/band-booking-success.html" class="booking-form">
+            <input type="hidden" name="form-name" value="band-booking">
+            <p class="hidden-field">
+              <label>Don’t fill this out if you're human: <input name="bot-field"></label>
+            </p>
+
+            <div class="form-grid">
+              <label class="form-field">
+                <span>Band Name *</span>
+                <input type="text" name="band_name" required>
+              </label>
+
+              <label class="form-field">
+                <span>Email *</span>
+                <input type="email" name="email" required>
+              </label>
+
+              <label class="form-field">
+                <span>Phone Number *</span>
+                <input type="tel" name="phone" required>
+              </label>
+
+              <label class="form-field form-field-full">
+                <span>Primary Link *</span>
+                <input type="url" name="primary_link" placeholder="https://..." required>
+                <small>Use your best link first — YouTube, Instagram, Facebook, Spotify, website, or another page that shows what you sound like.</small>
+              </label>
+
+              <label class="form-field">
+                <span>Instagram</span>
+                <input type="url" name="instagram" placeholder="https://instagram.com/...">
+              </label>
+
+              <label class="form-field">
+                <span>Facebook</span>
+                <input type="url" name="facebook" placeholder="https://facebook.com/...">
+              </label>
+
+              <label class="form-field">
+                <span>YouTube</span>
+                <input type="url" name="youtube" placeholder="https://youtube.com/...">
+              </label>
+
+              <label class="form-field">
+                <span>Other Link</span>
+                <input type="url" name="other_link" placeholder="https://...">
+              </label>
+
+              <label class="form-field form-field-full">
+                <span>Tell us about your sound</span>
+                <textarea name="notes" rows="6" placeholder="Genre, lineup, original music vs covers, where you usually play, and anything else that helps us evaluate the fit."></textarea>
+              </label>
+            </div>
+
+            <div class="button-row">
+              <button class="btn" type="submit">Submit for Review</button>
+              <a class="btn-outline" href="contact.html">Contact Instead</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-card">
+        <img data-img-key="logo" alt="Koa's Lounge logo" style="width:120px; margin-bottom:1rem;">
+        <p>Koa's Lounge is a bohemian-style cocktail lounge in Pāhoa built around crafted drinks, live nights, and island hospitality.</p>
+      </div>
+      <div class="footer-card">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="band-booking.html">Band Booking</a></li>
+        </ul>
+      </div>
+      <div class="footer-card footer-visit-card">
+        <div class="footer-open-indicator" data-open-indicator></div>
+        <h3>Visit</h3>
+        <div class="footer-address" data-business-address></div>
+        <div class="footer-hours-panel">
+          <div class="footer-hours-heading">Hours</div>
+          <div class="footer-hours-list" data-business-hours></div>
+        </div>
+        <div class="footer-visit-meta">
+          <a data-business-phone href="tel:+18089656644">(808) 965-6644</a>
+          <a data-business-email href="mailto:info@koaslounge.com">info@koaslounge.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span data-year></span> Koa's Lounge. All rights reserved.</span>
+      <span>Pāhoa, Hawaiʻi</span>
+    </div>
+  </footer>
+
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/image-config.js"></script>
+  <script src="assets/js/business-info.js"></script>
+</body>
+</html>
