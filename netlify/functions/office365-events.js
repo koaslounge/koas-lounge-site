@@ -1,3 +1,14 @@
+return {
+  statusCode: 200,
+  body: JSON.stringify({
+    hasTenant: !!process.env.MS_TENANT_ID,
+    hasClientId: !!process.env.MS_CLIENT_ID,
+    hasClientSecret: !!process.env.MS_CLIENT_SECRET,
+    clientIdTail: process.env.MS_CLIENT_ID?.slice(-6) || null
+  })
+};
+
+
 exports.handler = async () => {
   try {
     const tenantId = process.env.MS_TENANT_ID;
