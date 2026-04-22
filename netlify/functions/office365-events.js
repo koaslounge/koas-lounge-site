@@ -8,25 +8,6 @@ exports.handler = async () => {
     const calendarIdFromEnv = process.env.MS_CALENDAR_ID;
     const lookAheadDays = parseInt(process.env.MS_LOOKAHEAD_DAYS || "90", 10);
 
-    // 🔍 DEBUG BLOCK (temporary)
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        debug: true,
-        hasTenant: !!tenantId,
-        hasClientId: !!clientId,
-        hasClientSecret: !!clientSecret,
-        hasCalendarOwner: !!calendarOwner,
-        hasCalendarName: !!calendarName,
-        tenantIdTail: tenantId ? tenantId.slice(-6) : null,
-        clientIdTail: clientId ? clientId.slice(-6) : null,
-        secretLength: clientSecret ? clientSecret.length : 0
-      })
-    };
-
-    // --- EVERYTHING BELOW WILL NOT RUN UNTIL DEBUG BLOCK IS REMOVED ---
-
     const missing = [];
     if (!tenantId) missing.push("MS_TENANT_ID");
     if (!clientId) missing.push("MS_CLIENT_ID");
@@ -105,7 +86,7 @@ exports.handler = async () => {
 
       const calendarsUrl =
         `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(calendarOwner)}/calendars` +
-        `?$select=id,name,isDefaultCalendar`;
+        `?$select=id,name,canEdit,canShare,isDefaultCalendar`;
 
       const calendarsData = await graphGet(calendarsUrl);
       const calendars = calendarsData.value || [];
@@ -119,10 +100,11 @@ exports.handler = async () => {
           statusCode: 404,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            error: `Calendar "${calendarName}" not found`,
+            error: `Calendar named "${calendarName}" was not found for ${calendarOwner}.`,
             availableCalendars: calendars.map(c => ({
               name: c.name,
-              id: c.id
+              id: c.id,
+              isDefaultCalendar: c.isDefaultCalendar
             }))
           })
         };
@@ -139,20 +121,46 @@ exports.handler = async () => {
       `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(calendarOwner)}` +
       `/calendars/${encodeURIComponent(calendarId)}/calendarView` +
       `?startDateTime=${encodeURIComponent(start.toISOString())}` +
-      `&endDateTime=${encodeURIComponent(end.toISOString())}`;
+      `&endDateTime=${encodeURIComponent(end.toISOString())}` +
+      `&$select=subject,start,end,location,bodyPreview,webLink,isCancelled,categories` +
+      `&$orderby=start/dateTime`;
 
     const graphData = await graphGet(graphUrl);
 
+    const events = (graphData.value || [])
+      .filter(event => !event.isCancelled)
+      .map(event => ({
+        title: event.subject || "Untitled Event",
+        start: event.start?.dateTime || null,
+        end: event.end?.dateTime || null,
+        location: event.location?.displayName || "",
+        description: event.bodyPreview || "",
+        url: event.webLink || "",
+        categories: event.categories || []
+      }));
+
     return {
       statusCode: 200,
-      body: JSON.stringify(graphData)
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=120"
+      },
+      body: JSON.stringify({
+        source: {
+          owner: calendarOwner,
+          calendarName: calendarName || null,
+          calendarId
+        },
+        count: events.length,
+        events
+      })
     };
-
   } catch (error) {
     return {
       statusCode: 500,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        error: error.message
+        error: error.message || "Unexpected error"
       })
     };
   }
