@@ -9,8 +9,62 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .live-events-shell {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .live-events-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .live-events-status,
+    .live-events-source {
+      color: rgba(255,255,255,.72);
+      font-size: .95rem;
+    }
+    .live-events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .live-event-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 1.25rem;
+      backdrop-filter: blur(8px);
+      min-height: 100%;
+    }
+    .live-event-card h3 {
+      margin: .25rem 0 .65rem;
+      font-size: 1.35rem;
+    }
+    .live-event-date {
+      display: inline-block;
+      color: #03fff6;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+    .live-event-time,
+    .live-event-location,
+    .live-event-description,
+    .live-event-link {
+      margin: .45rem 0 0;
+      color: rgba(255,255,255,.82);
+    }
+    .live-event-link a {
+      color: #03fff6;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
 <body>
   <header class="site-header">
     <div class="container navbar">
@@ -45,8 +99,8 @@
       <div class="container page-hero-inner">
         <div class="panel" style="max-width:780px;">
           <div class="eyebrow">Events</div>
-          <h1 style="font-size:clamp(3.2rem,8vw,6.3rem); max-width:10ch;">A more curated events page.</h1>
-          <p class="lead">Instead of dropping guests straight into a calendar, this version opens with featured-night cards that feel more like a real lounge website.</p>
+          <h1 style="font-size:clamp(3.2rem,8vw,6.3rem); max-width:11ch;">Live events, synced from Office 365.</h1>
+          <p class="lead">Your website now reads directly from the Koa's Lounge shared Microsoft 365 calendar, so changes on the calendar can flow to the site without hand-editing this page.</p>
         </div>
       </div>
     </section>
@@ -55,25 +109,28 @@
       <div class="container section-heading">
         <div>
           <div class="eyebrow">Featured nights</div>
-          <h2>Use these cards for your signature weekly rhythm.</h2>
+          <h2>Keep the signature rhythm up front.</h2>
         </div>
-        <p>These are editable spotlight blocks. Swap the text anytime to match your current recurring lineup, monthly traditions, or one-off special events.</p>
+        <p>These spotlight cards stay manual on purpose, so you can keep pushing your anchor nights while the live calendar below handles the real-time logistics.</p>
       </div>
+
       <div class="container event-card-grid">
         <article class="event-card" style="background-image:url('assets/images/live-music.jpg');">
           <div class="event-meta"><span>Live Music</span><span>Featured</span></div>
           <h3>Signature music nights</h3>
-          <p>Highlight your headline performances, birthday bashes, or monthly anchor events here before guests reach the calendar.</p>
+          <p>Use this card for headline bands, birthday bashes, or your strongest recurring live music draws.</p>
         </article>
+
         <article class="event-card" style="background-image:url('assets/images/main-room.jpg'); background-position:center 25%;">
           <div class="event-meta"><span>Weekly Series</span><span>Community</span></div>
           <h3>Karaoke, open jams, and crowd-favorite nights</h3>
-          <p>Perfect for giving recurring events a stronger presence than a plain embed ever can.</p>
+          <p>Keep recurring community nights visible even before guests scroll into the live event feed.</p>
         </article>
+
         <article class="event-card" style="background-image:url('assets/images/night-exterior.jpg');">
           <div class="event-meta"><span>Special Events</span><span>Late Night</span></div>
           <h3>One-off parties and themed nights</h3>
-          <p>Use this slot for special guests, holiday programming, and event concepts you want pushed harder.</p>
+          <p>Push special DJs, holiday activations, and one-night concepts harder than a plain calendar ever could.</p>
         </article>
       </div>
     </section>
@@ -81,47 +138,53 @@
     <section class="section">
       <div class="container events-layout">
         <div class="text-column">
-          <div class="eyebrow">Calendar sync</div>
-          <h2>Your branded website front-end, with Google Calendar underneath.</h2>
-          <p>This keeps the site stylish while still giving you simple calendar management. Once you replace the placeholder calendar ID, updates flow through the embed without needing Wix.</p>
+          <div class="eyebrow">Live calendar</div>
+          <h2>Upcoming events from Microsoft 365</h2>
+          <p>The cards above sell the experience. The feed below is the source of truth. Update the shared Office 365 calendar, and the website can reflect those changes automatically.</p>
           <ul class="clean-list">
-            <li>Use your public Google Calendar ID for the embed below</li>
-            <li>Keep your Office 365 workflow if you bridge it into Google Calendar</li>
-            <li>Guests can browse upcoming nights on mobile or desktop</li>
+            <li>No public calendar embed required</li>
+            <li>Works with your shared Office 365 calendar through Microsoft Graph</li>
+            <li>Keeps credentials safely on the Netlify server side</li>
           </ul>
-          <div class="helper-note">Replace <strong>REPLACE_WITH_YOUR_PUBLIC_CALENDAR_ID</strong> in the iframe URL below.</div>
         </div>
+
         <div class="panel">
-          <div class="kicker">Suggested use</div>
-          <h3>Let the cards sell the experience. Let the calendar handle the logistics.</h3>
-          <p>That split is what makes popular lounge sites work. They lead with mood, programming, and identity, then use the calendar as a utility instead of the whole page.</p>
+          <div class="kicker">Recommended setup</div>
+          <h3>Dedicated public-facing events calendar</h3>
+          <p>Use one Microsoft 365 calendar just for website-safe event details. That keeps internal notes, staff-only changes, and rough planning out of the public feed while preserving fast updates.</p>
           <ul class="promo-list">
-            <li>Promote your strongest recurring nights above the fold</li>
-            <li>Use event copy that matches your social media tone</li>
-            <li>Keep the embed as the accurate source of truth</li>
+            <li>Short cache for quick turnaround when plans change</li>
+            <li>Recurring weekly events display as real upcoming instances</li>
+            <li>Easy to restyle later without touching the calendar connection</li>
           </ul>
         </div>
       </div>
     </section>
 
     <section class="section compact">
-      <div class="container calendar-shell">
-        <iframe
-          class="calendar-frame"
-          src="https://calendar.google.com/calendar/embed?src=REPLACE_WITH_YOUR_PUBLIC_CALENDAR_ID&ctz=Pacific%2FHonolulu&mode=MONTH&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0"
-          title="Koa's Lounge event calendar"
-          loading="lazy"></iframe>
+      <div class="container panel live-events-shell">
+        <div class="live-events-toolbar">
+          <div>
+            <div class="eyebrow">Now showing</div>
+            <h2 style="margin:0;">What’s coming up at Koa’s Lounge</h2>
+          </div>
+          <div>
+            <div class="live-events-status" data-events-status>Loading upcoming events...</div>
+            <div class="live-events-source" data-events-source></div>
+          </div>
+        </div>
+        <div class="live-events-grid" data-events-list></div>
       </div>
     </section>
   </main>
 
-  
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-card">
         <img data-img-key="logo" alt="Koa's Lounge logo" style="width:120px; margin-bottom:1rem;">
         <p>Koa's Lounge is a bohemian-style cocktail lounge in Pāhoa built around crafted drinks, live nights, and island hospitality.</p>
       </div>
+
       <div class="footer-card">
         <h3>Explore</h3>
         <ul>
@@ -132,6 +195,7 @@
           <li><a href="band-booking.html">Band Booking</a></li>
         </ul>
       </div>
+
       <div class="footer-card footer-visit-card">
         <div class="footer-open-indicator" data-open-indicator></div>
         <h3>Visit</h3>
@@ -152,10 +216,10 @@
     </div>
   </footer>
 
-
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
   <script src="assets/js/business-info.js"></script>
+  <script src="assets/js/events-calendar.js"></script>
 </body>
 </html>
