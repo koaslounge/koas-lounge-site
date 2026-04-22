@@ -119,35 +119,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function groupEvents(events) {
-    const now = new Date();
-    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const tomorrowStart = new Date(todayStart);
-    tomorrowStart.setDate(todayStart.getDate() + 1);
+  const now = new Date();
 
-    const day = now.getDay();
-    const daysUntilFriday = day <= 5 ? 5 - day : 6;
-    const fridayStart = new Date(todayStart);
-    fridayStart.setDate(todayStart.getDate() + daysUntilFriday);
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const tomorrowStart = new Date(todayStart);
+  tomorrowStart.setDate(todayStart.getDate() + 1);
 
-    const mondayAfterWeekend = new Date(fridayStart);
-    mondayAfterWeekend.setDate(fridayStart.getDate() + 3);
+  const day = now.getDay();
+  const daysUntilFriday = day <= 5 ? 5 - day : 6;
 
-    const tonight = [];
-    const weekend = [];
-    const upcoming = [];
+  const fridayStart = new Date(todayStart);
+  fridayStart.setDate(todayStart.getDate() + daysUntilFriday);
 
-    for (const event of events) {
-      if (event.startDate >= todayStart && event.startDate < tomorrowStart) {
-        tonight.push(event);
-      } else if (event.startDate >= fridayStart && event.startDate < mondayAfterWeekend) {
-        weekend.push(event);
-      } else if (event.startDate >= tomorrowStart) {
-        upcoming.push(event);
-      }
+  const mondayAfterWeekend = new Date(fridayStart);
+  mondayAfterWeekend.setDate(fridayStart.getDate() + 3);
+
+  let tonight = [];
+  let weekend = [];
+  let upcoming = [];
+
+  for (const event of events) {
+    if (event.startDate >= todayStart && event.startDate < tomorrowStart) {
+      tonight.push(event);
+    } else if (event.startDate >= fridayStart && event.startDate < mondayAfterWeekend) {
+      weekend.push(event);
+    } else if (event.startDate >= tomorrowStart) {
+      upcoming.push(event);
     }
-
-    return { tonight, weekend, upcoming };
   }
+
+  // 🔥 NEW LOGIC: fallback if tonight is empty
+  if (tonight.length === 0 && events.length > 0) {
+    tonight = [events[0]]; // next upcoming event
+  }
+
+  return { tonight, weekend, upcoming };
+}
 
   function renderGroup(container, events) {
     container.innerHTML = "";
