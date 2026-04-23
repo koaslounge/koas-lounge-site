@@ -70,7 +70,35 @@
       align-items: end;
       padding: 28px;
     }
+	.about-hero__feature-top {
+	  display: grid;
+	  gap: 14px;
+	  align-content: start;
+	}
 
+	.about-hero__mini-card {
+	  padding: 16px 18px;
+	  border-radius: 18px;
+	  border: 1px solid rgba(255,255,255,0.10);
+	  background: rgba(8,16,27,0.48);
+	  backdrop-filter: blur(8px);
+	}
+
+	.about-hero__mini-card strong {
+	  display: block;
+	  font-size: 1rem;
+	  line-height: 1.35;
+	}
+
+	.about-hero__mini-label {
+	  display: inline-block;
+	  margin-bottom: 8px;
+	  font-size: 0.72rem;
+	  font-weight: 800;
+	  letter-spacing: 0.14em;
+	  text-transform: uppercase;
+	  color: #03fff6;
+	}
     .about-eyebrow {
       display: inline-block;
       margin: 0 0 12px;
@@ -436,13 +464,30 @@
           </div>
 
           <div class="about-hero__image">
-            <div class="about-hero__quote">
-              <p>More than a bar, Koa’s Lounge is a place where meaningful moments happen.</p>
-              <span>
-                Great drinks, music, conversation, and the kind of room that makes staying out feel easy.
-              </span>
-            </div>
-          </div>
+		  <div class="about-hero__feature-top">
+			<div class="about-hero__mini-card">
+			  <span class="about-hero__mini-label">Craft Cocktails</span>
+			  <strong>Built for flavor, balance, and repeat orders</strong>
+			</div>
+
+			<div class="about-hero__mini-card">
+			  <span class="about-hero__mini-label">Live Music</span>
+			  <strong>A rotating lineup that keeps every night fresh</strong>
+			</div>
+
+			<div class="about-hero__mini-card">
+			  <span class="about-hero__mini-label">Atmosphere</span>
+			  <strong>Lighting, sound, and energy designed to pull you in</strong>
+			</div>
+		  </div>
+
+		  <div class="about-hero__quote">
+			<p>More than a bar, Koa’s Lounge is a place where meaningful moments happen.</p>
+			<span>
+			  Great drinks, music, conversation, and the kind of room that makes staying out feel easy.
+			</span>
+		  </div>
+		</div>
         </div>
       </div>
     </section>
