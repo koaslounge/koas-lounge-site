@@ -1,18 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const endpoint = "/.netlify/functions/office365-events";
-
-  const statusNode = document.querySelector("[data-home-events-status]");
-  const sourceNode = document.querySelector("[data-home-events-source]");
   const gridNode = document.querySelector("[data-home-events-grid]");
 
-  if (!statusNode || !gridNode) return;
+  if (!gridNode) return;
 
   loadHomeEvents();
 
   async function loadHomeEvents() {
     try {
-      statusNode.textContent = "Loading tonight’s lineup...";
-
       const response = await fetch(endpoint, {
         method: "GET",
         headers: { Accept: "application/json" }
@@ -30,21 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .sort((a, b) => a.startDate - b.startDate);
 
       const featured = selectHomeEvents(events);
-
-      if (sourceNode) {
-        sourceNode.textContent = payload?.source?.calendarName
-          ? `Source: ${payload.source.calendarName}`
-          : "Source: Office 365";
-      }
-
       renderHomeEvents(featured);
-
-      statusNode.textContent = featured.length
-        ? "Live lineup loaded."
-        : "No upcoming events are listed right now.";
     } catch (error) {
-      statusNode.textContent = "Unable to load tonight’s lineup.";
-      if (sourceNode) sourceNode.textContent = error.message || "Unknown error";
       gridNode.innerHTML = `<div class="home-tonight__empty">Please check back shortly for the latest events.</div>`;
     }
   }
@@ -74,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tomorrowStart = new Date(todayStart);
     tomorrowStart.setDate(todayStart.getDate() + 1);
 
-    const tonight = events.filter(e => e.startDate >= todayStart && e.startDate < tomorrowStart);
+    const tonight = events.filter(event => event.startDate >= todayStart && event.startDate < tomorrowStart);
     if (tonight.length) return tonight.slice(0, 3);
 
     return events.slice(0, 3);
@@ -109,13 +91,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function deriveType(title, description, categories) {
     const text = [title, description, ...(categories || [])].join(" ").toLowerCase();
+
     if (text.includes("karaoke")) return "karaoke";
     if (text.includes("dj") || text.includes("edm") || text.includes("house") || text.includes("bass")) return "dj";
     if (text.includes("brunch")) return "brunch";
+	if (text.includes("soul")) return "vinyl";
     if (text.includes("jam")) return "jam";
-    if (text.includes("soul")) return "vinyl";
     if (text.includes("trivia")) return "trivia";
-    if (text.includes("band") || text.includes("live music") || text.includes("reggae") || text.includes("rock") || text.includes("funk")) return "live music";
+    if (
+      text.includes("band") ||
+      text.includes("live music") ||
+      text.includes("reggae") ||
+      text.includes("rock") ||
+      text.includes("funk")
+    ) return "live music";
+
     return "special event";
   }
 
@@ -124,9 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case "karaoke": return "Karaoke";
       case "dj": return "DJ Night";
       case "brunch": return "Brunch";
+      case "vinyl": return "Vinyl Night";
       case "jam": return "Jam Session";
       case "trivia": return "Trivia";
-      case "vinyl": return "Vinyl Night";
       case "live music": return "Live Music";
       default: return "Special Event";
     }

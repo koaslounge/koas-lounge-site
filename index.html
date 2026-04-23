@@ -16,7 +16,7 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=6" />
 
   <style>
     .home-hero {
@@ -54,10 +54,10 @@
       padding: 28px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: space-between;
       min-height: 480px;
       background:
-        linear-gradient(180deg, rgba(8,16,27,0.15), rgba(8,16,27,0.72)),
+        linear-gradient(180deg, rgba(8,16,27,0.18), rgba(8,16,27,0.72)),
         url("assets/img/hero-bg.jpg") center/cover no-repeat,
         linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
         rgba(255,255,255,0.02);
@@ -121,6 +121,38 @@
     .home-hero__highlight span {
       color: rgba(255,255,255,0.68);
       font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .home-hero__feature-top {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .home-hero__mini-card {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(8,16,27,0.48);
+      backdrop-filter: blur(8px);
+    }
+
+    .home-hero__mini-card strong {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.35;
+      color: #ffffff;
+    }
+
+    .home-hero__mini-label {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #03fff6;
     }
 
     .home-hero__feature-card {
@@ -185,28 +217,6 @@
       flex-wrap: wrap;
     }
 
-    .home-tonight__status {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-      padding: 14px 18px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.035);
-    }
-
-    .home-tonight__status-text {
-      color: rgba(255,255,255,0.72);
-    }
-
-    .home-tonight__status-source {
-      color: rgba(255,255,255,0.56);
-      font-size: 0.92rem;
-    }
-
     .home-tonight__grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -261,6 +271,7 @@
       font-size: 0.95rem;
       display: grid;
       gap: 8px;
+      line-height: 1.5;
     }
 
     .home-tonight__link {
@@ -373,8 +384,7 @@
         grid-template-columns: 1fr;
       }
 
-      .home-tonight__header,
-      .home-tonight__status {
+      .home-tonight__header {
         align-items: flex-start;
         flex-direction: column;
       }
@@ -448,12 +458,28 @@
           </div>
 
           <div class="home-hero__feature">
+            <div class="home-hero__feature-top">
+              <div class="home-hero__mini-card">
+                <span class="home-hero__mini-label">Craft Cocktails</span>
+                <strong>Signature drinks with real personality</strong>
+              </div>
+
+              <div class="home-hero__mini-card">
+                <span class="home-hero__mini-label">Live Energy</span>
+                <strong>Bands, DJs, and nights people talk about</strong>
+              </div>
+
+              <div class="home-hero__mini-card">
+                <span class="home-hero__mini-label">Pāhoa Vibe</span>
+                <strong>A place that feels local, elevated, and alive</strong>
+              </div>
+            </div>
+
             <div class="home-hero__feature-card">
               <p class="home-hero__feature-label">Why People Come Here</p>
               <h2 class="home-hero__feature-title">A lounge that feels local, lively, and worth dressing up for.</h2>
               <p class="home-hero__feature-copy">
-                Whether you’re heading out for a date night, catching live music with friends,
-                or looking for where the action is after dark, Koa’s Lounge gives you the reason to stay out longer.
+                Whether you’re heading out for a date night, catching live music with friends, or looking for where the action is after dark, Koa’s Lounge gives you the reason to stay out longer.
               </p>
             </div>
           </div>
@@ -476,11 +502,6 @@
             <a class="btn-outline" href="events.html">Full Events Calendar</a>
             <a class="btn" href="contact.html">Plan Your Visit</a>
           </div>
-        </div>
-
-        <div class="home-tonight__status">
-          <div class="home-tonight__status-text" data-home-events-status>Loading tonight’s lineup...</div>
-          <div class="home-tonight__status-source" data-home-events-source></div>
         </div>
 
         <div class="home-tonight__grid" data-home-events-grid></div>
@@ -548,6 +569,6 @@
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
-  <script src="assets/js/home-events.js"></script>
+  <script src="assets/js/home-events.js?v=6"></script>
 </body>
 </html>
