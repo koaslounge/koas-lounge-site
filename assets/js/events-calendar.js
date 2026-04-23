@@ -247,8 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = [title, description, ...(categories || [])].join(" ").toLowerCase();
 
     if (text.includes("karaoke")) return "karaoke";
-    if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("soul") || text.includes("vinyl") || text.includes("house")) return "dj";
-    if (text.includes("vinyl")) return "Vinyl";
+    if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("dj") || text.includes("house")) return "dj";
+    if (text.includes("vinyl")) || text.includes("soul")) return "Vinyl";
     if (text.includes("brunch") || text.includes("mimosa")) return "brunch";
     if (text.includes("jam") || text.includes("open band") || text.includes("cypher")) return "jam";
     if (text.includes("trivia")) return "trivia";
