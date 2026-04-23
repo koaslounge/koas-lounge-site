@@ -105,11 +105,43 @@
     }
 
     .about-story {
-      margin-top: 50px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
+	  margin-top: 50px;
+	  display: grid;
+	  grid-template-columns: 0.9fr 1.1fr;
+	  gap: 24px;
+	  align-items: stretch;
+	}
+
+	.about-mission {
+	  grid-column: span 2;
+	}
+
+	.about-mission__card {
+	  margin-top: 24px;
+	  padding: 28px;
+	  border-radius: 26px;
+	  border: 1px solid rgba(255,255,255,0.10);
+	  background:
+		linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+		rgba(255,255,255,0.02);
+	  box-shadow: 0 24px 80px rgba(0,0,0,0.24);
+	}
+
+	.about-mission__card h3 {
+	  margin: 10px 0 12px;
+	  font-family: "Cormorant Garamond", serif;
+	  font-size: 2rem;
+	}
+
+	.about-mission__card p {
+	  margin: 0 0 14px;
+	  color: rgba(255,255,255,0.75);
+	  line-height: 1.65;
+	}
+
+	.about-mission__card p:last-child {
+	  margin-bottom: 0;
+	}
 
     .about-story__image {
       border-radius: 28px;
@@ -232,18 +264,68 @@
 <!-- STORY -->
 <section class="container about-story">
 
+  <!-- IMAGE -->
   <div class="about-story__image">
     <img src="assets/img/chris-shaun.png" alt="Chris and Shaun">
   </div>
 
+  <!-- CONTENT -->
   <div class="about-story__content">
-    <h2>Our Story</h2>
+
+    <p class="about-eyebrow">Our Story</p>
+
+    <h2>Built with purpose, passion, and aloha.</h2>
+
     <p>
-      Koa’s Lounge was built by Christopher and Shaun Sibel as a space where people can connect, celebrate, and enjoy the energy of the island.
+      Koa’s Lounge is a labor of love brought to life by husband-and-wife duo Christopher and Shaun Sibel.
+      Their story began in Hilo, where they first met and shared a mutual love for the vibrant island culture,
+      and blossomed into marriage in the picturesque town of Hawi.
     </p>
+
     <p>
-      From cocktails to music to atmosphere, everything here is intentional — designed to create a place people want to return to again and again.
+      With a shared passion for hospitality and community, they have dedicated their lives to creating unique
+      experiences that celebrate the spirit of Hawaii. As the owners of Koa's Events and Koa's Mobile Bar,
+      they bring their commitment to excellence and island-inspired hospitality into everything they do.
     </p>
+
+    <p>
+      They envisioned Koa’s Lounge as a place that feels like an extension of home—a welcoming, creative space
+      where friends and family can come together to enjoy great food, drinks, and unforgettable moments.
+    </p>
+
+    <p>
+      Their love for the Big Island shines through in every detail, from the bohemian decor to the handcrafted,
+      locally inspired offerings. Their journey together is a testament to their dedication to each other,
+      their community, and the island they call home.
+    </p>
+
+  </div>
+
+  <!-- MISSION STACK -->
+  <div class="about-mission">
+
+    <div class="about-mission__card">
+      <span class="about-eyebrow">Mission</span>
+
+      <h3>More than a bar. A place to belong.</h3>
+
+      <p>
+        At Koa’s Lounge, our mission is to celebrate the spirit of Hawaii by creating an inclusive space
+        where people can come together, enjoy exceptional food and drinks, and feel at home.
+      </p>
+
+      <p>
+        We are committed to supporting local artists and ingredients while crafting a genuine experience
+        for our community.
+      </p>
+
+      <p>
+        Our goal is to be a place where meaningful moments and connections are made, reflecting the vibrant
+        flavors and relaxed lifestyle of the islands.
+      </p>
+
+    </div>
+
   </div>
 
 </section>
