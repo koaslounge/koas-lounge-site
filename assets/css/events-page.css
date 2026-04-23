@@ -1,0 +1,373 @@
+body.events-page {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(3, 255, 246, 0.11), transparent 28%),
+    radial-gradient(circle at top right, rgba(0, 207, 200, 0.1), transparent 24%),
+    linear-gradient(180deg, #111725 0%, #1d2332 50%, #141926 100%);
+}
+
+.events-page .container {
+  width: min(calc(100% - 32px), 1180px);
+  margin: 0 auto;
+}
+
+.events-page .events-hero {
+  padding: 52px 0 22px;
+}
+
+.events-page .events-hero__wrap {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.events-page .events-hero__wrap > div {
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+    rgba(255,255,255,0.02);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.events-page .events-hero__wrap > div:first-child {
+  padding: 34px;
+}
+
+.events-page .events-hero__spotlight {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.events-page .events-hero__eyebrow,
+.events-page .events-hero__spotlight-label {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #03fff6;
+}
+
+.events-page .events-hero__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.events-page .events-hero__subtitle {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.05rem;
+}
+
+.events-page .events-hero__spotlight-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.events-page .events-hero__spotlight-copy {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.events-page .events-status {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.035);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.events-page .events-status__text {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+}
+
+.events-page .events-status__source {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.9rem;
+}
+
+.events-page .events-sections {
+  padding: 10px 0 52px;
+}
+
+.events-page .events-block {
+  padding: 24px;
+  margin-bottom: 26px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+    rgba(255,255,255,0.02);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.events-page .events-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.events-page .events-block__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.1rem;
+}
+
+.events-page .events-block__count {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.events-page .events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.events-page .event-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  min-height: 250px;
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+    rgba(12,16,26,0.46);
+  overflow: hidden;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.events-page .event-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(3,255,246,0.24);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+}
+
+.events-page .event-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -40% auto;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(3,255,246,0.12), transparent 62%);
+  pointer-events: none;
+}
+
+.events-page .event-card--featured {
+  border-color: rgba(3,255,246,0.26);
+  box-shadow:
+    0 18px 52px rgba(0,0,0,0.24),
+    0 0 0 1px rgba(3,255,246,0.06) inset;
+  background:
+    linear-gradient(180deg, rgba(3,255,246,0.08), rgba(255,255,255,0.025)),
+    rgba(12,16,26,0.52);
+}
+
+.events-page .event-card__top {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.events-page .event-card__date {
+  width: 96px;
+  padding: 12px 10px;
+  border-radius: 16px;
+  text-align: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.events-page .event-card__date--featured {
+  border-color: rgba(3,255,246,0.24);
+  background: linear-gradient(180deg, rgba(3,255,246,0.1), rgba(255,255,255,0.04));
+}
+
+.events-page .event-card__month {
+  display: block;
+  color: #03fff6;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.events-page .event-card__day {
+  display: block;
+  margin-top: 6px;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.events-page .event-card__dow {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.events-page .event-card__meta {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.events-page .event-card__badges,
+.events-page .event-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.events-page .event-card__title {
+  font-size: 1.34rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  min-width: 0;
+}
+
+.events-page .event-card__desc {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.96rem;
+}
+
+.events-page .event-card__details {
+  display: grid;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+}
+
+.events-page .event-detail {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+
+.events-page .event-detail__icon {
+  width: 20px;
+  flex: 0 0 20px;
+  color: #03fff6;
+  text-align: center;
+}
+
+.events-page .event-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.events-page .badge,
+.events-page .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.events-page .badge {
+  color: #07161a;
+  background: linear-gradient(135deg, #00cfc8, #03fff6);
+}
+
+.events-page .badge--featured {
+  box-shadow: 0 10px 24px rgba(3,255,246,0.2);
+}
+
+.events-page .chip {
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.events-page .chip--featured {
+  color: #07161a;
+  background: linear-gradient(135deg, #00cfc8, #03fff6);
+  border: none;
+  font-weight: 800;
+}
+
+.events-page .event-link {
+  color: #03fff6;
+  font-weight: 700;
+}
+
+.events-page .empty-state {
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px dashed rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.025);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 1100px) {
+  .events-page .events-hero__wrap,
+  .events-page .events-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .events-page .events-hero {
+    padding-top: 38px;
+  }
+
+  .events-page .events-hero__wrap > div,
+  .events-page .events-block {
+    padding: 22px;
+  }
+
+  .events-page .events-block__header,
+  .events-page .event-card__footer,
+  .events-page .events-status {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .events-page .event-card__top {
+    grid-template-columns: 1fr;
+  }
+
+  .events-page .event-card__date {
+    width: 100%;
+  }
+}
