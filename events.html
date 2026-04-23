@@ -21,24 +21,34 @@
 </head>
 <body class="events-page">
   <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="/index.html" aria-label="Koa's Lounge home">
-        <img src="/assets/img/logo.png" alt="Koa's Lounge logo" />
-        <div class="brand__text">
-          <span class="brand__eyebrow">Pāhoa, Hawaiʻi</span>
-          <span class="brand__name">Koa's Lounge</span>
-        </div>
-      </a>
+  <div class="container navbar">
+    <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+      <img data-img-key="logo" alt="Koa's Lounge logo">
+      <div class="brand-lockup">
+        <strong>Koa's Lounge</strong>
+        <span>Taste Aloha</span>
+      </div>
+    </a>
 
-      <nav class="nav" aria-label="Primary">
-        <a href="/index.html">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/events.html" aria-current="page">Events</a>
-        <a href="/menu.html">Menu</a>
-        <a href="/contact.html">Contact</a>
+    <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
+    <div class="nav-shell">
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="events.html">Events</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact</a>
+        <a href="band-booking.html">Band Booking</a>
       </nav>
+
+      <div class="nav-cta">
+        <a class="btn-outline" href="menu.html">View Menu</a>
+        <a class="btn" href="contact.html">Visit Koa's</a>
+      </div>
     </div>
-  </header>
+  </div>
+</header>
 
   <main>
     <section class="events-hero">
