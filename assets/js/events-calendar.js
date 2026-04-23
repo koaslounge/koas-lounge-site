@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (text.includes("karaoke")) return "karaoke";
     if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("house")) return "dj";
-    if (text.includes("vinyl")) || text.includes("soul")) return "Vinyl";
+    if (text.includes("vinyl")) || text.includes("soul")) return "vinyl";
     if (text.includes("brunch") || text.includes("mimosa")) return "brunch";
     if (text.includes("jam") || text.includes("open band") || text.includes("cypher")) return "jam";
     if (text.includes("trivia")) return "trivia";
@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
       case "brunch": return "Brunch";
       case "jam": return "Jam Session";
       case "trivia": return "Trivia";
-      case "vinyl": return "Vinyl";
+      case "vinyl": return "Vinyl Night";
 	  case "live music": return "Live Music";
       default: return "Special Event";
     }
