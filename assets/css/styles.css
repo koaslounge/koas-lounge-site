@@ -217,10 +217,11 @@ p { margin: 0 0 1rem; color: var(--muted); }
 }
 
 .brand img {
-  width: 58px;
-  height: 58px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
   display: block;
+}
 }
 
 .brand__text {
@@ -239,7 +240,7 @@ p { margin: 0 0 1rem; color: var(--muted); }
 .brand__name {
   display: block;
   font-family: "Cormorant Garamond", serif;
-  font-size: 1.9rem;
+  font-size: 2.1rem;
   font-weight: 700;
   line-height: 0.95;
   color: #ffffff;
@@ -308,6 +309,14 @@ p { margin: 0 0 1rem; color: var(--muted); }
   object-fit: contain;
   filter: drop-shadow(0 10px 24px rgba(0,0,0,0.34));
 }
+
+@media (max-width: 760px) {
+  .brand img {
+    width: 58px;
+    height: 58px;
+  }
+}
+
 .brand-lockup { line-height: 1.1; }
 .brand-lockup strong {
   display: block;
