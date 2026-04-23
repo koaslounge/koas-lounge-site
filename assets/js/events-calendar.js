@@ -247,7 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = [title, description, ...(categories || [])].join(" ").toLowerCase();
 
     if (text.includes("karaoke")) return "karaoke";
-    if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("house")) return "dj";
+    if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("soul") || text.includes("vinyl") || text.includes("house")) return "dj";
+    if (text.includes("vinyl")) return "Vinyl";
     if (text.includes("brunch") || text.includes("mimosa")) return "brunch";
     if (text.includes("jam") || text.includes("open band") || text.includes("cypher")) return "jam";
     if (text.includes("trivia")) return "trivia";
@@ -255,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
       text.includes("live music") ||
       text.includes("band") ||
       text.includes("reggae") ||
-      text.includes("soul") ||
+      text.includes("rock") ||
       text.includes("funk") ||
       text.includes("acoustic") ||
       text.includes("jazz")
@@ -271,7 +272,8 @@ document.addEventListener("DOMContentLoaded", () => {
       case "brunch": return "Brunch";
       case "jam": return "Jam Session";
       case "trivia": return "Trivia";
-      case "live music": return "Live Music";
+      case "vinyl": return "Vinyl";
+	  case "live music": return "Live Music";
       default: return "Special Event";
     }
   }

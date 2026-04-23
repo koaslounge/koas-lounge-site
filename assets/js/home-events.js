@@ -113,9 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (text.includes("dj") || text.includes("edm") || text.includes("house") || text.includes("bass")) return "dj";
     if (text.includes("brunch")) return "brunch";
     if (text.includes("jam")) return "jam";
-    if (text.includes("soul magic")) return "vinyl";
+    if (text.includes("soul")) return "vinyl";
     if (text.includes("trivia")) return "trivia";
-    if (text.includes("band") || text.includes("live music") || text.includes("reggae") || text.includes("funk")) return "live music";
+    if (text.includes("band") || text.includes("live music") || text.includes("reggae") || text.includes("rock") || text.includes("funk")) return "live music";
     return "special event";
   }
 
