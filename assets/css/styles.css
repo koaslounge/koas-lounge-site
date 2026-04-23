@@ -136,7 +136,7 @@ select {
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: #ffffff;
+  color: #03fff6;
   transform: translateY(-1px);
 }
 
