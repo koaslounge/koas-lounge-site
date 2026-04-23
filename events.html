@@ -6,19 +6,19 @@
   <title>Events | Koa's Lounge</title>
   <meta
     name="description"
-    content="See what's happening tonight, this weekend, and upcoming at Koa's Lounge in Pāhoa."
+    content="Live events at Koa's Lounge in Pāhoa. See tonight, this weekend, and upcoming events."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=3" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=4" />
 </head>
-<body>
+<body class="events-page">
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="/index.html" aria-label="Koa's Lounge home">
@@ -35,156 +35,69 @@
         <a href="/events.html" aria-current="page">Events</a>
         <a href="/menu.html">Menu</a>
         <a href="/contact.html">Contact</a>
-        <a class="nav-cta" href="/band-booking.html">Band Booking</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero__wrap">
-        <div class="hero__content">
+    <section class="events-hero">
+      <div class="container">
+        <div class="events-hero__wrap">
           <div>
-            <span class="eyebrow">Live Calendar • Synced from Office 365</span>
-            <h1>Nights worth coming out for.</h1>
-            <p class="hero__lede">
-              Your live Koa’s Lounge calendar, styled like a proper venue page.
-              Browse what’s happening tonight, what’s landing this weekend, and what’s coming up next.
+            <p class="events-hero__eyebrow">Live Calendar</p>
+            <h1 class="events-hero__title">Koa’s Lounge Events</h1>
+            <p class="events-hero__subtitle">
+              Live from our Office 365 calendar.
             </p>
-
-            <div class="hero__actions">
-              <a class="button button--primary" href="#live-feed">See the live lineup</a>
-              <a class="button button--secondary" href="/contact.html">Plan your visit</a>
-            </div>
           </div>
 
-          <div class="hero__stats">
-            <div class="stat">
-              <div class="stat__label">Now showing</div>
-              <div class="stat__value" data-stat-total>—</div>
+          <div class="events-hero__spotlight">
+            <div class="events-hero__spotlight-label">Spotlight</div>
+            <div class="events-hero__spotlight-title" data-hero-spotlight-title>
+              Loading events...
             </div>
-            <div class="stat">
-              <div class="stat__label">Tonight / Next</div>
-              <div class="stat__value" data-stat-tonight>—</div>
-            </div>
-            <div class="stat">
-              <div class="stat__label">This weekend</div>
-              <div class="stat__value" data-stat-weekend>—</div>
+            <div class="events-hero__spotlight-copy" data-hero-spotlight-copy>
+              Please wait while the live calendar loads.
             </div>
           </div>
         </div>
 
-        <aside class="hero__aside">
-          <div>
-            <span class="eyebrow">Programming pulse</span>
-            <h2>Built for nightlife, not spreadsheets.</h2>
-            <p>
-              This page automatically turns your shared Office 365 calendar into a branded event feed
-              that feels curated, current, and mobile-friendly.
-            </p>
-          </div>
-
-          <div class="pulse-card">
-            <div class="pulse-card__label">Spotlight</div>
-            <div class="pulse-card__title" data-hero-spotlight-title>Loading live calendar...</div>
-            <p class="pulse-card__body" data-hero-spotlight-copy>
-              Pulling your next event from the live Koa’s Lounge calendar.
-            </p>
-          </div>
-
-          <div class="promo-strip">
-            <strong>Tip:</strong> updates made in your Koa’s Lounge Office 365 shared calendar now flow
-            directly into this page without manually editing the website.
-          </div>
-        </aside>
+        <div class="events-status">
+          <div class="events-status__text" data-events-status>Loading upcoming events...</div>
+          <div class="events-status__source" data-events-source></div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="live-feed">
+    <section class="events-sections">
       <div class="container">
-        <div class="section__header">
-          <div>
-            <h2 class="section__title">The live event feed</h2>
-            <p class="section__copy">
-              Automatically grouped into the moments that matter most for guests:
-              what’s happening tonight, what’s on deck for the weekend, and everything upcoming.
-            </p>
+        <section class="events-block">
+          <div class="events-block__header">
+            <h2 class="events-block__title" data-title-tonight>Tonight</h2>
+            <div class="events-block__count" data-count-tonight>0 events</div>
           </div>
-        </div>
+          <div class="events-grid" data-group-tonight></div>
+        </section>
 
-        <div class="status-row">
-          <div class="status-row__text" data-events-status>Loading upcoming events...</div>
-          <div class="status-row__source" data-events-source></div>
-        </div>
+        <section class="events-block">
+          <div class="events-block__header">
+            <h2 class="events-block__title">This Weekend</h2>
+            <div class="events-block__count" data-count-weekend>0 events</div>
+          </div>
+          <div class="events-grid" data-group-weekend></div>
+        </section>
 
-        <div class="feed-grid">
-          <section class="feed-section">
-            <div class="feed-section__top">
-              <h3 class="feed-section__title" data-title-tonight>Tonight</h3>
-              <div class="feed-section__count" data-count-tonight>0 events</div>
-            </div>
-            <div class="events-grid" data-group-tonight></div>
-          </section>
-
-          <section class="feed-section">
-            <div class="feed-section__top">
-              <h3 class="feed-section__title">This Weekend</h3>
-              <div class="feed-section__count" data-count-weekend>0 events</div>
-            </div>
-            <div class="events-grid" data-group-weekend></div>
-          </section>
-
-          <section class="feed-section">
-            <div class="feed-section__top">
-              <h3 class="feed-section__title">Upcoming</h3>
-              <div class="feed-section__count" data-count-upcoming>0 events</div>
-            </div>
-            <div class="events-grid" data-group-upcoming></div>
-          </section>
-        </div>
+        <section class="events-block">
+          <div class="events-block__header">
+            <h2 class="events-block__title">Upcoming</h2>
+            <div class="events-block__count" data-count-upcoming>0 events</div>
+          </div>
+          <div class="events-grid" data-group-upcoming></div>
+        </section>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container site-footer__grid">
-      <div>
-        <img class="footer-logo" src="/assets/img/logo.png" alt="Koa's Lounge logo" />
-        <h3>Koa's Lounge</h3>
-        <p>
-          A bohemian-style cocktail lounge in Pāhoa built around crafted drinks, live music,
-          DJs, community nights, and island hospitality.
-        </p>
-        <div class="footer-meta">© <span data-year></span> Koa’s Lounge. All rights reserved.</div>
-      </div>
-
-      <div>
-        <h3>Explore</h3>
-        <ul>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/events.html">Events</a></li>
-          <li><a href="/menu.html">Menu</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-          <li><a href="/band-booking.html">Band Booking</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Visit</h3>
-        <ul>
-          <li>Pāhoa, Hawaiʻi</li>
-          <li><a href="tel:+18089656644">(808) 965-6644</a></li>
-          <li><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.querySelectorAll("[data-year]").forEach(function (node) {
-      node.textContent = new Date().getFullYear();
-    });
-  </script>
-  <script src="/assets/js/events-calendar.js?v=3"></script>
+  <script src="/assets/js/events-calendar.js?v=4"></script>
 </body>
 </html>

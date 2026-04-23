@@ -12,19 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const weekendCountNode = document.querySelector("[data-count-weekend]");
   const upcomingCountNode = document.querySelector("[data-count-upcoming]");
 
-  const totalStatNode = document.querySelector("[data-stat-total]");
-  const tonightStatNode = document.querySelector("[data-stat-tonight]");
-  const weekendStatNode = document.querySelector("[data-stat-weekend]");
-
   const spotlightTitleNode = document.querySelector("[data-hero-spotlight-title]");
   const spotlightCopyNode = document.querySelector("[data-hero-spotlight-copy]");
+  const tonightTitleNode = document.querySelector("[data-title-tonight]");
 
-  const tonightSectionTitleNode = document.querySelector("[data-title-tonight]");
-
-  if (!statusNode || !tonightNode || !weekendNode || !upcomingNode) {
-    console.error("Events page selectors not found.");
-    return;
-  }
+  if (!statusNode || !tonightNode || !weekendNode || !upcomingNode) return;
 
   statusNode.textContent = "Loading live event calendar...";
 
@@ -32,43 +24,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadEvents() {
     try {
-      const res = await fetch(endpoint, {
+      const response = await fetch(endpoint, {
         method: "GET",
-        headers: {
-          "Accept": "application/json"
-        }
+        headers: { Accept: "application/json" }
       });
 
-      const payload = await res.json();
-      console.log("Calendar payload:", payload);
+      const payload = await response.json();
 
-      if (!res.ok) {
-        throw new Error(payload.error || "Failed to load event feed.");
+      if (!response.ok) {
+        throw new Error(payload.error || "Unable to load events.");
       }
 
-      const rawEvents = Array.isArray(payload.events) ? payload.events : [];
-      const events = rawEvents
+      const events = (Array.isArray(payload.events) ? payload.events : [])
         .map(normalizeEvent)
         .filter(Boolean)
         .sort((a, b) => a.startDate - b.startDate);
 
       const grouped = groupEvents(events);
 
-      if (tonightSectionTitleNode) {
-        tonightSectionTitleNode.textContent = grouped.tonightIsFallback ? "Next Event" : "Tonight";
+      if (tonightTitleNode) {
+        tonightTitleNode.textContent = grouped.tonightIsFallback ? "Next Event" : "Tonight";
       }
 
-      renderGroup(tonightNode, grouped.tonight, grouped.tonightIsFallback ? "No upcoming events are scheduled right now." : "Nothing is scheduled for tonight.");
+      renderGroup(
+        tonightNode,
+        grouped.tonight,
+        grouped.tonightIsFallback
+          ? "No upcoming events are scheduled right now."
+          : "Nothing is scheduled for tonight."
+      );
       renderGroup(weekendNode, grouped.weekend, "No weekend events are currently scheduled.");
       renderGroup(upcomingNode, grouped.upcoming, "No additional upcoming events are listed right now.");
 
       setCount(tonightCountNode, grouped.tonight.length);
       setCount(weekendCountNode, grouped.weekend.length);
       setCount(upcomingCountNode, grouped.upcoming.length);
-
-      if (totalStatNode) totalStatNode.textContent = String(events.length);
-      if (tonightStatNode) tonightStatNode.textContent = String(grouped.tonight.length);
-      if (weekendStatNode) weekendStatNode.textContent = String(grouped.weekend.length);
 
       if (sourceNode) {
         sourceNode.textContent = payload?.source?.calendarName
@@ -81,11 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
       statusNode.textContent = events.length
         ? "Live calendar synced."
         : "No upcoming events found.";
-    } catch (err) {
-      console.error("Events calendar error:", err);
-
+    } catch (error) {
       statusNode.textContent = "The event feed could not be loaded.";
-      if (sourceNode) sourceNode.textContent = err.message || "Unknown error";
+      if (sourceNode) sourceNode.textContent = error.message || "Unknown error";
 
       renderEmptyState(tonightNode, "Tonight’s events could not be loaded.");
       renderEmptyState(weekendNode, "Weekend events could not be loaded.");
@@ -94,10 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
       setCount(tonightCountNode, 0);
       setCount(weekendCountNode, 0);
       setCount(upcomingCountNode, 0);
-
-      if (totalStatNode) totalStatNode.textContent = "—";
-      if (tonightStatNode) tonightStatNode.textContent = "—";
-      if (weekendStatNode) weekendStatNode.textContent = "—";
 
       if (spotlightTitleNode) spotlightTitleNode.textContent = "Live calendar unavailable";
       if (spotlightCopyNode) spotlightCopyNode.textContent = "Please check back shortly.";
@@ -113,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Number.isNaN(startDate.getTime())) return null;
 
     const weekday = startDate.getDay();
-    const isHighValueNight = weekday === 5 || weekday === 6;
 
     return {
       title: event.title || "Untitled Event",
@@ -124,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       startDate,
       endDate,
       type: deriveType(event.title || "", event.description || "", event.categories || []),
-      isHighValueNight
+      isHighValueNight: weekday === 5 || weekday === 6
     };
   }
 
@@ -171,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.innerHTML = "";
 
     if (!events.length) {
-      renderEmptyState(container, emptyMessage || "No events in this section right now.");
+      renderEmptyState(container, emptyMessage);
       return;
     }
 
@@ -188,10 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("article");
     card.className = "event-card" + (event.isHighValueNight ? " event-card--featured" : "");
 
-    const start = formatDate(event.startDate);
-    const time = formatTimeRange(event.startDate, event.endDate);
     const typeLabel = getTypeLabel(event.type);
-    const featuredChip = event.isHighValueNight ? `<span class="chip chip--featured">Prime Night</span>` : "";
+    const dateLabel = formatDate(event.startDate);
+    const timeLabel = formatTimeRange(event.startDate, event.endDate);
 
     card.innerHTML = `
       <div class="event-card__top">
@@ -204,11 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="event-card__meta">
           <div class="event-card__badges">
             <span class="badge${event.isHighValueNight ? " badge--featured" : ""}">${escapeHtml(typeLabel)}</span>
-            ${featuredChip}
+            ${event.isHighValueNight ? '<span class="chip chip--featured">Prime Night</span>' : ""}
           </div>
+
           <div class="event-card__title">${escapeHtml(event.title)}</div>
+
           <div class="event-card__chips">
-            <span class="chip">${escapeHtml(start)}</span>
+            <span class="chip">${escapeHtml(dateLabel)}</span>
           </div>
         </div>
       </div>
@@ -218,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="event-card__details">
         <div class="event-detail">
           <div class="event-detail__icon">⏰</div>
-          <div>${escapeHtml(time)}</div>
+          <div>${escapeHtml(timeLabel)}</div>
         </div>
         ${event.location ? `
           <div class="event-detail">
@@ -242,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!spotlight) {
       if (spotlightTitleNode) spotlightTitleNode.textContent = "No upcoming events loaded";
-      if (spotlightCopyNode) spotlightCopyNode.textContent = "Add events to your Office 365 calendar and they’ll appear here.";
+      if (spotlightCopyNode) spotlightCopyNode.textContent = "Add events to your Office 365 calendar and they will appear here.";
       return;
     }
 
