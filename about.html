@@ -1,17 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Koa's Lounge</title>
-  <meta name="description" content="Learn the story behind Koa's Lounge in Pāhoa, Hawaiʻi.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <meta
+    name="description"
+    content="Learn the story behind Koa's Lounge in Pāhoa — a bohemian-style cocktail lounge built around live music, handcrafted drinks, and island hospitality."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=6" />
+
+  <style>
+    body.about-page {
+      color: #ffffff;
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(3, 255, 246, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(0, 207, 200, 0.08), transparent 24%),
+        linear-gradient(180deg, #111725 0%, #1d2332 50%, #141926 100%);
+    }
+
+    .about-hero {
+      padding: 56px 0 28px;
+    }
+
+    .about-hero__wrap {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-hero__panel,
+    .about-hero__image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+    }
+
+    .about-hero__panel {
+      padding: 38px;
+      min-height: 470px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-hero__image {
+      min-height: 470px;
+      background:
+        linear-gradient(180deg, rgba(8,16,27,0.18), rgba(8,16,27,0.66)),
+        url("assets/img/about-hero.jpg") center/cover no-repeat,
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.02);
+      display: flex;
+      align-items: end;
+      padding: 28px;
+    }
+
+    .about-eyebrow {
+      display: inline-block;
+      margin: 0 0 12px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #03fff6;
+    }
+
+    .about-hero__title {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 10ch;
+    }
+
+    .about-hero__subtitle {
+      margin: 18px 0 0;
+      max-width: 620px;
+      color: rgba(255,255,255,0.76);
+      font-size: 1.06rem;
+      line-height: 1.65;
+    }
+
+    .about-hero__actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .about-hero__highlights {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .about-hero__highlight {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .about-hero__highlight strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .about-hero__highlight span {
+      color: rgba(255,255,255,0.68);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .about-hero__quote {
+      width: 100%;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(8, 16, 27, 0.52);
+      backdrop-filter: blur(8px);
+    }
+
+    .about-hero__quote p {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      line-height: 1.08;
+    }
+
+    .about-hero__quote span {
+      display: block;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .about-section {
+      padding: 14px 0 54px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .about-card {
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.24);
+    }
+
+    .about-card__title {
+      margin: 0 0 12px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+
+    .about-card p {
+      margin: 0 0 14px;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.68;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-values {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .about-value {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+        rgba(12,16,26,0.46);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    }
+
+    .about-value__eyebrow {
+      display: inline-block;
+      margin: 0 0 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #03fff6;
+    }
+
+    .about-value h3 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+
+    .about-value p {
+      margin: 0;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+    }
+
+    .about-story {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .about-story__image,
+    .about-story__content {
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.24);
+    }
+
+    .about-story__image {
+      min-height: 460px;
+      background:
+        linear-gradient(180deg, rgba(8,16,27,0.16), rgba(8,16,27,0.58)),
+        url("assets/img/about-founders.jpg") center/cover no-repeat,
+        rgba(255,255,255,0.02);
+    }
+
+    .about-story__content {
+      padding: 30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+        rgba(255,255,255,0.02);
+    }
+
+    .about-story__content h2 {
+      margin: 0 0 14px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+
+    .about-story__content p {
+      margin: 0 0 14px;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.7;
+    }
+
+    .about-story__content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-cta {
+      padding: 10px 0 70px;
+    }
+
+    .about-cta__wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .about-cta__card {
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.24);
+    }
+
+    .about-cta__card h3 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .about-cta__card p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.62;
+    }
+
+    .about-cta__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .about-hero__wrap,
+      .about-grid,
+      .about-story,
+      .about-values,
+      .about-cta__wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .about-hero {
+        padding-top: 40px;
+      }
+
+      .about-hero__panel,
+      .about-card,
+      .about-story__content,
+      .about-cta__card {
+        padding: 22px;
+      }
+
+      .about-hero__highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hero__actions,
+      .about-cta__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
 </head>
-<!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
-<body>
+<body class="about-page">
   <header class="site-header">
     <div class="container navbar">
       <a class="brand" href="index.html" aria-label="Koa's Lounge home">
@@ -21,7 +360,9 @@
           <span>Taste Aloha</span>
         </div>
       </a>
+
       <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
       <div class="nav-shell">
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="index.html">Home</a>
@@ -31,8 +372,9 @@
           <a href="contact.html">Contact</a>
           <a href="band-booking.html">Band Booking</a>
         </nav>
+
         <div class="nav-cta">
-          <a class="btn-outline" href="events.html">Events</a>
+          <a class="btn-outline" href="events.html">See Events</a>
           <a class="btn" href="contact.html">Visit Koa's</a>
         </div>
       </div>
@@ -40,150 +382,168 @@
   </header>
 
   <main>
-    <section class="page-hero about-hero">
-      <div class="page-hero-media" data-bg-key="aboutHero"></div>
-      <div class="container page-hero-inner">
-        <div class="panel about-hero-panel">
-          <div class="eyebrow">About Koa's Lounge</div>
-          <h1 style="font-size:clamp(3.4rem,8vw,6.4rem); max-width:11ch;">Island nights, crafted with warmth, music, and aloha.</h1>
-          <p class="lead">Koa's Lounge brings together cocktail culture, live energy, and the creative soul of Pāhoa in a setting that feels intimate, expressive, and unmistakably Big Island.</p>
-        </div>
-      </div>
-    </section>
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero__wrap">
+          <div class="about-hero__panel">
+            <div>
+              <p class="about-eyebrow">About Koa's Lounge</p>
+              <h1 class="about-hero__title">Island nights, crafted with warmth, music, and aloha.</h1>
+              <p class="about-hero__subtitle">
+                Koa’s Lounge brings together cocktail culture, live energy, and the creative soul of Pāhoa
+                in a setting that feels intimate, expressive, and unmistakably Big Island.
+              </p>
 
-    <section class="section compact">
-      <div class="container about-intro-grid">
-        <div class="about-copy">
-          <div class="eyebrow">Welcome</div>
-          <h2>A lounge built for connection, flavor, and atmosphere.</h2>
-          <p>Welcome to Koa’s Lounge, a vibrant, bohemian-style bar nestled in the heart of Pāhoa, Hawaii. At Koa’s Lounge, we blend the laid-back spirit of Hawaii with an eclectic, warm atmosphere that invites everyone to unwind and enjoy life's simple pleasures.</p>
-          <p>Inspired by the island’s unique culture and flavors, Koa’s Lounge is more than just a bar — it is a gathering place where locals and visitors alike can savor handcrafted cocktails, curated bites, live music, and nights that linger long after the last song.</p>
-          <p>Founded on the idea that a night out should be as much about connection as it is about cuisine and cocktails, Koa’s Lounge offers a welcoming space for date nights, celebrations, casual meetups, and spontaneous evenings that turn into memories.</p>
-        </div>
-        <div class="about-visual-stack">
-          <figure class="about-photo-main">
-            <img data-img-key="aboutIntroImage" alt="Inside Koa's Lounge">
-          </figure>
-          <div class="about-floating-card">
-            <span class="eyebrow">The feeling</span>
-            <strong>Relaxed, expressive, and community-driven.</strong>
-            <p>Cozy lighting, crafted drinks, and a bohemian rhythm that makes staying late feel easy.</p>
+              <div class="about-hero__actions">
+                <a class="btn" href="events.html">See What’s Happening</a>
+                <a class="btn-outline" href="menu.html">Explore the Menu</a>
+              </div>
+            </div>
+
+            <div class="about-hero__highlights">
+              <div class="about-hero__highlight">
+                <strong>Crafted Atmosphere</strong>
+                <span>A bohemian-style lounge built for connection, comfort, and memorable nights out.</span>
+              </div>
+              <div class="about-hero__highlight">
+                <strong>Live Energy</strong>
+                <span>Music, DJs, karaoke, and events that keep the room fresh, social, and alive.</span>
+              </div>
+              <div class="about-hero__highlight">
+                <strong>Island Hospitality</strong>
+                <span>A welcoming space where locals and visitors alike can relax, celebrate, and return often.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-hero__image">
+            <div class="about-hero__quote">
+              <p>More than a bar, Koa’s Lounge is a place where meaningful moments happen.</p>
+              <span>
+                Great drinks, music, conversation, and the kind of room that makes staying out feel easy.
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container about-pillars">
-        <article class="pillar-card">
-          <span class="eyebrow">Cocktails</span>
-          <h3>Crafted with island character</h3>
-          <p>From easy-drinking favorites to elevated pours, every drink is designed to match the vibe of the room and the pace of the night.</p>
-        </article>
-        <article class="pillar-card">
-          <span class="eyebrow">Music</span>
-          <h3>Built around real nights out</h3>
-          <p>Live bands, DJs, karaoke, and community energy give Koa’s Lounge its pulse and keep the atmosphere evolving throughout the week.</p>
-        </article>
-        <article class="pillar-card">
-          <span class="eyebrow">Aloha</span>
-          <h3>Welcoming by design</h3>
-          <p>The heart of the space is simple: make people feel comfortable, seen, and excited to come back again.</p>
-        </article>
-      </div>
-    </section>
+    <section class="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <article class="about-card">
+            <h2 class="about-card__title">Welcome</h2>
+            <p>
+              Welcome to Koa’s Lounge, a vibrant bohemian-style cocktail lounge in the heart of Pāhoa, Hawaiʻi.
+              Here, the laid-back rhythm of the island meets a room designed for flavor, music, and atmosphere.
+            </p>
+            <p>
+              Koa’s Lounge was created to feel expressive, warm, and memorable — a place for date nights,
+              celebrations, casual meetups, and spontaneous evenings that turn into stories worth retelling.
+            </p>
+          </article>
 
-    <section class="section">
-      <div class="container founder-grid">
-        <div class="panel founder-copy">
-          <div class="eyebrow">Our story</div>
-          <h2>Christopher and Shaun Sibel created Koa’s Lounge as a labor of love.</h2>
-          <p>Their story began in Hilo, where they first met and discovered a shared love for Hawaii’s culture, creativity, and community. That connection eventually grew into marriage in Hawi — and later into a family of hospitality brands built around memorable experiences.</p>
-          <p>As the owners of Koa’s Events, a wedding and event venue in Mountain View, and Koa’s Mobile Bar, a traveling bar service serving the Big Island, Chris and Shaun have built their lives around bringing people together. Koa’s Lounge became the next expression of that vision: a welcoming, stylish place where great drinks, music, and conversation all meet.</p>
-          <p>Every detail reflects that intention — from the bohemian design language to the island-inspired energy of the room. Their hope is that Koa’s Lounge feels like an extension of home, but with the spark of a night out worth remembering.</p>
-        </div>
-        <div class="founder-visuals">
-          <figure class="founder-photo founder-photo-large">
-            <img data-img-key="aboutStory" alt="Koa's Lounge atmosphere">
-          </figure>
-          <figure class="founder-photo founder-photo-small">
-            <img data-img-key="aboutDetailImage" alt="Cocktail at Koa's Lounge">
-          </figure>
+          <article class="about-card">
+            <h2 class="about-card__title">What Makes It Different</h2>
+            <p>
+              The experience is built around more than just drinks. It is about the whole night: the lighting,
+              the sound, the crowd, the cocktails, and the feeling that something is happening.
+            </p>
+            <p>
+              Whether you come for a DJ set, a live band, karaoke, or a quiet first round that turns into a long evening,
+              Koa’s Lounge is designed to keep the night moving in the right direction.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container mission-layout">
-        <div class="quote-block quote-block-large">
-          <p>“More than a bar, Koa’s Lounge is a place where meaningful moments happen, where people connect, and where the aloha spirit is felt in every detail.”</p>
-          <span>Mission statement</span>
-        </div>
-        <div class="mission-copy">
-          <div class="eyebrow">Mission</div>
-          <h2>To create an inclusive place where great nights and genuine connections come naturally.</h2>
-          <p>At Koa’s Lounge, our mission is to celebrate the spirit of Hawaii by creating a space where people can come together, savor exceptional food and drinks, and feel at home. We are committed to supporting local artists and ingredients while crafting a genuine experience for our community.</p>
-          <p>Our goal is to be more than just a bar. We want Koa’s Lounge to be a place where strangers become regulars, where local talent is celebrated, and where the relaxed, vibrant lifestyle of the islands comes through in every pour, every playlist, and every gathering.</p>
+    <section class="about-section">
+      <div class="container">
+        <div class="about-values">
+          <article class="about-value">
+            <span class="about-value__eyebrow">Cocktails</span>
+            <h3>Crafted with Character</h3>
+            <p>
+              Every drink is meant to match the mood of the room — approachable, memorable, and full of personality.
+            </p>
+          </article>
+
+          <article class="about-value">
+            <span class="about-value__eyebrow">Music</span>
+            <h3>Built Around Real Nights Out</h3>
+            <p>
+              Bands, DJs, karaoke, and community-driven nights give Koa’s Lounge its pulse and keep the energy evolving.
+            </p>
+          </article>
+
+          <article class="about-value">
+            <span class="about-value__eyebrow">Aloha</span>
+            <h3>Welcoming by Design</h3>
+            <p>
+              The goal is simple: make people feel comfortable, seen, and excited to come back again.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container about-cta-band cta-band">
-        <div>
-          <div class="eyebrow">Visit us</div>
-          <h3>Come experience the room, the music, and the spirit of Koa’s Lounge.</h3>
-          <p>Whether you are stopping in for cocktails, planning a night out, or following the live music, Koa’s Lounge is designed to feel welcoming from the first drink to the last song.</p>
+    <section class="about-section">
+      <div class="container">
+        <div class="about-story">
+          <div class="about-story__image" aria-hidden="true"></div>
+
+          <div class="about-story__content">
+            <p class="about-eyebrow">Our Story</p>
+            <h2>Christopher and Shaun Sibel built Koa’s Lounge as a labor of love.</h2>
+            <p>
+              Their story began in Hawaiʻi and grew into a shared life built around creativity, hospitality, and bringing people together.
+              That same spirit now lives inside Koa’s Lounge — a place designed to feel stylish, social, and deeply connected to the island.
+            </p>
+            <p>
+              As the owners of Koa’s Events and Koa’s Mobile Bar, Chris and Shaun have spent years creating spaces where people can celebrate,
+              connect, and make lasting memories. Koa’s Lounge became the next expression of that vision: a room where music, cocktails,
+              conversation, and atmosphere all meet.
+            </p>
+            <p>
+              Every detail reflects that intention — from the bohemian design language to the warm energy of the space.
+              The goal has never been to create just another bar, but a place people want to return to because of how it feels.
+            </p>
+          </div>
         </div>
-        <div class="button-row">
-          <a class="btn" href="events.html">See Events</a>
-          <a class="btn-outline" href="contact.html">Plan Your Visit</a>
+      </div>
+    </section>
+
+    <section class="about-cta">
+      <div class="container">
+        <div class="about-cta__wrap">
+          <div class="about-cta__card">
+            <h3>See What’s Happening</h3>
+            <p>
+              Follow the live events calendar for DJ nights, live music, karaoke, and the nights that give Koa’s Lounge its signature pulse.
+            </p>
+            <div class="about-cta__actions">
+              <a class="btn" href="events.html">View Events</a>
+            </div>
+          </div>
+
+          <div class="about-cta__card">
+            <h3>Plan Your Visit</h3>
+            <p>
+              Whether you are stopping in for cocktails, planning a night out, or bringing friends along, Koa’s Lounge is ready when you are.
+            </p>
+            <div class="about-cta__actions">
+              <a class="btn-outline" href="menu.html">View Menu</a>
+              <a class="btn" href="contact.html">Contact Us</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-card">
-        <img data-img-key="logo" alt="Koa's Lounge logo" style="width:120px; margin-bottom:1rem;">
-        <p>Koa's Lounge is a bohemian-style cocktail lounge in Pāhoa built around crafted drinks, live nights, and island hospitality.</p>
-      </div>
-      <div class="footer-card">
-        <h3>Explore</h3>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="band-booking.html">Band Booking</a></li>
-        </ul>
-      </div>
-      <div class="footer-card footer-visit-card">
-        <div class="footer-open-indicator" data-open-indicator></div>
-        <h3>Visit</h3>
-        <div class="footer-address" data-business-address></div>
-        <div class="footer-hours-panel">
-          <div class="footer-hours-heading">Hours</div>
-          <div class="footer-hours-list" data-business-hours></div>
-        </div>
-        <div class="footer-visit-meta">
-          <a data-business-phone href="tel:+18089656644">(808) 965-6644</a>
-          <a data-business-email href="mailto:info@koaslounge.com">info@koaslounge.com</a>
-        </div>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>© <span data-year></span> Koa's Lounge. All rights reserved.</span>
-      <span>Pāhoa, Hawaiʻi</span>
-    </div>
-  </footer>
-
-
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
-  <script src="assets/js/business-info.js"></script>
 </body>
 </html>
