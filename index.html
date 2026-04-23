@@ -565,7 +565,47 @@
       </div>
     </section>
   </main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="assets/img/logo.png" alt="Koa's Lounge logo">
+      <p>
+        Koa's Lounge is a bohemian-style cocktail lounge in Pāhoa built around crafted drinks,
+        live nights, and island hospitality.
+      </p>
+    </div>
 
+    <div class="footer-column">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="band-booking.html">Band Booking</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Visit</h3>
+      <p>Pāhoa, Hawaiʻi</p>
+      <p>Hours</p>
+      <p><a href="tel:+18089656644">(808) 965-6644</a></p>
+      <p><a href="mailto:info@koaslounge.com">info@koaslounge.com</a></p>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© <span id="footer-year"></span> Koa's Lounge. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var yearNode = document.getElementById("footer-year");
+    if (yearNode) yearNode.textContent = new Date().getFullYear();
+  })();
+</script>	
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
