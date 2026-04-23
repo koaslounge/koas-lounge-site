@@ -1,16 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Koa's Lounge | Pāhoa, Hawaiʻi</title>
-  <meta name="description" content="Koa's Lounge is a cocktail lounge in Pāhoa, Hawaiʻi with handcrafted drinks, live music, and warm island nights.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koa's Lounge | Live Music, DJs, Cocktails & Late Nights in Pāhoa</title>
+  <meta
+    name="description"
+    content="Koa's Lounge in Pāhoa, Hawaiʻi features live music, DJs, handcrafted cocktails, and unforgettable late-night energy. See what's happening tonight."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <style>
+    .home-hero {
+      padding: 64px 0 42px;
+    }
+
+    .home-hero__wrap {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .home-hero__panel,
+    .home-hero__feature {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+    }
+
+    .home-hero__panel {
+      padding: 38px;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .home-hero__feature {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 480px;
+      background:
+        linear-gradient(180deg, rgba(8,16,27,0.15), rgba(8,16,27,0.72)),
+        url("assets/img/hero-bg.jpg") center/cover no-repeat,
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.02);
+    }
+
+    .home-hero__eyebrow,
+    .section-eyebrow {
+      display: inline-block;
+      margin: 0 0 12px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #03fff6;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 11ch;
+    }
+
+    .hero-subtitle {
+      margin: 18px 0 0;
+      max-width: 580px;
+      color: rgba(255,255,255,0.76);
+      font-size: 1.06rem;
+      line-height: 1.6;
+    }
+
+    .home-hero__actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .home-hero__highlights {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .home-hero__highlight {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .home-hero__highlight strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .home-hero__highlight span {
+      color: rgba(255,255,255,0.68);
+      font-size: 0.94rem;
+    }
+
+    .home-hero__feature-card {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(10, 16, 26, 0.56);
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .home-hero__feature-label {
+      margin: 0 0 8px;
+      color: #03fff6;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .home-hero__feature-title {
+      margin: 0;
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .home-hero__feature-copy {
+      margin: 10px 0 0;
+      color: rgba(255,255,255,0.76);
+      line-height: 1.55;
+    }
+
+    .home-tonight {
+      padding: 10px 0 56px;
+    }
+
+    .home-tonight__header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .home-tonight__title {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+    }
+
+    .home-tonight__subtitle {
+      margin: 12px 0 0;
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+    }
+
+    .home-tonight__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .home-tonight__status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.035);
+    }
+
+    .home-tonight__status-text {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .home-tonight__status-source {
+      color: rgba(255,255,255,0.56);
+      font-size: 0.92rem;
+    }
+
+    .home-tonight__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .home-tonight__card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+      min-height: 240px;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+        rgba(12,16,26,0.46);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    }
+
+    .home-tonight__card--featured {
+      border-color: rgba(3,255,246,0.26);
+      background:
+        linear-gradient(180deg, rgba(3,255,246,0.08), rgba(255,255,255,0.025)),
+        rgba(12,16,26,0.52);
+    }
+
+    .home-tonight__badge {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #07161a;
+      background: linear-gradient(135deg, #00cfc8, #03fff6);
+    }
+
+    .home-tonight__card-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .home-tonight__meta {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      display: grid;
+      gap: 8px;
+    }
+
+    .home-tonight__link {
+      margin-top: auto;
+      color: #03fff6;
+      font-weight: 700;
+    }
+
+    .home-tonight__empty {
+      grid-column: 1 / -1;
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px dashed rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.025);
+      color: rgba(255,255,255,0.72);
+    }
+
+    .home-value {
+      padding: 12px 0 56px;
+    }
+
+    .home-value__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .home-value__card {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+        rgba(12,16,26,0.46);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    }
+
+    .home-value__card h3 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+    }
+
+    .home-value__card p {
+      margin: 0;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.6;
+    }
+
+    .home-cta {
+      padding: 12px 0 70px;
+    }
+
+    .home-cta__wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .home-cta__card {
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+        rgba(255,255,255,0.02);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.24);
+    }
+
+    .home-cta__card h3 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+    }
+
+    .home-cta__card p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.6;
+    }
+
+    .home-cta__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .home-hero__wrap,
+      .home-tonight__grid,
+      .home-value__grid,
+      .home-cta__wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .home-hero {
+        padding-top: 40px;
+      }
+
+      .home-hero__panel,
+      .home-hero__feature,
+      .home-value__card,
+      .home-cta__card {
+        padding: 22px;
+      }
+
+      .home-hero__highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .home-tonight__header,
+      .home-tonight__status {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-<!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
 <body>
   <header class="site-header">
     <div class="container navbar">
@@ -21,7 +391,9 @@
           <span>Taste Aloha</span>
         </div>
       </a>
+
       <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
       <div class="nav-shell">
         <nav class="nav-links" aria-label="Primary navigation">
           <a class="active" href="index.html">Home</a>
@@ -31,8 +403,9 @@
           <a href="contact.html">Contact</a>
           <a href="band-booking.html">Band Booking</a>
         </nav>
+
         <div class="nav-cta">
-          <a class="btn-outline" href="events.html">Events</a>
+          <a class="btn-outline" href="menu.html">View Menu</a>
           <a class="btn" href="contact.html">Visit Koa's</a>
         </div>
       </div>
@@ -40,180 +413,141 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-media" style="background-image:url('assets/images/hero-bar.jpg'); background-position:center 42%;"></div>
-      <div class="container hero-inner">
-        <div class="hero-layout">
-          <div class="hero-copy">
-            <div class="eyebrow">Pāhoa, Hawaiʻi</div>
-			<h1 class="hero-title">
-			  Live Music.<br>
-			  DJs. Cocktails.<br>
-			  Every Night Has a Pulse.
-			</h1>
-            <!--<h1 class="hero-title">
-			  Where Live Music, Craft Cocktails, and Late Nights Come Together
-			</h1>-->
-			<p class="hero-subtitle">
-			  From live bands and DJs to handcrafted cocktails and late-night vibes — Koa’s Lounge is where Pāhoa comes alive.
-			</p>
-            <p class="lead">A more signature Koa's homepage: cinematic photography, cleaner typography, and a moodier lounge presentation built around your real atmosphere.</p>
-            <p>Come for crafted cocktails, live music, and the easy island energy. Stay because the room feels right, the pours hit, and the whole night carries a little more style.</p>
-            <div class="button-row">
-              <a class="btn" href="events.html">See Upcoming Nights</a>
-              <a class="btn-outline" href="menu.html">View the Cocktail Menu</a>
+    <section class="home-hero">
+      <div class="container">
+        <div class="home-hero__wrap">
+          <div class="home-hero__panel">
+            <div>
+              <p class="home-hero__eyebrow">Live Music • DJs • Cocktails</p>
+              <h1 class="hero-title">Live Music, DJs, and Craft Cocktails in the Heart of Pāhoa</h1>
+              <p class="hero-subtitle">
+                From laid-back cocktails to high-energy nights, Koa’s Lounge brings together live music,
+                DJs, island hospitality, and a room that always feels like the place to be.
+              </p>
+
+              <div class="home-hero__actions">
+                <a class="btn" href="events.html">See What’s On Tonight</a>
+                <a class="btn-outline" href="menu.html">Explore the Menu</a>
+              </div>
             </div>
 
-            <div class="signature-banner">
-              <div class="kicker">Signature atmosphere</div>
-              <h3>Island-cool, nightlife-forward, and unmistakably Koa's.</h3>
-              <div class="hero-badges">
-                <div class="hero-badge"><strong>Craft cocktails</strong><span>Built for date nights, celebrations, and drop-in rounds.</span></div>
-                <div class="hero-badge"><strong>Live lineup</strong><span>Music nights, themed evenings, and community energy.</span></div>
-                <div class="hero-badge"><strong>Local warmth</strong><span>Refined without losing the laid-back aloha feel.</span></div>
+            <div class="home-hero__highlights">
+              <div class="home-hero__highlight">
+                <strong>Live Entertainment</strong>
+                <span>Bands, DJs, themed nights, and a calendar that keeps the energy moving.</span>
+              </div>
+              <div class="home-hero__highlight">
+                <strong>Handcrafted Drinks</strong>
+                <span>Signature cocktails, beer, wine, and a lounge atmosphere with real personality.</span>
+              </div>
+              <div class="home-hero__highlight">
+                <strong>Pāhoa Nightlife</strong>
+                <span>A destination for locals, visitors, and anyone looking for a memorable night out.</span>
               </div>
             </div>
           </div>
 
-          <aside class="hero-card">
-            <div class="kicker">Why guests remember it</div>
-            <h3>A polished lounge feel without losing local soul.</h3>
-            <p>Koa's works best when the room, music, cocktails, and crowd all land at the same time. This layout leans into that full-night experience instead of treating the site like a flyer board.</p>
-            <ul class="feature-list">
-              <li>Distinctive lounge setting in the heart of Pāhoa</li>
-              <li>Flexible event calendar for music nights and specials</li>
-              <li>A visual style that feels more like a destination than a dive</li>
-            </ul>
-            <div class="button-row">
-              <a class="btn-ghost" href="about.html">Read the story</a>
+          <div class="home-hero__feature">
+            <div class="home-hero__feature-card">
+              <p class="home-hero__feature-label">Why People Come Here</p>
+              <h2 class="home-hero__feature-title">A lounge that feels local, lively, and worth dressing up for.</h2>
+              <p class="home-hero__feature-copy">
+                Whether you’re heading out for a date night, catching live music with friends,
+                or looking for where the action is after dark, Koa’s Lounge gives you the reason to stay out longer.
+              </p>
             </div>
-          </aside>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container info-strip">
-        <div class="info-strip-item"><strong>Location</strong><span>15-2929 Pahoa Village Rd, Pāhoa</span></div>
-        <div class="info-strip-item"><strong>Vibe</strong><span>Bohemian, tropical-modern, intimate, social</span></div>
-        <div class="info-strip-item"><strong>Best move</strong><span>Check the event calendar before heading out</span></div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="home-tonight">
       <div class="container">
-        <div class="section-heading">
+        <div class="home-tonight__header">
           <div>
-            <div class="eyebrow">Inside Koa's</div>
-            <h2>A layout that feels more like a modern cocktail lounge brand.</h2>
+            <p class="section-eyebrow">Live Tonight</p>
+            <h2 class="home-tonight__title">Tonight at Koa’s</h2>
+            <p class="home-tonight__subtitle">
+              See what’s happening tonight and what’s coming up next from our live events calendar.
+            </p>
+          </div>
+
+          <div class="home-tonight__actions">
+            <a class="btn-outline" href="events.html">Full Events Calendar</a>
+            <a class="btn" href="contact.html">Plan Your Visit</a>
           </div>
         </div>
-        <div class="gallery-ribbon">
-          <div class="ribbon-card large"><img data-img-key="logo" alt="Interior seating at Koa's Lounge"></div>
-          <div class="ribbon-stack">
-            <div class="ribbon-card"><img data-img-key="homeStory" alt="Citrus cocktail at Koa's Lounge"></div>
-            <div class="ribbon-card"><img data-img-key="homeEvents" alt="Game area at Koa's Lounge"></div>
-          </div>
-          <div class="ribbon-card tall"><img data-img-key="galleryOne" alt="Signature cocktail at Koa's Lounge"></div>
+
+        <div class="home-tonight__status">
+          <div class="home-tonight__status-text" data-home-events-status>Loading tonight’s lineup...</div>
+          <div class="home-tonight__status-source" data-home-events-source></div>
+        </div>
+
+        <div class="home-tonight__grid" data-home-events-grid></div>
+      </div>
+    </section>
+
+    <section class="home-value">
+      <div class="container">
+        <div class="home-value__grid">
+          <article class="home-value__card">
+            <h3>For Locals</h3>
+            <p>
+              Your go-to for live music, DJs, karaoke, and nights that actually feel like something is happening.
+              Koa’s Lounge gives East Hawaiʻi a real nightlife anchor.
+            </p>
+          </article>
+
+          <article class="home-value__card">
+            <h3>For Visitors</h3>
+            <p>
+              Skip the generic stop and step into a place with personality. Koa’s Lounge offers a true local-night-out
+              experience in Pāhoa with entertainment, cocktails, and island energy.
+            </p>
+          </article>
+
+          <article class="home-value__card">
+            <h3>For the Vibe</h3>
+            <p>
+              Crafted drinks, late-night energy, a room full of character, and a steady calendar of music and events—
+              all under one roof.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container split-layout">
-        <div class="text-column">
-          <div class="eyebrow">Nights that pull people in</div>
-          <h2>Now with featured-event cards before the full calendar.</h2>
-          <p>The events page now leads with styled featured-night cards so it feels like an active nightlife venue first, then a calendar second. It gives you room to spotlight signature series, monthly traditions, and one-off headliners.</p>
-          <ul class="clean-list">
-            <li>Recurring nights like karaoke, jam sessions, and themed weekends</li>
-            <li>Featured artist or DJ callouts above the embed</li>
-            <li>A cleaner handoff from social media to website</li>
-          </ul>
-          <div class="button-row">
-            <a class="btn" href="events.html">Open the Events Page</a>
+    <section class="home-cta">
+      <div class="container">
+        <div class="home-cta__wrap">
+          <div class="home-cta__card">
+            <h3>See What’s Coming Up</h3>
+            <p>
+              Browse the live event calendar for DJ nights, live bands, karaoke, special events, and more.
+            </p>
+            <div class="home-cta__actions">
+              <a class="btn" href="events.html">View Events</a>
+            </div>
           </div>
-        </div>
-        <div class="image-frame">
-          <img data-img-key="galleryTwo" alt="Live music performance at Koa's Lounge">
-        </div>
-      </div>
-    </section>
 
-    <section class="section compact">
-      <div class="container card-grid">
-        <div class="minimal-card">
-          <span class="number">01 / The room</span>
-          <h3>Warm, moody, and built for lingering.</h3>
-          <p>Wood, glow, texture, and enough breathing room to feel intimate without becoming cramped.</p>
-        </div>
-        <div class="minimal-card">
-          <span class="number">02 / The program</span>
-          <h3>A real cocktail-menu structure.</h3>
-          <p>The menu page now reads more like a beverage program, with pricing tiers, signatures, and callouts that feel intentional.</p>
-        </div>
-        <div class="minimal-card">
-          <span class="number">03 / The identity</span>
-          <h3>More Koa's, less template.</h3>
-          <p>Your brand colors now carry through the entire experience instead of just showing up in the logo.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container cta-band">
-        <div class="eyebrow">Plan your night</div>
-        <h2>See what's on, pick your drinks, and make Koa's the move.</h2>
-        <p class="lead">The site now has a stronger hero, custom event treatment, and a cleaner menu structure. Next step is plugging in your real calendar and live menu details.</p>
-        <div class="button-row">
-          <a class="btn" href="events.html">View Events</a>
-          <a class="btn-outline" href="menu.html">View Menu</a>
+          <div class="home-cta__card">
+            <h3>Plan Your Night</h3>
+            <p>
+              Check the menu, get in touch, and make Koa’s Lounge part of your next night out in Pāhoa.
+            </p>
+            <div class="home-cta__actions">
+              <a class="btn-outline" href="menu.html">View Menu</a>
+              <a class="btn" href="contact.html">Contact Us</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-card">
-        <img data-img-key="logo" alt="Koa's Lounge logo" style="width:120px; margin-bottom:1rem;">
-        <p>Koa's Lounge is a bohemian-style cocktail lounge in Pāhoa built around crafted drinks, live nights, and island hospitality.</p>
-      </div>
-      <div class="footer-card">
-        <h3>Explore</h3>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="band-booking.html">Band Booking</a></li>
-        </ul>
-      </div>
-      <div class="footer-card footer-visit-card">
-        <div class="footer-open-indicator" data-open-indicator></div>
-        <h3>Visit</h3>
-        <div class="footer-address" data-business-address></div>
-        <div class="footer-hours-panel">
-          <div class="footer-hours-heading">Hours</div>
-          <div class="footer-hours-list" data-business-hours></div>
-        </div>
-        <div class="footer-visit-meta">
-          <a data-business-phone href="tel:+18089656644">(808) 965-6644</a>
-          <a data-business-email href="mailto:info@koaslounge.com">info@koaslounge.com</a>
-        </div>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>© <span data-year></span> Koa's Lounge. All rights reserved.</span>
-      <span>Pāhoa, Hawaiʻi</span>
-    </div>
-  </footer>
-
-
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
-  <script src="assets/js/business-info.js"></script>
+  <script src="assets/js/home-events.js"></script>
 </body>
 </html>
