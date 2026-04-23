@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const spotlightTitleNode = document.querySelector("[data-hero-spotlight-title]");
   const spotlightCopyNode = document.querySelector("[data-hero-spotlight-copy]");
 
+  const tonightSectionTitleNode = document.querySelector("[data-title-tonight]");
+
   if (!statusNode || !tonightNode || !weekendNode || !upcomingNode) {
     console.error("Events page selectors not found.");
     return;
@@ -52,9 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const grouped = groupEvents(events);
 
-      renderGroup(tonightNode, grouped.tonight);
-      renderGroup(weekendNode, grouped.weekend);
-      renderGroup(upcomingNode, grouped.upcoming);
+      if (tonightSectionTitleNode) {
+        tonightSectionTitleNode.textContent = grouped.tonightIsFallback ? "Next Event" : "Tonight";
+      }
+
+      renderGroup(tonightNode, grouped.tonight, grouped.tonightIsFallback ? "No upcoming events are scheduled right now." : "Nothing is scheduled for tonight.");
+      renderGroup(weekendNode, grouped.weekend, "No weekend events are currently scheduled.");
+      renderGroup(upcomingNode, grouped.upcoming, "No additional upcoming events are listed right now.");
 
       setCount(tonightCountNode, grouped.tonight.length);
       setCount(weekendCountNode, grouped.weekend.length);
@@ -106,6 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (Number.isNaN(startDate.getTime())) return null;
 
+    const weekday = startDate.getDay();
+    const isHighValueNight = weekday === 5 || weekday === 6;
+
     return {
       title: event.title || "Untitled Event",
       description: event.description || "",
@@ -114,53 +123,55 @@ document.addEventListener("DOMContentLoaded", () => {
       categories: Array.isArray(event.categories) ? event.categories : [],
       startDate,
       endDate,
-      type: deriveType(event.title || "", event.description || "", event.categories || [])
+      type: deriveType(event.title || "", event.description || "", event.categories || []),
+      isHighValueNight
     };
   }
 
   function groupEvents(events) {
-  const now = new Date();
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const tomorrowStart = new Date(todayStart);
+    tomorrowStart.setDate(todayStart.getDate() + 1);
 
-  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const tomorrowStart = new Date(todayStart);
-  tomorrowStart.setDate(todayStart.getDate() + 1);
+    const day = now.getDay();
+    const daysUntilFriday = day <= 5 ? 5 - day : 6;
 
-  const day = now.getDay();
-  const daysUntilFriday = day <= 5 ? 5 - day : 6;
+    const fridayStart = new Date(todayStart);
+    fridayStart.setDate(todayStart.getDate() + daysUntilFriday);
 
-  const fridayStart = new Date(todayStart);
-  fridayStart.setDate(todayStart.getDate() + daysUntilFriday);
+    const mondayAfterWeekend = new Date(fridayStart);
+    mondayAfterWeekend.setDate(fridayStart.getDate() + 3);
 
-  const mondayAfterWeekend = new Date(fridayStart);
-  mondayAfterWeekend.setDate(fridayStart.getDate() + 3);
+    let tonight = [];
+    const weekend = [];
+    const upcoming = [];
 
-  let tonight = [];
-  let weekend = [];
-  let upcoming = [];
-
-  for (const event of events) {
-    if (event.startDate >= todayStart && event.startDate < tomorrowStart) {
-      tonight.push(event);
-    } else if (event.startDate >= fridayStart && event.startDate < mondayAfterWeekend) {
-      weekend.push(event);
-    } else if (event.startDate >= tomorrowStart) {
-      upcoming.push(event);
+    for (const event of events) {
+      if (event.startDate >= todayStart && event.startDate < tomorrowStart) {
+        tonight.push(event);
+      } else if (event.startDate >= fridayStart && event.startDate < mondayAfterWeekend) {
+        weekend.push(event);
+      } else if (event.startDate >= tomorrowStart) {
+        upcoming.push(event);
+      }
     }
+
+    let tonightIsFallback = false;
+
+    if (tonight.length === 0 && events.length > 0) {
+      tonight = [events[0]];
+      tonightIsFallback = true;
+    }
+
+    return { tonight, weekend, upcoming, tonightIsFallback };
   }
 
-  // 🔥 NEW LOGIC: fallback if tonight is empty
-  if (tonight.length === 0 && events.length > 0) {
-    tonight = [events[0]]; // next upcoming event
-  }
-
-  return { tonight, weekend, upcoming };
-}
-
-  function renderGroup(container, events) {
+  function renderGroup(container, events, emptyMessage) {
     container.innerHTML = "";
 
     if (!events.length) {
-      renderEmptyState(container, "No events in this section right now.");
+      renderEmptyState(container, emptyMessage || "No events in this section right now.");
       return;
     }
 
@@ -175,15 +186,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createEventCard(event) {
     const card = document.createElement("article");
-    card.className = "event-card";
+    card.className = "event-card" + (event.isHighValueNight ? " event-card--featured" : "");
 
     const start = formatDate(event.startDate);
     const time = formatTimeRange(event.startDate, event.endDate);
     const typeLabel = getTypeLabel(event.type);
+    const featuredChip = event.isHighValueNight ? `<span class="chip chip--featured">Prime Night</span>` : "";
 
     card.innerHTML = `
       <div class="event-card__top">
-        <div class="event-card__date">
+        <div class="event-card__date${event.isHighValueNight ? " event-card__date--featured" : ""}">
           <span class="event-card__month">${escapeHtml(monthShort(event.startDate))}</span>
           <span class="event-card__day">${escapeHtml(String(event.startDate.getDate()))}</span>
           <span class="event-card__dow">${escapeHtml(dayShort(event.startDate))}</span>
@@ -191,7 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="event-card__meta">
           <div class="event-card__badges">
-            <span class="badge">${escapeHtml(typeLabel)}</span>
+            <span class="badge${event.isHighValueNight ? " badge--featured" : ""}">${escapeHtml(typeLabel)}</span>
+            ${featuredChip}
           </div>
           <div class="event-card__title">${escapeHtml(event.title)}</div>
           <div class="event-card__chips">
