@@ -323,24 +323,10 @@ select {
 
 .footer-links,
 .footer-info,
-.footer-hours li {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 14px;
-  align-items: baseline;
-  color: var(--muted);
-}
-
-.footer-hours span {
-  color: var(--soft);
-  white-space: nowrap;
-}
-
-.footer-hours strong {
-  color: var(--text);
-  font-size: 0.95rem;
-  text-align: right;
-  white-space: nowrap;
+.footer-hours {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-links li + li,
@@ -395,16 +381,6 @@ select {
 
 .footer-bottom p {
   margin: 0;
-}
-
-@media (max-width: 760px) {
-  .footer-hours li {
-    grid-template-columns: 88px 1fr;
-  }
-
-  .footer-hours strong {
-    text-align: left;
-  }
 }
 
 /* Responsive */
