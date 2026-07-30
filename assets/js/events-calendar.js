@@ -318,6 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       selectedDateKey = button.dataset.calendarDate;
       renderMonthCalendar();
+      scrollToSelectedDateResults();
     });
 
     renderMonthCalendar();
@@ -378,8 +379,25 @@ document.addEventListener("DOMContentLoaded", () => {
       nextButton: section.querySelector("[data-calendar-next]"),
       selectedTitle: section.querySelector("[data-calendar-selected-title]"),
       selectedCount: section.querySelector("[data-calendar-selected-count]"),
-      selectedEvents: section.querySelector("[data-calendar-selected-events]")
+      selectedEvents: section.querySelector("[data-calendar-selected-events]"),
+      selection: section.querySelector(".events-month__selection")
     };
+  }
+
+  function scrollToSelectedDateResults() {
+    if (!calendarNodes || !calendarNodes.selection) return;
+
+    const prefersReducedMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        calendarNodes.selection.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "start"
+        });
+      });
+    });
   }
 
   function renderMonthCalendar() {
