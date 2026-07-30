@@ -1,4 +1,4 @@
-/* Koa's Lounge — Homepage upper-fold redesign
+/* Koa's Lounge - Homepage upper-fold redesign
    Scoped to the .home-stage component so the rest of the site remains unchanged. */
 
 .home-stage {
@@ -305,7 +305,7 @@
 
 .home-stage__feature-link::after,
 .home-stage__mini-link::after {
-  content: "→";
+  content: "\2192";
   transition: transform 0.2s ease;
 }
 
