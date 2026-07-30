@@ -4,9 +4,37 @@
   var fallbackBusiness = {
     timezone: "Pacific/Honolulu",
     hours: [
-      { days: [0, 1], label: "Sunday–Monday", open: null, close: null, display: "Closed" },
+      {
+        days: [0],
+        label: "Sunday",
+        open: null,
+        close: null,
+        display: "Closed except 4th & 5th Sundays",
+        statusDetail: "Closed today · Open 4th Sunday 3 PM–8 PM and 5th Sunday 2 PM–6 PM"
+      },
+      { days: [1], label: "Monday", open: null, close: null, display: "Closed" },
       { days: [2, 3, 4], label: "Tuesday–Thursday", open: "17:00", close: "22:00", display: "5 PM – 10 PM" },
       { days: [5, 6], label: "Friday–Saturday", open: "17:00", close: "24:00", display: "5 PM – 12 AM" }
+    ],
+    recurringHours: [
+      {
+        day: 0,
+        occurrence: 4,
+        label: "4th Sunday · Pool Tournament",
+        eventName: "Monthly Pool Tournament",
+        open: "15:00",
+        close: "20:00",
+        display: "3 PM – 8 PM"
+      },
+      {
+        day: 0,
+        occurrence: 5,
+        label: "5th Sunday · Social Brunch",
+        eventName: "Social Brunch",
+        open: "14:00",
+        close: "18:00",
+        display: "2 PM – 6 PM"
+      }
     ]
   };
 
@@ -27,9 +55,10 @@
   }
 
   function getConfig() {
-    var footer = window.KOA_FOOTER_CONFIG || {};
-    var business = window.BUSINESS_CONFIG || fallbackBusiness;
-    return { footer: footer, business: business };
+    return {
+      footer: window.KOA_FOOTER_CONFIG || {},
+      business: window.BUSINESS_CONFIG || fallbackBusiness
+    };
   }
 
   function navigationMarkup(items) {
@@ -38,8 +67,15 @@
     }).join("");
   }
 
-  function hoursMarkup(hours) {
-    return (hours || []).map(function (rule) {
+  function getDisplayRows(business) {
+    if (window.KOA_BUSINESS_HOURS && typeof window.KOA_BUSINESS_HOURS.getDisplayRows === "function") {
+      return window.KOA_BUSINESS_HOURS.getDisplayRows();
+    }
+    return (business.hours || []).concat(business.recurringHours || []);
+  }
+
+  function hoursMarkup(business) {
+    return getDisplayRows(business).map(function (rule) {
       return '<li><span>' + escapeHtml(rule.label) + '</span><strong>' + escapeHtml(rule.display) + '</strong></li>';
     }).join("");
   }
@@ -94,7 +130,7 @@
             '<section class="koa-footer__panel koa-footer__hours" aria-labelledby="koa-hours-title">' +
               '<span class="koa-footer__eyebrow">Hours</span>' +
               '<h3 id="koa-hours-title">Plan your visit</h3>' +
-              '<ul>' + hoursMarkup(business.hours) + '</ul>' +
+              '<ul>' + hoursMarkup(business) + '</ul>' +
               '<p>All times shown in Hawaiʻi Standard Time.</p>' +
             '</section>' +
 
@@ -122,22 +158,34 @@
       '</footer>';
   }
 
-  function getHawaiiNow(timezone) {
+  function getHawaiiNow(timezone, date) {
     var formatter = new Intl.DateTimeFormat("en-US", {
       timeZone: timezone,
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
       weekday: "short",
       hour: "2-digit",
       minute: "2-digit",
       hour12: false
     });
+
     var values = {};
-    formatter.formatToParts(new Date()).forEach(function (part) {
+    formatter.formatToParts(date || new Date()).forEach(function (part) {
       values[part.type] = part.value;
     });
+
     var dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    var hour = Number(values.hour);
+    if (hour === 24) hour = 0;
+
     return {
-      day: dayMap[values.weekday],
-      minutes: Number(values.hour) * 60 + Number(values.minute)
+      weekday: dayMap[values.weekday],
+      year: Number(values.year),
+      month: Number(values.month),
+      date: Number(values.day),
+      occurrence: Math.ceil(Number(values.day) / 7),
+      minutes: hour * 60 + Number(values.minute)
     };
   }
 
@@ -147,39 +195,62 @@
     return Number(pieces[0]) * 60 + Number(pieces[1]);
   }
 
-  function getTodayRule(hours, day) {
-    return (hours || []).find(function (rule) {
+  function getRecurringRule(business, now) {
+    return (business.recurringHours || []).find(function (rule) {
+      return rule.day === now.weekday && rule.occurrence === now.occurrence;
+    });
+  }
+
+  function getRegularRule(business, day) {
+    return (business.hours || []).find(function (rule) {
       return Array.isArray(rule.days) && rule.days.indexOf(day) !== -1;
     });
   }
 
   function getOpenStatus(business) {
+    if (window.KOA_BUSINESS_HOURS && typeof window.KOA_BUSINESS_HOURS.currentStatus === "function") {
+      var sharedStatus = window.KOA_BUSINESS_HOURS.currentStatus();
+      return {
+        open: sharedStatus.open,
+        label: sharedStatus.text,
+        detail: sharedStatus.detail
+      };
+    }
+
     var timezone = business.timezone || fallbackBusiness.timezone;
     var now = getHawaiiNow(timezone);
-    var rule = getTodayRule(business.hours, now.day);
+    var rule = getRecurringRule(business, now) || getRegularRule(business, now.weekday);
 
     if (!rule || !rule.open || !rule.close) {
-      return { open: false, label: "Closed Today", detail: rule ? rule.display : "Closed" };
+      return {
+        open: false,
+        label: "Closed Today",
+        detail: rule ? (rule.statusDetail || rule.display) : "Closed"
+      };
     }
 
     var open = toMinutes(rule.open);
     var close = toMinutes(rule.close);
     var isOpen = now.minutes >= open && now.minutes < close;
+    var eventPrefix = rule.eventName ? rule.eventName + " · " : "Today's hours: ";
 
     return {
       open: isOpen,
       label: isOpen ? "Open Now" : "Closed Now",
-      detail: "Today's hours: " + rule.display
+      detail: eventPrefix + rule.display
     };
   }
 
   function renderStatus(business) {
     var status = getOpenStatus(business);
+
     document.querySelectorAll("[data-koa-open-status]").forEach(function (node) {
       node.classList.toggle("is-open", status.open);
       node.classList.toggle("is-closed", !status.open);
+
       var label = node.querySelector("[data-koa-status-label]");
       var detail = node.querySelector("[data-koa-status-detail]");
+
       if (label) label.textContent = status.label;
       if (detail) detail.textContent = status.detail;
     });
@@ -205,7 +276,9 @@
     });
 
     renderStatus(config.business);
-    window.setInterval(function () { renderStatus(config.business); }, 60000);
+    window.setInterval(function () {
+      renderStatus(config.business);
+    }, 60000);
   }
 
   if (document.readyState === "loading") {
