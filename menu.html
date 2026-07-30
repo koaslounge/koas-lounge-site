@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu | Koa's Lounge</title>
+  <meta name="description" content="Explore current drinks and lounge offerings at Koa's Lounge.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+        <img data-img-key="logo" alt="Koa's Lounge logo">
+        <div class="brand-lockup">
+          <strong>Koa's Lounge</strong>
+          <span>Taste Aloha</span>
+        </div>
+      </a>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <div class="nav-shell">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a class="active" href="menu.html">Menu</a>
+          <a href="contact.html">Contact</a>
+          <a href="band-booking.html">Band Booking</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn-outline" href="events.html">Events</a>
+          <a class="btn" href="contact.html">Visit Koa's</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-media" style="background-image:url('assets/images/citrus-cocktail.jpg'); background-position:center 34%;"></div>
+      <div class="container page-hero-inner">
+        <div class="panel" style="max-width:760px;">
+          <div class="eyebrow" id="menu-hero-eyebrow">Menu</div>
+          <h1 id="menu-hero-title" style="font-size:clamp(3.2rem,8vw,6.3rem); max-width:10ch;">A cleaner cocktail-program layout.</h1>
+          <p class="lead" id="menu-hero-lead">This version feels closer to how popular lounge sites present their drinks: more editorial, more structured, and more intentional.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container info-strip" id="menu-pricing-strip"></div>
+    </section>
+
+    <section class="section">
+      <div class="container menu-layout">
+        <div class="menu-panel">
+          <header>
+            <div class="eyebrow" id="signature-eyebrow"></div>
+            <h3 id="signature-title"></h3>
+          </header>
+          <ul class="menu-list" id="signature-list"></ul>
+        </div>
+
+        <div class="image-frame">
+          <img data-img-key="logo" alt="Featured cocktail at Koa's Lounge">
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container program-grid">
+        <div class="program-card">
+          <div class="eyebrow" id="pricing-eyebrow"></div>
+          <h3 id="pricing-title"></h3>
+          <p class="program-note" id="pricing-note"></p>
+          <ul class="menu-list" id="pricing-list"></ul>
+        </div>
+        <div class="program-card">
+          <div class="eyebrow" id="classics-eyebrow"></div>
+          <h3 id="classics-title"></h3>
+          <ul class="menu-list" id="classics-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container tasting-grid">
+        <div class="menu-panel">
+          <header>
+            <div class="eyebrow" id="flexible-eyebrow"></div>
+            <h3 id="flexible-title"></h3>
+          </header>
+          <ul class="menu-list" id="flexible-list"></ul>
+        </div>
+        <div class="menu-panel">
+          <header>
+            <div class="eyebrow" id="notes-eyebrow"></div>
+            <h3 id="notes-title"></h3>
+          </header>
+          <div id="notes-highlights"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer premium-footer">
+    <div class="container footer-shell">
+      <div class="footer-brand-block">
+        <img data-img-key="logo" alt="Koa's Lounge logo" class="footer-logo">
+        <div>
+          <div class="eyebrow">Taste Aloha</div>
+          <h3>Koa's Lounge</h3>
+          <p>A bohemian-style cocktail lounge in Pāhoa built around crafted drinks, live nights, and genuine island hospitality.</p>
+        </div>
+        <div class="open-status" data-open-status aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <div>
+            <strong data-open-status-label>Checking hours…</strong>
+            <small data-open-status-detail>Pacific/Honolulu</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-hours-card">
+        <div class="footer-card-heading">
+          <span class="eyebrow">Hours</span>
+          <h3>Plan your visit</h3>
+        </div>
+        <ul class="footer-hours-list" data-business-hours>
+          <li><span>Loading</span><strong>Hours…</strong></li>
+        </ul>
+      </div>
+
+      <div class="footer-link-card">
+        <div class="footer-card-heading">
+          <span class="eyebrow">Explore</span>
+          <h3>Discover Koa's</h3>
+        </div>
+        <ul class="footer-nav-list">
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="band-booking.html">Band Booking</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-visit-card">
+        <div class="footer-card-heading">
+          <span class="eyebrow">Visit</span>
+          <h3>Find us in Pāhoa</h3>
+        </div>
+        <address>
+          15-2929 Pahoa Village Rd<br>
+          Pāhoa, HI 96778
+        </address>
+        <a href="tel:+18089656644">(808) 965-6644</a>
+        <a href="mailto:info@koaslounge.com">info@koaslounge.com</a>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/koaslounge" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/koaslounge/" rel="noopener">Facebook</a>
+          <a href="https://www.yelp.com/biz/koas-lounge-pahoa" rel="noopener">Yelp</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span data-year></span> Koa's Lounge. All rights reserved.</span>
+      <span>Pāhoa, Hawaiʻi · Times shown in HST</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/image-config.js"></script>
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/menu-render.js"></script>
+  <script src="assets/js/business-config.js"></script>
+  <script src="assets/js/business-hours.js"></script>
+</body>
+</html>
