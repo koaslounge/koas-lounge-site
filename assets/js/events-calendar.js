@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const endpoint = "/.netlify/functions/office365-events";
-  const EVENT_CARD_LIMIT = 20;
+  const EVENT_CARD_LIMIT = 14;
 
   const statusNode = document.querySelector("[data-events-status]");
   const sourceNode = document.querySelector("[data-events-source]");
