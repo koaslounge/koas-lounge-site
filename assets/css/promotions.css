@@ -355,3 +355,8 @@
   .koa-promo-card__body { padding: 1.3rem 1.2rem 1.35rem; }
   .koa-promotions__hashtag strong { font-size: 2rem; }
 }
+/* KOA PROMO INITIALS REMOVAL START */
+.koa-promo-card__symbol {
+  display: none !important;
+}
+/* KOA PROMO INITIALS REMOVAL END */

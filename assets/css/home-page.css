@@ -512,3 +512,205 @@
     transition: none;
   }
 }
+/* KOA EDITORIAL HERO VISUAL START */
+.home-stage__visual--editorial {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, 0.28fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 0.85rem;
+  min-height: 570px;
+}
+
+.home-stage__scene-strip {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.home-stage__scene {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 15, 24, 0.78);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+  isolation: isolate;
+}
+
+.home-stage__scene--main {
+  border-radius: 34px 18px 18px 34px;
+}
+
+.home-stage__scene--side:first-child {
+  border-radius: 18px 34px 18px 18px;
+}
+
+.home-stage__scene--side:last-child {
+  border-radius: 18px 18px 34px 18px;
+}
+
+.home-stage__scene img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.015);
+  filter: saturate(0.96) contrast(1.03);
+  transition: transform 650ms cubic-bezier(.2,.7,.2,1), filter 450ms ease;
+}
+
+.home-stage__scene--main img {
+  object-position: center;
+}
+
+.home-stage__scene--side:first-child img {
+  object-position: center 58%;
+}
+
+.home-stage__scene--side:last-child img {
+  object-position: center;
+}
+
+.home-stage__scene:hover img {
+  transform: scale(1.055);
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.home-stage__scene-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(5, 8, 14, 0.02) 18%, rgba(5, 8, 14, 0.18) 50%, rgba(5, 8, 14, 0.94) 100%),
+    linear-gradient(120deg, rgba(3, 255, 246, 0.08), transparent 35%, rgba(151, 71, 255, 0.09));
+  pointer-events: none;
+}
+
+.home-stage__scene-copy {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  gap: 0.42rem;
+  padding: clamp(1.2rem, 2.6vw, 2rem);
+}
+
+.home-stage__scene-copy small {
+  color: #69f6ed;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home-stage__scene-copy strong {
+  max-width: 12ch;
+  font-family: "Bodoni Moda", "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 3.2vw, 3.35rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.home-stage__scene-copy > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-stage__scene-copy b {
+  color: #69f6ed;
+  font-size: 1rem;
+  transition: transform 180ms ease;
+}
+
+.home-stage__scene:hover .home-stage__scene-copy b {
+  transform: translateX(4px);
+}
+
+.home-stage__scene--side .home-stage__scene-copy {
+  padding: 1rem;
+}
+
+.home-stage__scene--side .home-stage__scene-copy small {
+  font-size: 0.56rem;
+  letter-spacing: 0.13em;
+}
+
+.home-stage__scene--side .home-stage__scene-copy strong {
+  max-width: 11ch;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1.25vw, 1.08rem);
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+@media (max-width: 1120px) {
+  .home-stage__visual--editorial {
+    grid-template-columns: minmax(0, 1fr) 120px;
+    min-height: 510px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-stage__visual--editorial {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 400px 180px;
+    min-height: 0;
+  }
+
+  .home-stage__scene-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+  }
+
+  .home-stage__scene--main {
+    border-radius: 30px;
+  }
+
+  .home-stage__scene--side:first-child,
+  .home-stage__scene--side:last-child {
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-stage__visual--editorial {
+    display: grid;
+    grid-template-rows: 370px auto;
+  }
+
+  .home-stage__scene-strip {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 190px);
+  }
+
+  .home-stage__scene-copy strong {
+    font-size: clamp(1.85rem, 10vw, 2.7rem);
+  }
+
+  .home-stage__scene--side .home-stage__scene-copy strong {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-stage__scene img,
+  .home-stage__scene-copy b {
+    transition: none;
+  }
+}
+/* KOA EDITORIAL HERO VISUAL END */
