@@ -214,12 +214,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="event-card__details">
         <div class="event-detail">
-          <div class="event-detail__icon" aria-hidden="true">◷</div>
+          <div class="event-detail__icon event-detail__icon--time" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="8.5"></circle>
+              <path d="M12 7.5v5l3.4 2"></path>
+            </svg>
+          </div>
           <div>${escapeHtml(timeLabel)}</div>
         </div>
         ${event.location ? `
           <div class="event-detail">
-            <div class="event-detail__icon" aria-hidden="true">⌖</div>
+            <div class="event-detail__icon event-detail__icon--location" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M12 21s6-5.45 6-11a6 6 0 1 0-12 0c0 5.55 6 11 6 11Z"></path>
+                <circle cx="12" cy="10" r="2.25"></circle>
+              </svg>
+            </div>
             <div>${escapeHtml(event.location)}</div>
           </div>
         ` : ""}
