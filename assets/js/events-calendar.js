@@ -235,10 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ` : ""}
       </div>
 
-      <div class="event-card__footer">
-        <div class="chip">${escapeHtml(typeLabel)}</div>
-        ${event.url ? `<a class="event-link" href="${escapeAttr(event.url)}" target="_blank" rel="noopener">View in Outlook</a>` : ""}
-      </div>
+      ${event.url ? `
+        <div class="event-card__footer">
+          <a class="event-link" href="${escapeAttr(event.url)}" target="_blank" rel="noopener">View in Outlook</a>
+        </div>
+      ` : ""}
     `;
 
     return card;
