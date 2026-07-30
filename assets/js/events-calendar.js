@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!statusNode || !tonightNode || !weekendNode || !upcomingNode) return;
 
+  installCoverBadgeStyles();
+
   statusNode.textContent = "Loading live event calendar...";
 
   loadEvents();
@@ -98,16 +100,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const weekday = startDate.getDay();
     const categories = Array.isArray(event.categories) ? event.categories : [];
+    const description = event.description || "";
 
     return {
       title: event.title || "Untitled Event",
-      description: event.description || "",
+      description,
       location: event.location || "",
       url: event.url || "",
       categories,
       startDate,
       endDate,
-      type: deriveType(event.title || "", event.description || "", categories),
+      type: deriveType(event.title || "", description, categories),
+      hasCoverCharge: containsCoverCharge(description),
       isHighValueNight: weekday === 5 || weekday === 6
     };
   }
@@ -187,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="event-card__meta">
           <div class="event-card__badges">
             <span class="badge${event.isHighValueNight ? " badge--featured" : ""}">${escapeHtml(typeLabel)}</span>
+            ${event.hasCoverCharge ? '<span class="badge badge--cover">Cover Charge</span>' : ""}
             ${event.isHighValueNight ? '<span class="chip chip--featured">Prime Night</span>' : ""}
           </div>
 
@@ -244,6 +249,54 @@ document.addEventListener("DOMContentLoaded", () => {
     node.textContent = `${count} ${count === 1 ? "event" : "events"}`;
   }
 
+  function installCoverBadgeStyles() {
+    if (document.getElementById("events-cover-badge-styles")) return;
+
+    const style = document.createElement("style");
+    style.id = "events-cover-badge-styles";
+    style.textContent = `
+      .event-card__badges {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .badge--cover {
+        color: #ffffff;
+        background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+        border: 1px solid rgba(216, 180, 254, 0.72);
+        box-shadow: 0 8px 24px rgba(126, 34, 206, 0.28);
+        white-space: nowrap;
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function containsCoverCharge(description) {
+    const text = String(description || "").toLowerCase();
+
+    if (!text) return false;
+
+    // Do not display the badge for phrases such as "no cover" or "free admission."
+    if (
+      /\bno\s+(?:cover|cover charge|admission|admission fee)\b/i.test(text) ||
+      /\bfree\s+admission\b/i.test(text) ||
+      /\bno\s+suggested\s+donation\b/i.test(text)
+    ) {
+      return false;
+    }
+
+    return (
+      /\bcover\s+(?:charge|fee)\b/i.test(text) ||
+      /\bsuggested\s+(?:donation|cover)\b/i.test(text) ||
+      /\bdonation(?:s)?\s+(?:suggested|appreciated|requested)\b/i.test(text) ||
+      /\$\s*\d+(?:\.\d{1,2})?\s*(?:cover|admission)\b/i.test(text) ||
+      /\b(?:cover|admission)\s*(?::|-|is)?\s*\$?\s*\d+(?:\.\d{1,2})?\b/i.test(text)
+    );
+  }
+
   function deriveType(title, description, categories) {
     const text = [title, description, ...(categories || [])]
       .join(" ")
@@ -294,9 +347,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (includesAny("game night", "gaming night", "video game")) return "game";
     if (includesAny("social event", "social night", "mixer")) return "social";
 
-    // Keep this last so a phrase such as "$5 cover" does not override
-    // a more useful type such as Live Music or DJ Night.
-    if (includesAny("cover charge", "admission", "suggested donation")) return "cover";
 
     return "special event";
   }
@@ -316,7 +366,6 @@ document.addEventListener("DOMContentLoaded", () => {
       case "shuffleboard": return "Shuffleboard Night";
       case "mario kart": return "Mario Kart Tournament";
       case "game": return "Game Night";
-      case "cover": return "Cover Charge";
       case "trivia": return "Trivia Night";
       case "live music": return "Live Music";
       default: return "Special Event";
