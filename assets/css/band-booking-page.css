@@ -1,0 +1,278 @@
+/* Koa's Lounge band and artist booking page */
+.band-booking-page {
+  --band-aqua: #67f2e3;
+  --band-blue: #57a8ff;
+  --band-purple: #9a69ff;
+  --band-gold: #f0c678;
+}
+
+.band-booking-hero {
+  position: relative;
+  min-height: min(860px, calc(100vh - 84px));
+  display: grid;
+  align-items: end;
+  isolation: isolate;
+  overflow: hidden;
+  background: #080c14;
+}
+
+.band-booking-hero__media,
+.band-booking-hero__wash {
+  position: absolute;
+  inset: 0;
+}
+
+.band-booking-hero__media {
+  z-index: -3;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.03);
+  filter: saturate(.92) contrast(1.08) brightness(.7);
+}
+
+.band-booking-hero__wash {
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(5,9,15,.97) 0%, rgba(5,9,15,.84) 44%, rgba(5,9,15,.28) 78%, rgba(5,9,15,.52) 100%),
+    linear-gradient(180deg, rgba(5,9,15,.15) 0%, rgba(5,9,15,.25) 42%, rgba(5,9,15,.98) 100%),
+    radial-gradient(circle at 12% 18%, rgba(103,242,227,.18), transparent 30%),
+    radial-gradient(circle at 82% 14%, rgba(154,105,255,.22), transparent 33%);
+}
+
+.band-booking-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(7rem, 15vw, 11rem) 0 clamp(4.5rem, 8vw, 7rem);
+}
+
+.band-booking-hero h1 {
+  max-width: 900px;
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(4rem, 9vw, 8rem);
+  line-height: .9;
+  letter-spacing: -.06em;
+  text-wrap: balance;
+}
+
+.band-booking-hero__lead {
+  max-width: 720px;
+  margin: 1.5rem 0 0;
+  color: rgba(244,248,255,.74);
+  font-size: clamp(1.05rem, 1.9vw, 1.28rem);
+  line-height: 1.75;
+}
+
+.band-booking-intro {
+  position: relative;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(103,242,227,.08), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.008));
+}
+
+.band-booking-intro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(460px, 1.1fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: start;
+}
+
+.band-booking-intro__statement h2 {
+  margin: .65rem 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+
+.band-booking-intro__statement > p:last-child {
+  margin: 1.4rem 0 0;
+  color: rgba(244,248,255,.66);
+  line-height: 1.78;
+}
+
+.band-booking-intro__points {
+  display: grid;
+  gap: .85rem;
+}
+
+.band-booking-intro__points article {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  column-gap: 1rem;
+  padding: 1.35rem 1.35rem 1.45rem;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018)), rgba(8,12,20,.7);
+}
+
+.band-booking-intro__points span {
+  grid-row: 1 / span 2;
+  color: var(--band-aqua);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.3rem;
+}
+
+.band-booking-intro__points h3 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.55rem;
+  line-height: 1.08;
+}
+
+.band-booking-intro__points p {
+  margin: .55rem 0 0;
+  color: rgba(244,248,255,.6);
+  line-height: 1.64;
+}
+
+.band-booking-form-layout {
+  grid-template-columns: minmax(310px, .76fr) minmax(520px, 1.24fr);
+}
+
+.band-booking-guide {
+  align-self: start;
+  position: sticky;
+  top: 112px;
+}
+
+.band-booking-fit-card {
+  margin-top: 1.3rem;
+  padding: 1.2rem;
+  border: 1px solid rgba(103,242,227,.17);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(103,242,227,.08), rgba(154,105,255,.06));
+}
+
+.band-booking-fit-card p {
+  margin: .35rem 0 0;
+  color: rgba(244,248,255,.68);
+  line-height: 1.62;
+}
+
+.band-booking-form-shell {
+  overflow: hidden;
+}
+
+.band-booking-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.band-booking-field-note {
+  color: rgba(255,255,255,.45);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+.band-booking-optional {
+  color: rgba(255,255,255,.38);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.band-booking-consent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .75rem;
+  align-items: start;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  background: rgba(255,255,255,.035);
+  color: rgba(244,248,255,.7);
+  font-size: .86rem;
+  line-height: 1.55;
+  cursor: pointer;
+}
+
+.band-booking-consent input {
+  width: 18px;
+  height: 18px;
+  margin-top: .15rem;
+  accent-color: var(--band-aqua);
+}
+
+.band-booking-process-section {
+  background:
+    radial-gradient(circle at 90% 18%, rgba(154,105,255,.08), transparent 30%),
+    radial-gradient(circle at 8% 82%, rgba(103,242,227,.07), transparent 26%);
+}
+
+.band-booking-signature-section {
+  padding-top: 0;
+}
+
+.band-booking-success {
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(103,242,227,.1), transparent 28%),
+    radial-gradient(circle at 80% 30%, rgba(154,105,255,.12), transparent 31%),
+    #080c14;
+}
+
+.band-booking-success__note {
+  color: rgba(255,255,255,.44) !important;
+  font-size: .87rem !important;
+}
+
+.band-booking-success__tag {
+  display: block;
+  margin-top: 2rem;
+  color: transparent;
+  background: linear-gradient(90deg, var(--band-aqua), #fff, #c7a9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  letter-spacing: -.04em;
+}
+
+@media (max-width: 1050px) {
+  .band-booking-intro__grid,
+  .band-booking-form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .band-booking-guide {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .band-booking-hero {
+    min-height: 670px;
+  }
+
+  .band-booking-hero__wash {
+    background:
+      linear-gradient(180deg, rgba(5,9,15,.4) 0%, rgba(5,9,15,.72) 44%, rgba(5,9,15,.98) 100%),
+      radial-gradient(circle at 14% 18%, rgba(103,242,227,.18), transparent 35%);
+  }
+
+  .band-booking-hero h1 {
+    font-size: clamp(3.45rem, 17vw, 5.3rem);
+  }
+
+  .band-booking-intro__grid {
+    gap: 2rem;
+  }
+
+  .band-booking-intro__points article {
+    grid-template-columns: 38px 1fr;
+    padding: 1.15rem;
+  }
+
+  .band-booking-form {
+    grid-template-columns: 1fr;
+  }
+
+  .band-booking-form .campaign-field--full,
+  .band-booking-form .campaign-form__note,
+  .band-booking-form .band-booking-consent {
+    grid-column: auto;
+  }
+}

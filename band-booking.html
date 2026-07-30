@@ -3,24 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Your Band | Koa's Lounge</title>
-  <meta name="description" content="Submit your band for performance consideration at Koa's Lounge in Pāhoa, Hawaiʻi.">
+  <title>Band & Artist Booking | Koa's Lounge</title>
+  <meta name="description" content="Submit your band, artist, or DJ for performance consideration at Koa's Lounge in Pāhoa, Hawaiʻi.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="/assets/css/site-footer.css">
+  <link rel="stylesheet" href="assets/css/campaign-pages.css">
+  <link rel="stylesheet" href="assets/css/band-booking-page.css">
+  <link rel="stylesheet" href="assets/css/site-footer.css">
 </head>
-<!-- IMAGE CONFIG: update assets/js/site-config.js to swap site images globally -->
-<body>
+<body class="campaign-page band-booking-page">
   <header class="site-header">
     <div class="container navbar">
       <a class="brand" href="index.html" aria-label="Koa's Lounge home">
         <img data-img-key="logo" alt="Koa's Lounge logo">
-        <div class="brand-lockup">
-          <strong>Koa's Lounge</strong>
-          <span>Taste Aloha</span>
-        </div>
+        <div class="brand-lockup"><strong>Koa's Lounge</strong><span>Taste Aloha</span></div>
       </a>
       <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
       <div class="nav-shell">
@@ -32,113 +30,236 @@
           <a href="contact.html">Contact</a>
           <a class="active" href="band-booking.html">Band Booking</a>
         </nav>
-        <div class="nav-cta">
-          <a class="btn-outline" href="events.html">Events</a>
-          <a class="btn" href="contact.html">Visit Koa's</a>
-        </div>
+        <div class="nav-cta"><a class="btn-outline" href="events.html">Events</a><a class="btn" href="#artist-submission">Submit Your Act</a></div>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="page-hero">
-      <div class="page-hero-media" data-bg-key="eventsHero"></div>
-      <div class="container page-hero-inner">
-        <div class="panel" style="max-width:780px;">
-          <div class="eyebrow">Band Booking</div>
-          <h1 style="font-size:clamp(3.2rem,8vw,6.2rem); max-width:10ch;">Want to play at Koa's Lounge?</h1>
-          <p class="lead">Submit your band information, share links that let us hear your sound, and we’ll review whether the fit is right for an upcoming night at Koa’s.</p>
+    <section class="band-booking-hero">
+      <div class="band-booking-hero__media" data-bg-key="eventsHero" aria-hidden="true"></div>
+      <div class="band-booking-hero__wash" aria-hidden="true"></div>
+      <div class="container band-booking-hero__content">
+        <img class="campaign-logo" data-img-key="logo" alt="Koa's Lounge logo">
+        <span class="campaign-status">Performance inquiries</span>
+        <p class="campaign-kicker">Band, artist & DJ booking</p>
+        <h1>Bring your sound to Koa's.</h1>
+        <p class="band-booking-hero__lead">Live bands, solo artists, DJs, and performers can submit their information for consideration. Give us the links, details, and technical notes we need to understand your act.</p>
+        <div class="campaign-hero__actions">
+          <a class="campaign-button campaign-button--primary" href="#artist-submission">Submit your act <span aria-hidden="true">→</span></a>
+          <a class="campaign-button" href="events.html">See the room in action</a>
+        </div>
+        <strong class="campaign-hero__tag">Live at Koa's</strong>
+      </div>
+    </section>
+
+    <section class="band-booking-intro" aria-label="Booking overview">
+      <div class="container band-booking-intro__grid">
+        <article class="band-booking-intro__statement">
+          <p class="campaign-kicker">Built for real live nights</p>
+          <h2>We book acts that fit the room—not just a date on the calendar.</h2>
+          <p>Koa's is intimate, social, and experience-driven. We are looking for performers who understand how to connect with a crowd, communicate professionally, and contribute to the energy of the night.</p>
+        </article>
+        <div class="band-booking-intro__points">
+          <article><span>01</span><h3>Show us the live experience</h3><p>Performance video matters more than polished studio audio. We want to see how you sound and engage in a real room.</p></article>
+          <article><span>02</span><h3>Be clear about your setup</h3><p>Tell us your lineup, set length, equipment needs, and anything that affects scheduling or production.</p></article>
+          <article><span>03</span><h3>Make follow-up easy</h3><p>Use the best contact information and links available so our team can review and respond without chasing details.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container split-layout band-booking-layout">
-        <div class="text-column">
-          <div class="eyebrow">Before you submit</div>
-          <h2>Give us enough to hear the vibe and evaluate the fit.</h2>
-          <p>Please include your band name, direct contact details, and links to the platforms where we can hear or watch you perform. The more complete your submission is, the easier it is for us to review quickly.</p>
-          <ul class="clean-list">
-            <li>Band name, contact email, and phone are required</li>
-            <li>At least one performance or social link is required</li>
-            <li>You can include Instagram, Facebook, YouTube, Spotify, website, or another useful link</li>
+    <section class="campaign-section campaign-section--alt" id="artist-submission">
+      <div class="container campaign-split band-booking-form-layout">
+        <article class="campaign-panel band-booking-guide">
+          <p class="campaign-kicker">Before you submit</p>
+          <h2>Give us enough to hear the fit.</h2>
+          <p>A complete submission helps us review your act faster and makes it easier to match you with the right night, audience, and production setup.</p>
+          <ul class="campaign-list">
+            <li>One strong live-performance link is required</li>
+            <li>Include your normal lineup and approximate set length</li>
+            <li>Be specific about sound, stage, and equipment needs</li>
+            <li>Share realistic availability and compensation expectations</li>
+            <li>Use one submission per artist, band, or performance project</li>
           </ul>
-          <div class="helper-note">This form is configured for Netlify Forms, so once the site is deployed on Netlify, submissions can be collected directly from your dashboard.</div>
-        </div>
 
-        <div class="panel booking-form-panel">
-          <form name="band-booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/band-booking-success.html" class="booking-form">
+          <div class="band-booking-fit-card">
+            <span class="campaign-kicker">A strong Koa's fit</span>
+            <p>Professional communication, reliable arrival times, audience awareness, and a sound that works in an intimate lounge environment all matter.</p>
+          </div>
+
+          <p class="campaign-disclaimer">Submitting this form does not guarantee a booking, date hold, rate, or performance agreement. A booking is confirmed only after direct written communication from Koa's Lounge.</p>
+        </article>
+
+        <section class="campaign-form-shell band-booking-form-shell" aria-labelledby="band-booking-form-title">
+          <p class="campaign-kicker">Artist submission</p>
+          <h2 id="band-booking-form-title">Tell us what you bring to the room.</h2>
+          <p>Required fields help us identify your act and review your live performance. Optional fields help us make a faster booking decision.</p>
+
+          <form class="campaign-form band-booking-form" name="band-booking" method="POST" action="/band-booking-success.html" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="band-booking">
-            <p class="hidden-field">
-              <label>Don’t fill this out if you're human: <input name="bot-field"></label>
-            </p>
+            <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
 
-            <div class="form-grid">
-              <label class="form-field">
-                <span>Band Name *</span>
-                <input type="text" name="band_name" required>
-              </label>
-
-              <label class="form-field">
-                <span>Email *</span>
-                <input type="email" name="email" required>
-              </label>
-
-              <label class="form-field">
-                <span>Phone Number *</span>
-                <input type="tel" name="phone" required>
-              </label>
-
-              <label class="form-field form-field-full">
-                <span>Primary Link *</span>
-                <input type="url" name="primary_link" placeholder="https://..." required>
-                <small>Use your best link first — YouTube, Instagram, Facebook, Spotify, website, or another page that shows what you sound like.</small>
-              </label>
-
-              <label class="form-field">
-                <span>Instagram</span>
-                <input type="url" name="instagram" placeholder="https://instagram.com/...">
-              </label>
-
-              <label class="form-field">
-                <span>Facebook</span>
-                <input type="url" name="facebook" placeholder="https://facebook.com/...">
-              </label>
-
-              <label class="form-field">
-                <span>YouTube</span>
-                <input type="url" name="youtube" placeholder="https://youtube.com/...">
-              </label>
-
-              <label class="form-field">
-                <span>Other Link</span>
-                <input type="url" name="other_link" placeholder="https://...">
-              </label>
-
-              <label class="form-field form-field-full">
-                <span>Tell us about your sound</span>
-                <textarea name="notes" rows="6" placeholder="Genre, lineup, original music vs covers, where you usually play, and anything else that helps us evaluate the fit."></textarea>
-              </label>
+            <div class="campaign-field">
+              <label for="artist-name">Band or artist name</label>
+              <input id="artist-name" name="artist-name" type="text" autocomplete="organization" required>
             </div>
 
-            <div class="button-row">
-              <button class="btn" type="submit">Submit for Review</button>
-              <a class="btn-outline" href="contact.html">Contact Instead</a>
+            <div class="campaign-field">
+              <label for="contact-name">Primary contact name</label>
+              <input id="contact-name" name="contact-name" type="text" autocomplete="name" required>
             </div>
+
+            <div class="campaign-field">
+              <label for="booking-email">Email</label>
+              <input id="booking-email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="campaign-field">
+              <label for="booking-phone">Phone</label>
+              <input id="booking-phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+
+            <div class="campaign-field">
+              <label for="act-type">Type of act</label>
+              <select id="act-type" name="act-type" required>
+                <option value="">Select one</option>
+                <option>Solo artist</option>
+                <option>Duo</option>
+                <option>Trio</option>
+                <option>Full band</option>
+                <option>DJ</option>
+                <option>Specialty performer</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="campaign-field">
+              <label for="home-base">Home base</label>
+              <input id="home-base" name="home-base" type="text" placeholder="Example: Hilo, Pāhoa, Kona">
+            </div>
+
+            <div class="campaign-field">
+              <label for="genre">Genre or performance style</label>
+              <input id="genre" name="genre" type="text" placeholder="Example: reggae, rock, soul, house" required>
+            </div>
+
+            <div class="campaign-field">
+              <label for="performers">Number of performers</label>
+              <input id="performers" name="number-of-performers" type="number" min="1" max="30" required>
+            </div>
+
+            <div class="campaign-field">
+              <label for="set-length">Typical set length</label>
+              <select id="set-length" name="typical-set-length" required>
+                <option value="">Select one</option>
+                <option>45 minutes</option>
+                <option>60 minutes</option>
+                <option>90 minutes</option>
+                <option>2 hours</option>
+                <option>3 hours</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+
+            <div class="campaign-field">
+              <label for="availability">Typical availability</label>
+              <select id="availability" name="typical-availability" required>
+                <option value="">Select one</option>
+                <option>Weeknights</option>
+                <option>Friday nights</option>
+                <option>Saturday nights</option>
+                <option>Sunday special events</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+
+            <div class="campaign-field campaign-field--full">
+              <label for="performance-link">Best live-performance link</label>
+              <input id="performance-link" name="performance-link" type="url" inputmode="url" placeholder="https://youtube.com/..." required>
+              <small class="band-booking-field-note">Use the link that best shows how you sound and perform live.</small>
+            </div>
+
+            <div class="campaign-field">
+              <label for="website">Website or EPK <span class="band-booking-optional">Optional</span></label>
+              <input id="website" name="website-or-epk" type="url" inputmode="url" placeholder="https://...">
+            </div>
+
+            <div class="campaign-field">
+              <label for="instagram">Instagram <span class="band-booking-optional">Optional</span></label>
+              <input id="instagram" name="instagram" type="url" inputmode="url" placeholder="https://instagram.com/...">
+            </div>
+
+            <div class="campaign-field">
+              <label for="youtube">YouTube or second video <span class="band-booking-optional">Optional</span></label>
+              <input id="youtube" name="youtube-or-second-video" type="url" inputmode="url" placeholder="https://youtube.com/...">
+            </div>
+
+            <div class="campaign-field">
+              <label for="social-link">Other social or streaming link <span class="band-booking-optional">Optional</span></label>
+              <input id="social-link" name="other-social-or-streaming-link" type="url" inputmode="url" placeholder="https://...">
+            </div>
+
+            <div class="campaign-field campaign-field--full">
+              <label for="artist-summary">Describe your act</label>
+              <textarea id="artist-summary" name="artist-summary" placeholder="Tell us about your sound, audience, live-show energy, originals versus covers, and where you currently perform." required></textarea>
+            </div>
+
+            <div class="campaign-field campaign-field--full">
+              <label for="technical-needs">Technical and equipment needs</label>
+              <textarea id="technical-needs" name="technical-needs" placeholder="List microphones, inputs, monitors, instruments, DJ connections, stage space, power, or other production needs." required></textarea>
+            </div>
+
+            <div class="campaign-field campaign-field--full">
+              <label for="compensation">Compensation expectations <span class="band-booking-optional">Optional</span></label>
+              <input id="compensation" name="compensation-expectations" type="text" placeholder="Flat rate, door arrangement, minimum guarantee, or open to discussion">
+            </div>
+
+            <div class="campaign-field campaign-field--full">
+              <label for="references">Recent venues or references <span class="band-booking-optional">Optional</span></label>
+              <textarea id="references" name="recent-venues-or-references" placeholder="Share recent venues, recurring gigs, local references, or anything that helps us understand your experience."></textarea>
+            </div>
+
+            <label class="band-booking-consent campaign-field--full" for="booking-acknowledgement">
+              <input id="booking-acknowledgement" name="booking-acknowledgement" type="checkbox" value="I understand" required>
+              <span>I understand that this is a performance inquiry only and does not guarantee a booking, date, rate, or agreement.</span>
+            </label>
+
+            <p class="campaign-form__note">Please review your links before submitting. Broken, private, or login-protected performance links may prevent us from evaluating the act.</p>
+            <button class="campaign-button campaign-button--primary" type="submit">Submit for review <span aria-hidden="true">→</span></button>
           </form>
+        </section>
+      </div>
+    </section>
+
+    <section class="campaign-section band-booking-process-section">
+      <div class="container">
+        <header class="campaign-section__header">
+          <div><p class="campaign-kicker">What happens next</p><h2>A submission starts the conversation.</h2></div>
+          <p>Our team reviews the information you send, considers the fit for upcoming programming, and follows up when there is a realistic opportunity to discuss.</p>
+        </header>
+        <div class="campaign-feature-grid">
+          <article class="campaign-feature"><span class="campaign-feature__number">01</span><div><h3>We review the act</h3><p>We listen, watch the performance links, and consider sound, professionalism, audience fit, and production needs.</p></div></article>
+          <article class="campaign-feature"><span class="campaign-feature__number">02</span><div><h3>We match the right night</h3><p>Not every act fits every event. We look for dates and concepts where the performance can succeed.</p></div></article>
+          <article class="campaign-feature"><span class="campaign-feature__number">03</span><div><h3>We contact you directly</h3><p>If there is a potential fit, the Koa's team will contact the primary booking person to discuss details.</p></div></article>
         </div>
+      </div>
+    </section>
+
+    <section class="campaign-section band-booking-signature-section">
+      <div class="container campaign-signature">
+        <div><p class="campaign-kicker">Live music. Real connection.</p><h2>Give Pāhoa a night worth remembering.</h2><p>Koa's is built around the moments that happen when the room, the crowd, and the music all meet at the right time.</p></div>
+        <strong>#MeetMeAtKoas</strong>
       </div>
     </section>
   </main>
 
-    <div data-site-footer></div>
-
+  <div data-site-footer></div>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/image-config.js"></script>
   <script src="assets/js/business-config.js"></script>
   <script src="assets/js/business-hours.js"></script>
-  <script src="/assets/js/footer-config.js"></script>
-  <script src="/assets/js/site-footer.js"></script>
+  <script src="assets/js/footer-config.js"></script>
+  <script src="assets/js/site-footer.js"></script>
 </body>
 </html>

@@ -3,33 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submission Received | Koa's Lounge</title>
-  <meta name="description" content="Thank you for submitting your band to Koa's Lounge.">
+  <title>Artist Submission Received | Koa's Lounge</title>
+  <meta name="description" content="Your artist or band submission has been received by Koa's Lounge.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="/assets/css/site-footer.css">
+  <link rel="stylesheet" href="assets/css/campaign-pages.css">
+  <link rel="stylesheet" href="assets/css/band-booking-page.css">
+  <link rel="stylesheet" href="assets/css/site-footer.css">
 </head>
-<body>
-  <main class="section">
-    <div class="container" style="max-width:760px;">
-      <div class="panel" style="text-align:center; padding:3rem;">
-        <div class="eyebrow">Submission Received</div>
-        <h1 style="font-size:clamp(2.6rem,6vw,4.8rem); max-width:none;">Thanks for reaching out.</h1>
-        <p class="lead" style="margin-inline:auto;">Your band submission has been sent to Koa's Lounge for review. If the fit is right for an upcoming date, someone from the team will reach out.</p>
-        <div class="button-row" style="justify-content:center;">
-          <a class="btn" href="index.html">Back to Home</a>
-          <a class="btn-outline" href="events.html">See Events</a>
-        </div>
+<body class="campaign-page band-booking-page band-booking-success-page">
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+        <img data-img-key="logo" alt="Koa's Lounge logo">
+        <div class="brand-lockup"><strong>Koa's Lounge</strong><span>Taste Aloha</span></div>
+      </a>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <div class="nav-shell">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a><a href="menu.html">Menu</a><a href="contact.html">Contact</a><a class="active" href="band-booking.html">Band Booking</a>
+        </nav>
+        <div class="nav-cta"><a class="btn-outline" href="events.html">Events</a><a class="btn" href="band-booking.html">Band Booking</a></div>
       </div>
     </div>
+  </header>
+
+  <main class="campaign-success band-booking-success">
+    <section class="campaign-success__card">
+      <img data-img-key="logo" alt="Koa's Lounge logo">
+      <span class="campaign-status">Submission received</span>
+      <p class="campaign-kicker">Mahalo for sharing your sound</p>
+      <h1>Your act is now in the review queue.</h1>
+      <p>We received your band, artist, or DJ submission. The Koa's team will review the links and booking details you provided. If there is a realistic fit for an upcoming night, we will contact the primary booking person directly.</p>
+      <p class="band-booking-success__note">This confirmation does not reserve a date or establish a performance agreement.</p>
+      <div class="campaign-success__actions">
+        <a class="campaign-button campaign-button--primary" href="events.html">See upcoming events <span aria-hidden="true">→</span></a>
+        <a class="campaign-button" href="index.html">Return home</a>
+      </div>
+      <strong class="band-booking-success__tag">#MeetMeAtKoas</strong>
+    </section>
   </main>
 
-    <div data-site-footer></div>
+  <div data-site-footer></div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/image-config.js"></script>
   <script src="assets/js/business-config.js"></script>
   <script src="assets/js/business-hours.js"></script>
-  <script src="/assets/js/footer-config.js"></script>
-  <script src="/assets/js/site-footer.js"></script>
+  <script src="assets/js/footer-config.js"></script>
+  <script src="assets/js/site-footer.js"></script>
 </body>
 </html>
