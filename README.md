@@ -42,3 +42,6 @@ Required fields:
 
 ## Business hours
 Edit `assets/js/business-config.js` to update hours site-wide. See `BUSINESS-HOURS.md`.
+
+## Menu page layout refresh
+The menu page now includes static fallback content plus JavaScript enhancement. This prevents blank or collapsed sections if a script loads slowly or fails. Menu content remains centralized in `assets/js/menu-data.js`.
