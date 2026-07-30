@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/campaign-pages.css">
   <link rel="stylesheet" href="assets/css/site-footer.css">
+  <link rel="stylesheet" href="assets/css/netlify-forms.css">
 </head>
 <body class="campaign-page campaign-page--draft">
   <header class="site-header">
@@ -77,9 +78,9 @@
           <p class="campaign-kicker">Request a draft party</p>
           <h2 id="draft-form-title">Put your date on our radar.</h2>
           <p>Complete the form and a member of the Koa's team will follow up with next steps.</p>
-          <form class="campaign-form" name="fantasy-draft-party" method="POST" action="/draft-party-success.html" data-netlify="true" netlify-honeypot="bot-field">
+          <form class="campaign-form" name="fantasy-draft-party" method="POST" action="/draft-party-success.html" data-netlify="true" netlify-honeypot="bot-field" data-koa-netlify-form data-success-title="Draft request received." data-success-message="The Koa's Lounge team will review your date and group details and follow up soon.">
             <input type="hidden" name="form-name" value="fantasy-draft-party">
-            <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+            <p class="koa-netlify-honeypot" aria-hidden="true"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <div class="campaign-field"><label for="draft-name">Contact name</label><input id="draft-name" name="contact-name" type="text" autocomplete="name" required></div>
             <div class="campaign-field"><label for="draft-email">Email</label><input id="draft-email" name="email" type="email" autocomplete="email" required></div>
             <div class="campaign-field"><label for="draft-phone">Phone</label><input id="draft-phone" name="phone" type="tel" autocomplete="tel" required></div>
@@ -116,5 +117,6 @@
   <script src="assets/js/business-hours.js"></script>
   <script src="assets/js/footer-config.js"></script>
   <script src="assets/js/site-footer.js"></script>
+  <script src="assets/js/netlify-forms.js"></script>
 </body>
 </html>

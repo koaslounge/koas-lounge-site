@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/campaign-pages.css">
   <link rel="stylesheet" href="assets/css/site-footer.css">
+  <link rel="stylesheet" href="assets/css/netlify-forms.css">
 </head>
 <body class="campaign-page campaign-page--games">
   <header class="site-header">
@@ -76,9 +77,9 @@
           <p class="campaign-kicker">Join the interest list</p>
           <h2 id="game-interest-title">Be first off the starting line.</h2>
           <p>Leave your details and we will send an update when Game Nights are ready to launch.</p>
-          <form class="campaign-form" name="game-night-interest" method="POST" action="/game-night-success.html" data-netlify="true" netlify-honeypot="bot-field">
+          <form class="campaign-form" name="game-night-interest" method="POST" action="/game-night-success.html" data-netlify="true" netlify-honeypot="bot-field" data-koa-netlify-form data-success-title="You are on the list." data-success-message="We will share Game Night launch details when dates and formats are ready.">
             <input type="hidden" name="form-name" value="game-night-interest">
-            <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+            <p class="koa-netlify-honeypot" aria-hidden="true"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <div class="campaign-field"><label for="game-name">Name</label><input id="game-name" name="name" type="text" autocomplete="name" required></div>
             <div class="campaign-field"><label for="game-email">Email</label><input id="game-email" name="email" type="email" autocomplete="email" required></div>
             <div class="campaign-field"><label for="game-phone">Phone</label><input id="game-phone" name="phone" type="tel" autocomplete="tel"></div>
@@ -110,5 +111,6 @@
   <script src="assets/js/business-hours.js"></script>
   <script src="assets/js/footer-config.js"></script>
   <script src="assets/js/site-footer.js"></script>
+  <script src="assets/js/netlify-forms.js"></script>
 </body>
 </html>

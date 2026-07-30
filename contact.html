@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/campaign-pages.css">
   <link rel="stylesheet" href="assets/css/contact-page.css">
   <link rel="stylesheet" href="assets/css/site-footer.css">
+  <link rel="stylesheet" href="assets/css/netlify-forms.css">
 </head>
 <body class="campaign-page contact-page">
   <header class="site-header">
@@ -112,9 +113,9 @@
           <h2 id="contact-form-title">What can we help with?</h2>
           <p>Complete the form below and a member of the Koa's team will follow up using your preferred contact method.</p>
 
-          <form class="campaign-form" name="general-contact" method="POST" action="/contact-success.html" data-netlify="true" netlify-honeypot="bot-field">
+          <form class="campaign-form" name="general-contact" method="POST" action="/contact-success.html" data-netlify="true" netlify-honeypot="bot-field" data-koa-netlify-form data-success-title="Message received." data-success-message="Thank you. The Koa's Lounge team will follow up using your preferred contact method.">
             <input type="hidden" name="form-name" value="general-contact">
-            <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+            <p class="koa-netlify-honeypot" aria-hidden="true"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
             <div class="campaign-field">
               <label for="contact-name">Your name</label>
@@ -224,5 +225,6 @@
   <script src="assets/js/business-hours.js"></script>
   <script src="assets/js/footer-config.js"></script>
   <script src="assets/js/site-footer.js"></script>
+  <script src="assets/js/netlify-forms.js"></script>
 </body>
 </html>

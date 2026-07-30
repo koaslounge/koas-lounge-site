@@ -1,0 +1,63 @@
+/* Shared Netlify form behavior and feedback */
+.koa-netlify-honeypot {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.koa-netlify-form-status {
+  display: none;
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: .35rem;
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  outline: none;
+}
+
+.koa-netlify-form-status.is-visible {
+  display: grid;
+  gap: .25rem;
+}
+
+.koa-netlify-form-status strong {
+  color: #fff;
+  font-size: .95rem;
+}
+
+.koa-netlify-form-status span {
+  color: rgba(255, 255, 255, .74);
+  line-height: 1.55;
+}
+
+.koa-netlify-form-status.is-success {
+  border-color: rgba(103, 242, 227, .36);
+  background: rgba(103, 242, 227, .08);
+  box-shadow: 0 0 0 4px rgba(103, 242, 227, .03);
+}
+
+.koa-netlify-form-status.is-success strong {
+  color: #67f2e3;
+}
+
+.koa-netlify-form-status.is-error {
+  border-color: rgba(255, 133, 155, .42);
+  background: rgba(255, 91, 122, .09);
+}
+
+.koa-netlify-form-status.is-error strong {
+  color: #ff9eb1;
+}
+
+form[data-koa-netlify-form] button[disabled],
+form[data-koa-netlify-form] input[type="submit"][disabled] {
+  cursor: wait;
+  opacity: .68;
+}
