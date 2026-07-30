@@ -406,3 +406,296 @@ body.events-page .event-card__badges .badge.badge--cover::before {
   font-weight: 900;
   line-height: 1;
 }
+
+/* Interactive monthly calendar */
+body.events-page .events-month-view {
+  padding: clamp(22px, 4vw, 34px);
+  background:
+    radial-gradient(circle at 8% 10%, rgba(3,255,246,0.08), transparent 28%),
+    radial-gradient(circle at 92% 8%, rgba(147,51,234,0.12), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025)),
+    rgba(10,14,23,0.72);
+}
+
+body.events-page .events-month__header,
+body.events-page .events-month__selection-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+body.events-page .events-month__header {
+  margin-bottom: 22px;
+}
+
+body.events-page .events-month__eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #03fff6;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+body.events-page .events-month__intro {
+  margin: 10px 0 0;
+  color: rgba(255,255,255,0.66);
+  line-height: 1.65;
+}
+
+body.events-page .events-month__controls {
+  display: flex;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+body.events-page .events-month__arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  color: #ffffff;
+  background: rgba(255,255,255,0.055);
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+body.events-page .events-month__arrow:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: rgba(3,255,246,0.42);
+  background: rgba(3,255,246,0.1);
+}
+
+body.events-page .events-month__arrow:focus-visible,
+body.events-page .events-month__day:focus-visible {
+  outline: 3px solid rgba(3,255,246,0.42);
+  outline-offset: 3px;
+}
+
+body.events-page .events-month__arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+body.events-page .events-month__calendar {
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 22px;
+  background: rgba(5,9,16,0.48);
+}
+
+body.events-page .events-month__weekdays,
+body.events-page .events-month__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+body.events-page .events-month__weekdays {
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.045);
+}
+
+body.events-page .events-month__weekdays span {
+  padding: 13px 8px;
+  color: rgba(255,255,255,0.56);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+body.events-page .events-month__grid {
+  gap: 1px;
+  background: rgba(255,255,255,0.075);
+}
+
+body.events-page .events-month__blank,
+body.events-page .events-month__day {
+  min-width: 0;
+  min-height: 112px;
+  background: #101621;
+}
+
+body.events-page .events-month__blank {
+  opacity: 0.48;
+}
+
+body.events-page .events-month__day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 12px;
+  border: 0;
+  color: rgba(255,255,255,0.62);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+body.events-page .events-month__day:hover {
+  color: #ffffff;
+  background: #151e2d;
+}
+
+body.events-page .events-month__day.has-events {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(3,255,246,0.09), transparent 42%),
+    #121b28;
+}
+
+body.events-page .events-month__day.has-events::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #03fff6;
+  box-shadow: 0 0 14px rgba(3,255,246,0.7);
+}
+
+body.events-page .events-month__day.is-today {
+  box-shadow: inset 0 0 0 1px rgba(244,203,120,0.46);
+}
+
+body.events-page .events-month__day.is-selected {
+  color: #ffffff;
+  background:
+    linear-gradient(145deg, rgba(109,40,217,0.32), rgba(3,255,246,0.12)),
+    #161d2b;
+  box-shadow: inset 0 0 0 2px rgba(168,85,247,0.7);
+}
+
+body.events-page .events-month__day-number {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+body.events-page .events-month__event-title {
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+  color: rgba(255,255,255,0.82);
+  font-size: 0.72rem;
+  font-weight: 750;
+  line-height: 1.28;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+body.events-page .events-month__event-title.is-empty {
+  color: rgba(255,255,255,0.28);
+  font-weight: 600;
+}
+
+body.events-page .events-month__event-count {
+  margin-top: auto;
+  padding: 4px 7px;
+  border-radius: 999px;
+  color: #07161a;
+  background: linear-gradient(135deg, #00cfc8, #03fff6);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+body.events-page .events-month__selection {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.09);
+}
+
+body.events-page .events-month__selection-header {
+  margin-bottom: 18px;
+}
+
+body.events-page .events-month__selection-header h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  line-height: 1.08;
+}
+
+body.events-page .events-month__events .empty-state {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  body.events-page .events-month__blank,
+  body.events-page .events-month__day {
+    min-height: 88px;
+  }
+
+  body.events-page .events-month__event-title {
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  body.events-page .events-month__header,
+  body.events-page .events-month__selection-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  body.events-page .events-month__controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  body.events-page .events-month__arrow {
+    width: 46px;
+    height: 46px;
+  }
+
+  body.events-page .events-month__weekdays span {
+    padding: 10px 2px;
+    font-size: 0.58rem;
+    letter-spacing: 0.04em;
+  }
+
+  body.events-page .events-month__blank,
+  body.events-page .events-month__day {
+    min-height: 60px;
+  }
+
+  body.events-page .events-month__day {
+    gap: 4px;
+    padding: 7px 5px;
+  }
+
+  body.events-page .events-month__day.has-events::after {
+    right: 6px;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+  }
+
+  body.events-page .events-month__day-number {
+    font-size: 0.82rem;
+  }
+
+  body.events-page .events-month__event-title {
+    display: none;
+  }
+
+  body.events-page .events-month__event-count {
+    margin-top: auto;
+    padding: 2px 5px;
+    font-size: 0.52rem;
+  }
+}
