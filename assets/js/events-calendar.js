@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
 
-      ${event.description ? `<div class="event-card__desc">${escapeHtml(trimText(event.description, 180))}</div>` : ""}
+      ${event.description ? `<div class="event-card__desc">${formatDescription(event.description)}</div>` : ""}
 
       <div class="event-card__details">
         <div class="event-detail">
@@ -260,6 +260,15 @@ document.addEventListener("DOMContentLoaded", () => {
         flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
+      }
+
+      .event-card__desc {
+        display: block;
+        max-height: none;
+        overflow: visible;
+        white-space: pre-line;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
       }
 
       .badge--cover {
@@ -404,9 +413,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${startText} - ${endText}`;
   }
 
-  function trimText(text, max) {
-    if (!text || text.length <= max) return text;
-    return text.slice(0, max - 1).trimEnd() + "…";
+  function formatDescription(value) {
+    return escapeHtml(value)
+      .replace(/\r\n|\r|\n/g, "<br>");
   }
 
   function escapeHtml(value) {
