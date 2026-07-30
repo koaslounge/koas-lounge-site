@@ -250,7 +250,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (text.includes("soul")) return "vinyl";
     if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("house")) return "dj";
     if (text.includes("brunch") || text.includes("mimosa")) return "brunch";
+    if (text.includes("social") || return "social";
+    if (text.includes("pool tournament") || return "pool tournament";
+    if (text.includes("shuffleboard") || return "shuffleboard";
+    if (text.includes("mario kart") || return "mario kart";
+    if (text.includes("game") || return "game";
+    if (text.includes("dating") || return "dating";
     if (text.includes("jam") || text.includes("open band") || text.includes("cypher")) return "jam";
+    if (text.includes("poetry") || text.includes("story telling") return "open mic";
+    if (text.includes("comedy") || return "comedy";
     if (text.includes("trivia")) return "trivia";
     if (
       text.includes("live music") ||
@@ -259,6 +267,20 @@ document.addEventListener("DOMContentLoaded", () => {
       text.includes("rock") ||
       text.includes("funk") ||
       text.includes("acoustic") ||
+      text.includes("always free") ||
+      text.includes("spectacles") ||
+      text.includes("freaky tiki") ||
+      text.includes("tonic oasis") ||
+      text.includes("punacat") ||
+      text.includes("kanaka fyah") ||
+      text.includes("positive motion") ||
+      text.includes("average joes") ||
+      text.includes("hayden james") ||
+      text.includes("troubled in paradise") ||
+      text.includes("chris murphy") ||
+      text.includes("pepper") ||
+      text.includes("dc lewis") ||
+      text.includes("uncle charlie") ||
       text.includes("jazz")
     ) return "live music";
 
@@ -270,8 +292,16 @@ document.addEventListener("DOMContentLoaded", () => {
       case "karaoke": return "Karaoke";
       case "dj": return "DJ Night";
       case "brunch": return "Brunch";
+      case "social": return "Social";
       case "vinyl": return "Vinyl Night";
       case "jam": return "Jam Session";
+      case "open mic": return "Open Mic";
+      case "comedy": return "Comedy Night";
+      case "dating": return "Speed Dating";
+      case "pool tournament": return "Pool Tournament";
+      case "shuffleboard": return "Shuffleboard Night";
+      case "mario kart": return "Mario Kart Tournament";
+      case "game": return "Game Night";
       case "trivia": return "Trivia";
       case "live music": return "Live Music";
       default: return "Special Event";
