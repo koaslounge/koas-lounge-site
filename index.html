@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koa's Lounge | Live Music, DJs, Cocktails & Late Nights in Pāhoa</title>
+  <title>Koa's Lounge | Live Music, DJs, Cocktails & Late Nights in PÄhoa</title>
   <meta
     name="description"
-    content="Koa's Lounge in Pāhoa, Hawaiʻi features live music, DJs, handcrafted cocktails, and unforgettable late-night energy. See what's happening tonight."
+    content="Koa's Lounge in PÄhoa, HawaiÊ»i features live music, DJs, handcrafted cocktails, and unforgettable late-night energy. See what's happening tonight."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -392,6 +392,7 @@
   </style>
   <link rel="stylesheet" href="/assets/css/site-footer.css">
   <link rel="stylesheet" href="assets/css/promotions.css">
+  <link rel="stylesheet" href="assets/css/home-page.css">
 </head>
 <body>
   <header class="site-header">
@@ -404,7 +405,7 @@
         </div>
       </a>
 
-      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">â˜°</button>
 
       <div class="nav-shell">
         <nav class="nav-links" aria-label="Primary navigation">
@@ -425,78 +426,99 @@
   </header>
 
   <main>
-    <section class="home-hero">
-      <div class="container">
-        <div class="home-hero__wrap">
-          <div class="home-hero__panel">
-            <div>
-              <p class="home-hero__eyebrow">Live Music • DJs • Cocktails</p>
-              <h1 class="hero-title">Live Music, DJs, and Craft Cocktails in the Heart of Pāhoa</h1>
-              <p class="hero-subtitle">
-                From laid-back cocktails to high-energy nights, Koa’s Lounge brings together live music,
-                DJs, island hospitality, and a room that always feels like the place to be.
-              </p>
+    <section class="home-stage" aria-labelledby="home-stage-title">
+  <div class="home-stage__backdrop" data-bg-key="homeHero" aria-hidden="true"></div>
+  <div class="home-stage__veil" aria-hidden="true"></div>
+  <div class="home-stage__aurora" aria-hidden="true"></div>
 
-              <div class="home-hero__actions">
-                <a class="btn" href="events.html">See What’s On Tonight</a>
-                <a class="btn-outline" href="menu.html">Explore the Menu</a>
-              </div>
-            </div>
-
-            <div class="home-hero__highlights">
-              <div class="home-hero__highlight">
-                <strong>Live Entertainment</strong>
-                <span>Bands, DJs, themed nights, and a calendar that keeps the energy moving.</span>
-              </div>
-              <div class="home-hero__highlight">
-                <strong>Handcrafted Drinks</strong>
-                <span>Signature cocktails, beer, wine, and a lounge atmosphere with real personality.</span>
-              </div>
-              <div class="home-hero__highlight">
-                <strong>Pāhoa Nightlife</strong>
-                <span>A destination for locals, visitors, and anyone looking for a memorable night out.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="home-hero__feature">
-            <div class="home-hero__feature-top">
-              <div class="home-hero__mini-card">
-                <span class="home-hero__mini-label">Craft Cocktails</span>
-                <strong>Signature drinks with real personality</strong>
-              </div>
-
-              <div class="home-hero__mini-card">
-                <span class="home-hero__mini-label">Live Energy</span>
-                <strong>Bands, DJs, and nights people talk about</strong>
-              </div>
-
-              <div class="home-hero__mini-card">
-                <span class="home-hero__mini-label">Pāhoa Vibe</span>
-                <strong>A place that feels local, elevated, and alive</strong>
-              </div>
-            </div>
-
-            <div class="home-hero__feature-card">
-              <p class="home-hero__feature-label">Why People Come Here</p>
-              <h2 class="home-hero__feature-title">A lounge that feels local, lively, and worth dressing up for.</h2>
-              <p class="home-hero__feature-copy">
-                Whether you’re heading out for a date night, catching live music with friends, or looking for where the action is after dark, Koa’s Lounge gives you the reason to stay out longer.
-              </p>
-            </div>
+  <div class="container home-stage__inner">
+    <div class="home-stage__copy">
+      <div class="home-stage__status-row">
+        <span class="home-stage__location">PÄhoa, HawaiÊ»i</span>
+        <div class="home-stage__open-status" data-open-status aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <div>
+            <strong data-open-status-label>Checking hoursâ€¦</strong>
+            <small data-open-status-detail>Pacific/Honolulu</small>
           </div>
         </div>
       </div>
-    </section>
+
+      <p class="home-stage__brandline">Cocktails Â· Live Music Â· After Dark</p>
+      <h1 id="home-stage-title">PÄhoaâ€™s night <span>starts here.</span></h1>
+      <p class="home-stage__lead">Craft cocktails, live bands, DJs, dancing, game nights, and the kind of local energy that turns one drink into a full night out.</p>
+
+      <div class="home-stage__actions">
+        <a class="btn" href="events.html">See Whatâ€™s Happening</a>
+        <a class="btn-outline" href="menu.html">Explore the Menu</a>
+      </div>
+
+      <div class="home-stage__signature">
+        <span>Your night. Your people. Your Koaâ€™s.</span>
+        <strong>#MeetMeAtKoas</strong>
+      </div>
+    </div>
+
+    <div class="home-stage__visual" aria-label="Featured Koa's Lounge experiences">
+      <article class="home-stage__feature">
+        <img data-img-key="homeEvents" alt="Live nightlife entertainment at Koa's Lounge">
+        <div class="home-stage__feature-content">
+          <span class="home-stage__tag">Friday + Saturday Nights</span>
+          <h2>Koaâ€™s After Dark</h2>
+          <p>When the lights go low, the energy goes up. DJs, cocktails, dancing, and late-night PÄhoa.</p>
+          <a class="home-stage__feature-link" href="after-dark.html">Enter After Dark</a>
+        </div>
+      </article>
+
+      <div class="home-stage__mini-grid">
+        <article class="home-stage__mini">
+          <img data-img-key="galleryTwo" alt="Signature cocktail at Koa's Lounge">
+          <div class="home-stage__mini-content">
+            <span class="home-stage__tag">Cocktail Menu</span>
+            <h3>Island-inspired pours</h3>
+            <a class="home-stage__mini-link" href="menu.html">View drinks</a>
+          </div>
+        </article>
+
+        <article class="home-stage__mini">
+          <img data-img-key="galleryThree" alt="Pool and game area at Koa's Lounge">
+          <div class="home-stage__mini-content">
+            <span class="home-stage__tag">Coming Soon</span>
+            <h3>Game Nights at Koaâ€™s</h3>
+            <a class="home-stage__mini-link" href="game-nights.html">Get updates</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-stage__rail" aria-label="Quick highlights">
+    <div class="container home-stage__rail-inner">
+      <a class="home-stage__rail-item" href="events.html">
+        <span class="home-stage__rail-number">01</span>
+        <span class="home-stage__rail-copy"><strong>Live calendar</strong><span>See tonight and whatâ€™s next</span></span>
+      </a>
+      <a class="home-stage__rail-item" href="draft-parties.html">
+        <span class="home-stage__rail-number">02</span>
+        <span class="home-stage__rail-copy"><strong>Draft parties</strong><span>Fantasy football bookings</span></span>
+      </a>
+      <a class="home-stage__rail-item" href="contact.html">
+        <span class="home-stage__rail-number">03</span>
+        <span class="home-stage__rail-copy"><strong>Plan your night</strong><span>Groups, celebrations, and questions</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 
     <section class="home-tonight">
       <div class="container">
         <div class="home-tonight__header">
           <div>
             <p class="section-eyebrow">Live Tonight</p>
-            <h2 class="home-tonight__title">Tonight at Koa’s</h2>
+            <h2 class="home-tonight__title">Tonight at Koaâ€™s</h2>
             <p class="home-tonight__subtitle">
-              See what’s happening tonight and what’s coming up next from our live events calendar.
+              See whatâ€™s happening tonight and whatâ€™s coming up next from our live events calendar.
             </p>
           </div>
 
@@ -517,22 +539,22 @@
             <h3>For Locals</h3>
             <p>
               Your go-to for live music, DJs, karaoke, and nights that actually feel like something is happening.
-              Koa’s Lounge gives East Hawaiʻi a real nightlife anchor.
+              Koaâ€™s Lounge gives East HawaiÊ»i a real nightlife anchor.
             </p>
           </article>
 
           <article class="home-value__card">
             <h3>For Visitors</h3>
             <p>
-              Skip the generic stop and step into a place with personality. Koa’s Lounge offers a true local-night-out
-              experience in Pāhoa with entertainment, cocktails, and island energy.
+              Skip the generic stop and step into a place with personality. Koaâ€™s Lounge offers a true local-night-out
+              experience in PÄhoa with entertainment, cocktails, and island energy.
             </p>
           </article>
 
           <article class="home-value__card">
             <h3>For the Vibe</h3>
             <p>
-              Crafted drinks, late-night energy, a room full of character, and a steady calendar of music and events—
+              Crafted drinks, late-night energy, a room full of character, and a steady calendar of music and eventsâ€”
               all under one roof.
             </p>
           </article>
@@ -544,7 +566,7 @@
       <div class="container">
         <div class="home-cta__wrap">
           <div class="home-cta__card">
-            <h3>See What’s Coming Up</h3>
+            <h3>See Whatâ€™s Coming Up</h3>
             <p>
               Browse the live event calendar for DJ nights, live bands, karaoke, special events, and more.
             </p>
@@ -556,7 +578,7 @@
           <div class="home-cta__card">
             <h3>Plan Your Night</h3>
             <p>
-              Check the menu, get in touch, and make Koa’s Lounge part of your next night out in Pāhoa.
+              Check the menu, get in touch, and make Koaâ€™s Lounge part of your next night out in PÄhoa.
             </p>
             <div class="home-cta__actions">
               <a class="btn-outline" href="menu.html">View Menu</a>
