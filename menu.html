@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu | Koa's Lounge</title>
-  <meta name="description" content="Explore signature cocktails, classics, beer, wine, and zero-proof drinks at Koa's Lounge in Pāhoa.">
+  <meta name="description" content="Explore cocktails, martinis, beer, wine, zero-proof drinks, and rotating specials at Koa's Lounge in Pāhoa.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/menu-page.css">
 </head>
 <body class="menu-page">
   <header class="site-header">
@@ -39,117 +40,66 @@
   </header>
 
   <main>
-    <section class="page-hero menu-hero">
-      <div class="page-hero-media" data-bg-key="menuHero"></div>
-      <div class="container page-hero-inner">
-        <div class="menu-hero-card">
-          <div class="eyebrow" id="menu-hero-eyebrow">Cocktail Menu</div>
-          <h1 id="menu-hero-title">Island-inspired drinks. Lounge-made nights.</h1>
-          <p class="lead" id="menu-hero-lead">Signature cocktails, timeless classics, and easygoing pours crafted for evenings in Pāhoa.</p>
-          <div class="menu-hero-actions">
-            <a class="btn" href="#signature-cocktails">Explore the menu</a>
-            <span>Selections and availability may change.</span>
+    <section class="menu-intro">
+      <div class="menu-intro__media" data-bg-key="menuHero" aria-hidden="true"></div>
+      <div class="menu-intro__shade" aria-hidden="true"></div>
+      <div class="container menu-intro__content">
+        <div class="menu-intro__logo-wrap">
+          <img class="menu-intro__logo" data-img-key="logo" alt="">
+        </div>
+        <p class="menu-kicker" id="menu-hero-eyebrow">Cocktail Menu</p>
+        <h1 id="menu-hero-title">Island pours.<br>After-dark energy.</h1>
+        <p class="menu-intro__lead" id="menu-hero-lead">Cocktails, martinis, beer, wine, and zero-proof favorites made for nights in Pāhoa.</p>
+        <div class="menu-intro__actions">
+          <a class="btn" href="#menu-content">View the menu</a>
+          <a class="menu-text-link" href="events.html">See tonight's events <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="menu-jump" aria-label="Menu categories">
+      <div class="container menu-jump__inner" id="menu-category-nav"></div>
+    </nav>
+
+    <section class="menu-spotlight" id="menu-content">
+      <div class="container menu-spotlight__grid">
+        <div class="menu-spotlight__copy">
+          <p class="menu-kicker" id="feature-eyebrow">Featured pour</p>
+          <h2 id="feature-name">Koa House Mai Tai</h2>
+          <p id="feature-description">Bright citrus, island sweetness, and a generous rum-forward finish.</p>
+          <div class="menu-spotlight__meta">
+            <strong id="feature-price">$15</strong>
+            <span id="feature-note">Top shelf</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="menu-price-band" aria-label="Cocktail pricing tiers">
-      <div class="container menu-price-grid" id="menu-pricing-strip">
-        <article class="menu-price-card"><span>Well cocktails</span><strong>$8</strong><small>Base tier</small></article>
-        <article class="menu-price-card"><span>Call cocktails</span><strong>$13</strong><small>Signature pour tier</small></article>
-        <article class="menu-price-card"><span>Top shelf</span><strong>$15</strong><small>Premium tier · doubles +50%</small></article>
-      </div>
-    </section>
-
-    <section class="section menu-feature-section" id="signature-cocktails">
-      <div class="container menu-feature-grid">
-        <div class="menu-card menu-card-featured">
-          <header class="menu-section-heading">
-            <div>
-              <div class="eyebrow" id="signature-eyebrow">Signature cocktails</div>
-              <h2 id="signature-title">House favorites</h2>
-            </div>
-            <span class="menu-section-mark">01</span>
-          </header>
-          <ul class="menu-list menu-list-premium" id="signature-list">
-            <li><div class="menu-copy"><span>Pāhoa After Dark</span><small>Dark rum, pineapple, lime, island spice</small></div><div class="price">$13<span class="price-sub">Call tier</span></div></li>
-            <li><div class="menu-copy"><span>Blue Lantern</span><small>Vodka, citrus, blue curaçao, sparkling finish</small></div><div class="price">$13<span class="price-sub">Call tier</span></div></li>
-            <li><div class="menu-copy"><span>Koa House Mai Tai</span><small>Bright, tropical, and built for the room</small></div><div class="price">$15<span class="price-sub">Top shelf tier</span></div></li>
-            <li><div class="menu-copy"><span>Velvet Hibiscus</span><small>Gin, hibiscus, lemon, delicate floral notes</small></div><div class="price">$13<span class="price-sub">Call tier</span></div></li>
-          </ul>
-        </div>
-
-        <figure class="menu-feature-image">
-          <img data-img-key="galleryTwo" alt="Citrus cocktail served at Koa's Lounge">
-          <figcaption><span>Crafted in Pāhoa</span><strong>Taste Aloha</strong></figcaption>
+        <figure class="menu-spotlight__image">
+          <img data-img-key="galleryTwo" alt="Signature cocktail at Koa's Lounge">
+          <figcaption>Taste Aloha</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="section compact menu-program-section">
-      <div class="container menu-program-grid">
-        <article class="menu-card">
-          <header class="menu-section-heading">
-            <div>
-              <div class="eyebrow" id="pricing-eyebrow">Core pricing</div>
-              <h2 id="pricing-title">Clear tiers. Easy ordering.</h2>
-            </div>
-            <span class="menu-section-mark">02</span>
-          </header>
-          <p class="program-note" id="pricing-note">Choose your tier, then ask your bartender about available spirits and featured builds.</p>
-          <ul class="menu-list menu-list-premium" id="pricing-list">
-            <li><div class="menu-copy"><span>Well cocktails</span><small>House spirits and core mixed drinks</small></div><div class="price">$8</div></li>
-            <li><div class="menu-copy"><span>Call cocktails</span><small>Mid-tier signatures and upgraded pours</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>Top shelf cocktails</span><small>Premium base spirits and featured builds</small></div><div class="price">$15</div></li>
-            <li><div class="menu-copy"><span>Double shot upcharge</span><small>Applied to the base cocktail tier</small></div><div class="price">+50%</div></li>
-          </ul>
-        </article>
-
-        <article class="menu-card">
-          <header class="menu-section-heading">
-            <div>
-              <div class="eyebrow" id="classics-eyebrow">Guest favorites</div>
-              <h2 id="classics-title">Classics and easy-order pours</h2>
-            </div>
-            <span class="menu-section-mark">03</span>
-          </header>
-          <ul class="menu-list menu-list-premium" id="classics-list">
-            <li><div class="menu-copy"><span>Old Fashioned</span><small>Bourbon, bitters, orange</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>Espresso Martini</span><small>Vodka, coffee liqueur, espresso</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>Negroni</span><small>Gin, Campari, sweet vermouth</small></div><div class="price">$13</div></li>
-            <li><div class="menu-copy"><span>House Margarita</span><small>Tequila, lime, orange liqueur</small></div><div class="price">$13</div></li>
-          </ul>
-        </article>
+    <section class="menu-directory">
+      <div class="container">
+        <div class="menu-directory__intro">
+          <div>
+            <p class="menu-kicker">The full menu</p>
+            <h2>Find your pour.</h2>
+          </div>
+          <p>Selections and availability may change. Ask your bartender about current spirits, featured drinks, and rotating beer or wine.</p>
+        </div>
+        <div class="menu-sections" id="menu-sections" aria-live="polite"></div>
       </div>
     </section>
 
-    <section class="section compact menu-final-section">
-      <div class="container menu-final-grid">
-        <article class="menu-card">
-          <header class="menu-section-heading">
-            <div>
-              <div class="eyebrow" id="flexible-eyebrow">Beer, wine & zero-proof</div>
-              <h2 id="flexible-title">Something for every kind of night</h2>
-            </div>
-            <span class="menu-section-mark">04</span>
-          </header>
-          <ul class="menu-list menu-list-premium" id="flexible-list">
-            <li><div class="menu-copy"><span>Domestic & local beer</span><small>Rotating bottles and cans</small></div><div class="price">$5–8</div></li>
-            <li><div class="menu-copy"><span>Wine by the glass</span><small>Red, white, and sparkling selections</small></div><div class="price">$8–12</div></li>
-            <li><div class="menu-copy"><span>Zero-proof serves</span><small>Citrus-forward and house-refreshed</small></div><div class="price">$8–10</div></li>
-          </ul>
-        </article>
-
-        <aside class="menu-note-card">
-          <div class="eyebrow" id="notes-eyebrow">Good to know</div>
-          <h2 id="notes-title">A menu that moves with the lounge</h2>
-          <div id="notes-highlights">
-            <div class="menu-highlight"><strong>Rotating selections</strong><p>Spirit availability, featured cocktails, wine, and beer may change as we bring in new favorites.</p></div>
-            <div class="menu-highlight"><strong>Ask your bartender</strong><p>Tell us what you like and we’ll help you find the right pour for the night.</p></div>
-          </div>
-          <a class="btn-outline" href="contact.html">Plan your visit</a>
-        </aside>
+    <section class="menu-bartender">
+      <div class="container menu-bartender__inner">
+        <div>
+          <p class="menu-kicker">Bartender's choice</p>
+          <h2>Can't decide?</h2>
+          <p>Tell us your favorite spirit, whether you prefer sweet or tart, and whether you want something smooth or bold. We'll point you toward the right pour.</p>
+        </div>
+        <a class="btn-outline" href="contact.html">Plan your visit</a>
       </div>
     </section>
   </main>
