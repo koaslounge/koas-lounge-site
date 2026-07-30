@@ -94,6 +94,7 @@
     var primary = callout.primary || {};
     var secondary = callout.secondary || {};
     var address = (contact.addressLines || []).map(escapeHtml).join("<br>");
+    var hashtag = config.hashtag || {};
 
     return '' +
       '<footer class="koa-footer" data-koa-footer>' +
@@ -150,9 +151,15 @@
             '</section>' +
           '</div>' +
 
+          '<a class="koa-footer__signature" href="' + escapeHtml(hashtag.href || "/after-dark.html") + '">' +
+            '<span><small>' + escapeHtml(hashtag.eyebrow || "A night worth sharing") + '</small><strong>' + escapeHtml(hashtag.label || "#MeetMeAtKoas") + '</strong></span>' +
+            '<p>' + escapeHtml(hashtag.copy || "Meet the crew, make the memory, and name the place.") + '</p>' +
+            '<b aria-hidden="true">→</b>' +
+          '</a>' +
+
           '<div class="koa-footer__bottom">' +
             '<span>© <span data-koa-year></span> ' + escapeHtml(brand.name) + '. All rights reserved.</span>' +
-            '<span>Craft cocktails · Live music · Pāhoa, Hawaiʻi</span>' +
+            '<span>' + escapeHtml(brand.footerLine || "Craft cocktails · Live music · Pāhoa, Hawaiʻi") + '</span>' +
           '</div>' +
         '</div>' +
       '</footer>';

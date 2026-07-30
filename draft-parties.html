@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fantasy Football Draft Parties | Koa's Lounge</title>
+  <meta name="description" content="Book a fantasy football draft party at Koa's Lounge in Pāhoa. Tell us about your league and preferred setup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/campaign-pages.css">
+  <link rel="stylesheet" href="assets/css/site-footer.css">
+</head>
+<body class="campaign-page campaign-page--draft">
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+        <img data-img-key="logo" alt="Koa's Lounge logo">
+        <div class="brand-lockup"><strong>Koa's Lounge</strong><span>Taste Aloha</span></div>
+      </a>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <div class="nav-shell">
+        <nav class="nav-links" aria-label="Primary navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a><a href="menu.html">Menu</a><a class="active" href="contact.html">Contact</a><a href="band-booking.html">Band Booking</a></nav>
+        <div class="nav-cta"><a class="btn-outline" href="events.html">Events</a><a class="btn" href="contact.html">Visit Koa's</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="campaign-hero campaign-hero--draft">
+      <div class="container campaign-hero__content">
+        <img class="campaign-logo" data-img-key="logo" alt="Koa's Lounge logo">
+        <span class="campaign-status is-booking">Now booking</span>
+        <p class="campaign-kicker">Fantasy Football Draft Parties</p>
+        <h1>Your league deserves a better draft room.</h1>
+        <p class="campaign-hero__lead">Bring the rivalry, the picks, and the entire league. We will help you plan a draft night that feels like the official start of the season.</p>
+        <div class="campaign-hero__actions">
+          <a class="campaign-button campaign-button--gold" href="#draft-request">Request your date <span aria-hidden="true">→</span></a>
+          <a class="campaign-button" href="tel:+18089656644">Call (808) 965-6644</a>
+        </div>
+        <strong class="campaign-hero__tag">#MeetMeAtKoas</strong>
+      </div>
+    </section>
+
+    <section class="campaign-section">
+      <div class="container">
+        <header class="campaign-section__header">
+          <div><p class="campaign-kicker">Draft night, upgraded</p><h2>More room for the rivalry.</h2></div>
+          <p>Tell us what your league needs. We will confirm availability, group setup, display requirements, and the details that matter before your reservation is finalized.</p>
+        </header>
+        <div class="campaign-feature-grid">
+          <article class="campaign-feature"><span class="campaign-feature__number">01</span><div><h3>Bring the whole league</h3><p>A social setting that feels more memorable than another draft in the living room.</p></div></article>
+          <article class="campaign-feature"><span class="campaign-feature__number">02</span><div><h3>Plan the setup</h3><p>Share your league size, draft platform, and TV or display needs in advance.</p></div></article>
+          <article class="campaign-feature"><span class="campaign-feature__number">03</span><div><h3>Keep the night moving</h3><p>Drinks, conversation, and a room built for every steal, reach, and questionable first-round pick.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="campaign-section campaign-section--alt" id="draft-request">
+      <div class="container campaign-split">
+        <article class="campaign-panel">
+          <p class="campaign-kicker">Before you submit</p>
+          <h2>Give us the league details.</h2>
+          <p>The more we know, the easier it is to recommend the right arrangement and confirm whether the date and setup will work.</p>
+          <ul class="campaign-list">
+            <li>Preferred date, start time, and estimated duration</li>
+            <li>League size and seating needs</li>
+            <li>Draft platform and display requirements</li>
+            <li>Private or semi-private preference</li>
+            <li>Food, beverage, or special-request interests</li>
+          </ul>
+          <p class="campaign-disclaimer">Submitting a request does not guarantee a reservation. Koa's Lounge will contact you to confirm availability, equipment, pricing, and final arrangements.</p>
+        </article>
+
+        <section class="campaign-form-shell" aria-labelledby="draft-form-title">
+          <p class="campaign-kicker">Request a draft party</p>
+          <h2 id="draft-form-title">Put your date on our radar.</h2>
+          <p>Complete the form and a member of the Koa's team will follow up with next steps.</p>
+          <form class="campaign-form" name="fantasy-draft-party" method="POST" action="/draft-party-success.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="fantasy-draft-party">
+            <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+            <div class="campaign-field"><label for="draft-name">Contact name</label><input id="draft-name" name="contact-name" type="text" autocomplete="name" required></div>
+            <div class="campaign-field"><label for="draft-email">Email</label><input id="draft-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="campaign-field"><label for="draft-phone">Phone</label><input id="draft-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="campaign-field"><label for="draft-league">League name</label><input id="draft-league" name="league-name" type="text"></div>
+            <div class="campaign-field"><label for="draft-date">Preferred date</label><input id="draft-date" name="preferred-date" type="date" required></div>
+            <div class="campaign-field"><label for="draft-time">Preferred start time</label><input id="draft-time" name="preferred-time" type="time" required></div>
+            <div class="campaign-field"><label for="draft-guests">Number of guests</label><input id="draft-guests" name="guest-count" type="number" min="4" max="100" placeholder="Example: 12" required></div>
+            <div class="campaign-field"><label for="draft-duration">Estimated duration</label><select id="draft-duration" name="duration"><option value="">Select one</option><option>2 hours</option><option>3 hours</option><option>4 hours</option><option>More than 4 hours</option></select></div>
+            <div class="campaign-field"><label for="draft-platform">Draft platform</label><input id="draft-platform" name="draft-platform" type="text" placeholder="ESPN, Yahoo, Sleeper, NFL, other"></div>
+            <div class="campaign-field"><label for="draft-space">Space preference</label><select id="draft-space" name="space-preference"><option value="">Select one</option><option>Semi-private</option><option>Private if available</option><option>No preference</option></select></div>
+            <div class="campaign-field campaign-field--full"><label for="draft-display">TV or display needs</label><textarea id="draft-display" name="display-needs" placeholder="Tell us what devices, screens, connections, or draft-board setup your league expects."></textarea></div>
+            <div class="campaign-field campaign-field--full"><label for="draft-notes">Food, drinks, and additional requests</label><textarea id="draft-notes" name="additional-requests" placeholder="Share package interests, accessibility needs, special occasions, or anything else we should know."></textarea></div>
+            <p class="campaign-form__note">We will confirm all equipment and service details before the event is booked.</p>
+            <button class="campaign-button campaign-button--gold" type="submit">Send request</button>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <section class="campaign-section">
+      <div class="container campaign-signature">
+        <div><p class="campaign-kicker">Make draft night count</p><h2>The season starts before kickoff.</h2><p>Bring the league together, make the picks, and give everyone a draft-night story before Week One.</p></div>
+        <strong>#MeetMeAtKoas</strong>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/image-config.js"></script>
+  
+  <script src="assets/js/business-config.js"></script>
+  <script src="assets/js/business-hours.js"></script>
+  <script src="assets/js/footer-config.js"></script>
+  <script src="assets/js/site-footer.js"></script>
+</body>
+</html>

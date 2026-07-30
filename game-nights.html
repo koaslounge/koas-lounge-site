@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Nights Coming Soon | Koa's Lounge</title>
+  <meta name="description" content="Join the interest list for upcoming Nintendo Switch Mario Kart tournaments and game nights at Koa's Lounge in Pāhoa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/campaign-pages.css">
+  <link rel="stylesheet" href="assets/css/site-footer.css">
+</head>
+<body class="campaign-page campaign-page--games">
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+        <img data-img-key="logo" alt="Koa's Lounge logo">
+        <div class="brand-lockup"><strong>Koa's Lounge</strong><span>Taste Aloha</span></div>
+      </a>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <div class="nav-shell">
+        <nav class="nav-links" aria-label="Primary navigation"><a href="index.html">Home</a><a href="about.html">About</a><a class="active" href="events.html">Events</a><a href="menu.html">Menu</a><a href="contact.html">Contact</a><a href="band-booking.html">Band Booking</a></nav>
+        <div class="nav-cta"><a class="btn-outline" href="events.html">Events</a><a class="btn" href="contact.html">Visit Koa's</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="campaign-hero campaign-hero--games">
+      <div class="container campaign-hero__content">
+        <img class="campaign-logo" data-img-key="logo" alt="Koa's Lounge logo">
+        <span class="campaign-status">Coming soon</span>
+        <p class="campaign-kicker">Koa's Game Nights</p>
+        <h1>Start your engines.<br>Bring your crew.</h1>
+        <p class="campaign-hero__lead">Nintendo Switch Mario Kart tournaments, open game nights, music, drinks, and friendly competition are coming to Koa's Lounge.</p>
+        <div class="campaign-hero__actions">
+          <a class="campaign-button campaign-button--primary" href="#game-night-list">Get updates <span aria-hidden="true">→</span></a>
+          <a class="campaign-button" href="events.html">See current events</a>
+        </div>
+        <strong class="campaign-hero__tag">#MeetMeAtKoas</strong>
+      </div>
+    </section>
+
+    <section class="campaign-section">
+      <div class="container">
+        <header class="campaign-section__header">
+          <div><p class="campaign-kicker">What we are building</p><h2>A different kind of night out.</h2></div>
+          <p>Game Nights are designed to give friends, couples, and competitive regulars something social to do together—even when the goal is simply to have fun.</p>
+        </header>
+        <div class="campaign-feature-grid">
+          <article class="campaign-feature"><span class="campaign-feature__number">01</span><div><h3>Mario Kart tournaments</h3><p>Structured racing nights with clear brackets, fast rounds, and plenty of rematch energy.</p></div></article>
+          <article class="campaign-feature"><span class="campaign-feature__number">02</span><div><h3>Open game nights</h3><p>Casual play, rotating formats, and low-pressure nights built around being social.</p></div></article>
+          <article class="campaign-feature"><span class="campaign-feature__number">03</span><div><h3>Group challenges</h3><p>Team formats, themed nights, and experiences that make it easy to bring a whole crew.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="campaign-section campaign-section--alt" id="game-night-list">
+      <div class="container campaign-split">
+        <article class="campaign-panel">
+          <p class="campaign-kicker">Help shape the launch</p>
+          <h2>Tell us how you want to play.</h2>
+          <p>We are using early interest to choose the best nights, tournament format, and group setup before the first official event is announced.</p>
+          <ul class="campaign-list">
+            <li>Choose your preferred day of the week</li>
+            <li>Tell us whether you prefer tournaments or casual play</li>
+            <li>Let us know how many people are likely to join you</li>
+            <li>Be among the first to hear when the launch date is confirmed</li>
+          </ul>
+          <p class="campaign-disclaimer">Nintendo Switch and Mario Kart are trademarks of Nintendo. Koa's Lounge is not affiliated with or endorsed by Nintendo.</p>
+        </article>
+
+        <section class="campaign-form-shell" aria-labelledby="game-interest-title">
+          <p class="campaign-kicker">Join the interest list</p>
+          <h2 id="game-interest-title">Be first off the starting line.</h2>
+          <p>Leave your details and we will send an update when Game Nights are ready to launch.</p>
+          <form class="campaign-form" name="game-night-interest" method="POST" action="/game-night-success.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="game-night-interest">
+            <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+            <div class="campaign-field"><label for="game-name">Name</label><input id="game-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="campaign-field"><label for="game-email">Email</label><input id="game-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="campaign-field"><label for="game-phone">Phone</label><input id="game-phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div class="campaign-field"><label for="game-group">Likely group size</label><select id="game-group" name="group-size"><option value="">Select one</option><option>Just me</option><option>2–4 people</option><option>5–8 people</option><option>9+ people</option></select></div>
+            <div class="campaign-field"><label for="game-night">Preferred night</label><select id="game-night" name="preferred-night"><option value="">Select one</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Sunday special event</option><option>No preference</option></select></div>
+            <div class="campaign-field"><label for="game-format">Preferred format</label><select id="game-format" name="preferred-format"><option value="">Select one</option><option>Competitive tournament</option><option>Casual open play</option><option>Team challenge</option><option>All of the above</option></select></div>
+            <div class="campaign-field campaign-field--full"><label for="game-message">What would make Game Night great?</label><textarea id="game-message" name="message" placeholder="Formats, games, prizes, food ideas, or anything else you would love to see."></textarea></div>
+            <p class="campaign-form__note">Submitting this form joins the interest list; it does not register you for a tournament.</p>
+            <button class="campaign-button campaign-button--primary" type="submit">Join the list</button>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <section class="campaign-section">
+      <div class="container campaign-signature">
+        <div><p class="campaign-kicker">Bring the rematch energy</p><h2>Game over is never the end of the night.</h2><p>Follow Koa's for launch dates, tournament details, and the first official Game Night announcement.</p></div>
+        <strong>#MeetMeAtKoas</strong>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/image-config.js"></script>
+  
+  <script src="assets/js/business-config.js"></script>
+  <script src="assets/js/business-hours.js"></script>
+  <script src="assets/js/footer-config.js"></script>
+  <script src="assets/js/site-footer.js"></script>
+</body>
+</html>
