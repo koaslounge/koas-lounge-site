@@ -1,12 +1,15 @@
 (function () {
   "use strict";
 
-  var config = window.BUSINESS_CONFIG;
-  if (!config) return;
+  var refreshTimer = null;
 
-  function getHawaiiParts(date) {
+  function getConfig() {
+    return window.BUSINESS_CONFIG || null;
+  }
+
+  function getHawaiiParts(date, config) {
     var formatter = new Intl.DateTimeFormat("en-US", {
-      timeZone: config.timezone,
+      timeZone: config.timezone || "Pacific/Honolulu",
       year: "numeric",
       month: "numeric",
       day: "numeric",
@@ -24,7 +27,7 @@
     var dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
     var hour = Number(values.hour);
 
-    // Some browsers represent midnight as 24:00. For status checks, treat it as 00:00.
+    // Some browsers represent midnight as 24:00.
     if (hour === 24) hour = 0;
 
     return {
@@ -39,35 +42,44 @@
 
   function toMinutes(value) {
     if (!value) return null;
-    var pieces = value.split(":");
+    var pieces = String(value).split(":");
     return Number(pieces[0]) * 60 + Number(pieces[1]);
   }
 
-  function getRecurringRule(now) {
+  function getRecurringRule(now, config) {
     return (config.recurringHours || []).find(function (rule) {
       return rule.day === now.weekday && rule.occurrence === now.occurrence;
     });
   }
 
-  function getRegularRule(day) {
+  function getRegularRule(day, config) {
     return (config.hours || []).find(function (rule) {
       return Array.isArray(rule.days) && rule.days.indexOf(day) !== -1;
     });
   }
 
-  function getTodayRule(now) {
-    return getRecurringRule(now) || getRegularRule(now.weekday);
+  function getTodayRule(now, config) {
+    return getRecurringRule(now, config) || getRegularRule(now.weekday, config);
   }
 
   function currentStatus(date) {
-    var now = getHawaiiParts(date);
-    var rule = getTodayRule(now);
+    var config = getConfig();
+    if (!config) {
+      return {
+        open: false,
+        text: "Hours unavailable",
+        detail: "Please check the Events page"
+      };
+    }
+
+    var now = getHawaiiParts(date, config);
+    var rule = getTodayRule(now, config);
 
     if (!rule || !rule.open || !rule.close) {
       return {
         open: false,
         text: "Closed Today",
-        detail: rule ? (rule.statusDetail || rule.display) : "Closed"
+        detail: rule ? (rule.statusDetail || rule.display || "Closed") : "Closed"
       };
     }
 
@@ -84,12 +96,17 @@
   }
 
   function getDisplayRows() {
+    var config = getConfig();
+    if (!config) return [];
     return (config.hours || []).concat(config.recurringHours || []);
   }
 
   function renderHours() {
-    var listHtml = getDisplayRows().map(function (rule) {
-      return '<li><span>' + rule.label + '</span><strong>' + rule.display + '</strong></li>';
+    var rows = getDisplayRows();
+    if (!rows.length) return;
+
+    var listHtml = rows.map(function (rule) {
+      return "<li><span>" + rule.label + "</span><strong>" + rule.display + "</strong></li>";
     }).join("");
 
     document.querySelectorAll("[data-business-hours]").forEach(function (node) {
@@ -112,16 +129,30 @@
     });
   }
 
-  // Expose the resolver so other shared components can use the same schedule logic.
+  function init() {
+    renderHours();
+    renderStatus();
+
+    if (refreshTimer) window.clearInterval(refreshTimer);
+    refreshTimer = window.setInterval(renderStatus, 60000);
+
+    window.dispatchEvent(new CustomEvent("koa:business-hours-ready", {
+      detail: currentStatus()
+    }));
+  }
+
   window.KOA_BUSINESS_HOURS = {
     currentStatus: currentStatus,
     getDisplayRows: getDisplayRows,
-    getHawaiiParts: getHawaiiParts
+    renderStatus: renderStatus,
+    renderHours: renderHours,
+    init: init
   };
 
-  document.addEventListener("DOMContentLoaded", function () {
-    renderHours();
-    renderStatus();
-    window.setInterval(renderStatus, 60000);
-  });
+  // Run whether this file loads before or after DOMContentLoaded.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
 })();
