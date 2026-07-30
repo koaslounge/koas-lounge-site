@@ -4,7 +4,8 @@ window.SITE_CONFIG = {
 
     homeHero: "assets/images/hero-bar.jpg",
     homeStory: "assets/images/main-room.jpg",
-    homeEvents: "assets/images/live-music.jpg",
+    homeEvents: "assets/images/promo-after-dark.png",
+    homeDraft: "assets/images/promo-draft-parties.png",
 
     aboutHero: "assets/images/night-exterior.jpg",
     aboutStory: "assets/images/patio-day.jpg",
@@ -17,6 +18,10 @@ window.SITE_CONFIG = {
 
     galleryOne: "assets/images/berry-cocktail.jpg",
     galleryTwo: "assets/images/citrus-cocktail.jpg",
-    galleryThree: "assets/images/pool-table.jpg"
+    galleryThree: "assets/images/promo-game-nights.png",
+
+    promoAfterDark: "assets/images/promo-after-dark.png",
+    promoGameNights: "assets/images/promo-game-nights.png",
+    promoDraftParties: "assets/images/promo-draft-parties.png"
   }
 };

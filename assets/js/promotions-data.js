@@ -19,7 +19,8 @@
         meta: ["Nintendo Switch", "Tournament format", "Group-friendly"],
         ctaLabel: "Get Game Night Updates",
         href: "/game-nights.html",
-        theme: "race"
+        theme: "race",
+        imageKey: "promoGameNights"
       },
       {
         id: "draft-parties",
@@ -32,7 +33,8 @@
         meta: ["Group seating", "Display requests", "Custom planning"],
         ctaLabel: "Request a Draft Party",
         href: "/draft-parties.html",
-        theme: "field"
+        theme: "field",
+        imageKey: "promoDraftParties"
       },
       {
         id: "after-dark",
@@ -45,7 +47,8 @@
         meta: ["Nightlife", "Music", "Late-night energy"],
         ctaLabel: "Enter After Dark",
         href: "/after-dark.html",
-        theme: "night"
+        theme: "night",
+        imageKey: "promoAfterDark"
       }
     ],
     hashtag: {

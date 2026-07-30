@@ -6,8 +6,13 @@
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
+      .replace(/\"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  function getImagePath(imageKey) {
+    var cfg = (window.SITE_CONFIG && window.SITE_CONFIG.images) || {};
+    return imageKey && cfg[imageKey] ? cfg[imageKey] : "";
   }
 
   function metaMarkup(items) {
@@ -16,14 +21,21 @@
     }).join("");
   }
 
+  function artMarkup(item) {
+    var imagePath = getImagePath(item.imageKey);
+    return '' +
+      '<div class="koa-promo-card__art" aria-hidden="true">' +
+        (imagePath ? '<img class="koa-promo-card__image" src="' + esc(imagePath) + '" alt="">' : '') +
+        '<span class="koa-promo-card__orb koa-promo-card__orb--one"></span>' +
+        '<span class="koa-promo-card__orb koa-promo-card__orb--two"></span>' +
+        '<span class="koa-promo-card__symbol"></span>' +
+      '</div>';
+  }
+
   function cardMarkup(item, compact) {
     return '' +
       '<article class="koa-promo-card koa-promo-card--' + esc(item.theme) + (compact ? ' is-compact' : '') + '">' +
-        '<div class="koa-promo-card__art" aria-hidden="true">' +
-          '<span class="koa-promo-card__orb koa-promo-card__orb--one"></span>' +
-          '<span class="koa-promo-card__orb koa-promo-card__orb--two"></span>' +
-          '<span class="koa-promo-card__symbol"></span>' +
-        '</div>' +
+        artMarkup(item) +
         '<div class="koa-promo-card__body">' +
           '<div class="koa-promo-card__topline">' +
             '<span class="koa-promo-card__eyebrow">' + esc(item.eyebrow) + '</span>' +

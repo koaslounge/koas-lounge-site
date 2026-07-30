@@ -1,9 +1,9 @@
-/* Koa's Lounge promotional platform — scoped to .koa-promotions */
+/* Koa's Lounge promotional platform — upgraded with photo-driven campaign cards */
 .koa-promotions {
-  --promo-aqua: #03fff6;
-  --promo-teal: #00cfc8;
-  --promo-purple: #9d5cff;
-  --promo-gold: #f4cb78;
+  --promo-aqua: #67f2e3;
+  --promo-teal: #2bb6d9;
+  --promo-purple: #8e63ff;
+  --promo-gold: #f0c678;
   --promo-bg: #070a11;
   position: relative;
   isolation: isolate;
@@ -11,8 +11,8 @@
   padding: clamp(4.5rem, 9vw, 8rem) 0;
   color: #fff;
   background:
-    radial-gradient(circle at 8% 5%, rgba(3, 255, 246, 0.1), transparent 27%),
-    radial-gradient(circle at 92% 8%, rgba(157, 92, 255, 0.13), transparent 31%),
+    radial-gradient(circle at 8% 5%, rgba(103, 242, 227, 0.1), transparent 27%),
+    radial-gradient(circle at 92% 8%, rgba(142, 99, 255, 0.13), transparent 31%),
     linear-gradient(180deg, #0b1019 0%, #070a11 100%);
   border-top: 1px solid rgba(255,255,255,.08);
   border-bottom: 1px solid rgba(255,255,255,.08);
@@ -100,10 +100,27 @@
 
 .koa-promo-card__art {
   position: relative;
-  height: 220px;
+  height: 250px;
   overflow: hidden;
   background: #0c111b;
   border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.koa-promo-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transform: scale(1.025);
+  filter: saturate(1.08) contrast(1.02) brightness(.92);
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.koa-promo-card:hover .koa-promo-card__image {
+  transform: scale(1.06);
+  filter: saturate(1.12) contrast(1.04) brightness(.96);
 }
 
 .koa-promo-card__art::before,
@@ -114,110 +131,92 @@
   pointer-events: none;
 }
 
-.koa-promo-card__orb { position: absolute; display: block; border-radius: 50%; filter: blur(2px); }
-.koa-promo-card__orb--one { width: 165px; height: 165px; left: -35px; top: -55px; opacity: .48; }
-.koa-promo-card__orb--two { width: 120px; height: 120px; right: -25px; bottom: -25px; opacity: .38; }
+.koa-promo-card__art::before {
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(6,10,16,.04) 0%, rgba(7,11,18,.14) 34%, rgba(7,11,18,.82) 100%);
+}
 
-.koa-promo-card--race .koa-promo-card__art {
-  background:
-    linear-gradient(135deg, rgba(3,255,246,.16), transparent 48%),
-    linear-gradient(315deg, rgba(157,92,255,.19), transparent 43%),
-    #090d16;
+.koa-promo-card__orb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(14px);
+  z-index: 1;
 }
-.koa-promo-card--race .koa-promo-card__art::before {
-  background:
-    linear-gradient(90deg, transparent 49%, rgba(255,255,255,.1) 50%, transparent 51%) 50% 0 / 48px 48px,
-    linear-gradient(0deg, transparent 49%, rgba(255,255,255,.1) 50%, transparent 51%) 0 50% / 48px 48px;
-  transform: perspective(360px) rotateX(62deg) scale(1.45) translateY(50px);
-  transform-origin: bottom center;
-  opacity: .38;
+
+.koa-promo-card__orb--one { width: 165px; height: 165px; left: -35px; top: -55px; opacity: .32; }
+.koa-promo-card__orb--two { width: 120px; height: 120px; right: -25px; bottom: -25px; opacity: .26; }
+
+.koa-promo-card__symbol {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+  backdrop-filter: blur(9px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 18px 40px rgba(0,0,0,.32);
+  z-index: 2;
 }
+
+.koa-promo-card__symbol::before {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: .95rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  color: rgba(255,255,255,.92);
+}
+
 .koa-promo-card--race .koa-promo-card__art::after {
-  inset: 23% 19%;
-  border: 5px solid rgba(3,255,246,.72);
-  border-left-color: rgba(157,92,255,.72);
-  border-radius: 52% 44% 54% 46%;
-  box-shadow: 0 0 28px rgba(3,255,246,.26), inset 0 0 25px rgba(157,92,255,.15);
-  transform: rotate(-8deg);
+  z-index: 1;
+  background:
+    linear-gradient(135deg, rgba(103,242,227,.28), transparent 40%),
+    linear-gradient(315deg, rgba(142,99,255,.32), transparent 52%);
 }
 .koa-promo-card--race .koa-promo-card__orb--one { background: var(--promo-aqua); }
 .koa-promo-card--race .koa-promo-card__orb--two { background: var(--promo-purple); }
-.koa-promo-card--race .koa-promo-card__symbol::before,
-.koa-promo-card--race .koa-promo-card__symbol::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  top: 48%;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.82);
-  background: rgba(8,12,20,.72);
-  box-shadow: 0 0 20px rgba(255,255,255,.12);
-}
-.koa-promo-card--race .koa-promo-card__symbol::before { left: calc(50% - 52px); }
-.koa-promo-card--race .koa-promo-card__symbol::after { right: calc(50% - 52px); }
+.koa-promo-card--race .koa-promo-card__symbol::before { content: "MK"; }
 
-.koa-promo-card--field .koa-promo-card__art {
-  background:
-    radial-gradient(circle at 50% 45%, rgba(244,203,120,.16), transparent 23%),
-    linear-gradient(135deg, rgba(0,207,200,.12), transparent 44%),
-    #08120f;
-}
-.koa-promo-card--field .koa-promo-card__art::before {
-  background:
-    repeating-linear-gradient(90deg, transparent 0 49px, rgba(255,255,255,.11) 50px 52px),
-    linear-gradient(0deg, transparent 48%, rgba(255,255,255,.48) 49%, rgba(255,255,255,.48) 51%, transparent 52%);
-  inset: 22px;
-  border: 2px solid rgba(255,255,255,.22);
-  border-radius: 20px;
-  transform: perspective(500px) rotateX(54deg) scale(1.16) translateY(26px);
-}
 .koa-promo-card--field .koa-promo-card__art::after {
-  width: 64px;
-  height: 38px;
-  inset: 78px auto auto 50%;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #9d5a2f, #e09a58);
-  transform: translateX(-50%) rotate(-16deg);
-  box-shadow: inset -8px -5px 0 rgba(0,0,0,.18), 0 14px 28px rgba(0,0,0,.35);
+  z-index: 1;
+  background:
+    linear-gradient(135deg, rgba(240,198,120,.2), transparent 40%),
+    linear-gradient(315deg, rgba(43,182,217,.22), transparent 48%);
 }
 .koa-promo-card--field .koa-promo-card__orb--one { background: var(--promo-gold); }
 .koa-promo-card--field .koa-promo-card__orb--two { background: var(--promo-teal); }
+.koa-promo-card--field .koa-promo-card__symbol::before { content: "FF"; }
 
-.koa-promo-card--night .koa-promo-card__art {
-  background:
-    radial-gradient(circle at 50% 70%, rgba(3,255,246,.14), transparent 20%),
-    linear-gradient(115deg, rgba(157,92,255,.26), transparent 40%),
-    linear-gradient(245deg, rgba(3,255,246,.18), transparent 35%),
-    #090811;
-}
-.koa-promo-card--night .koa-promo-card__art::before {
-  background:
-    linear-gradient(96deg, transparent 20%, rgba(157,92,255,.52) 24%, transparent 28%),
-    linear-gradient(82deg, transparent 68%, rgba(3,255,246,.42) 72%, transparent 76%);
-  filter: blur(6px);
-}
 .koa-promo-card--night .koa-promo-card__art::after {
-  content: "AD";
-  display: grid;
-  place-items: center;
-  inset: 37px;
-  color: rgba(255,255,255,.92);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 5rem;
-  font-weight: 800;
-  letter-spacing: -.08em;
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 50%;
-  box-shadow: 0 0 46px rgba(157,92,255,.2), inset 0 0 45px rgba(3,255,246,.06);
+  z-index: 1;
+  background:
+    linear-gradient(135deg, rgba(142,99,255,.34), transparent 42%),
+    linear-gradient(315deg, rgba(103,242,227,.24), transparent 52%);
 }
 .koa-promo-card--night .koa-promo-card__orb--one { background: var(--promo-purple); }
 .koa-promo-card--night .koa-promo-card__orb--two { background: var(--promo-aqua); }
+.koa-promo-card--night .koa-promo-card__symbol::before { content: "AD"; }
 
 .koa-promo-card__body { padding: 1.55rem 1.55rem 1.65rem; }
-.koa-promo-card__topline { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
-.koa-promo-card__eyebrow { color: rgba(255,255,255,.56); letter-spacing: .14em; font-size: .67rem; }
+
+.koa-promo-card__topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .75rem;
+}
+
+.koa-promo-card__eyebrow {
+  color: rgba(255,255,255,.56);
+  letter-spacing: .14em;
+  font-size: .67rem;
+}
 
 .koa-promo-card__status {
   flex: 0 0 auto;
@@ -228,9 +227,10 @@
   letter-spacing: .11em;
   text-transform: uppercase;
 }
+
 .koa-promo-card__status.is-soon { color: #081719; background: var(--promo-aqua); }
 .koa-promo-card__status.is-booking { color: #221600; background: var(--promo-gold); }
-.koa-promo-card__status.is-live { color: #fff; background: rgba(157,92,255,.32); border: 1px solid rgba(157,92,255,.55); }
+.koa-promo-card__status.is-live { color: #fff; background: rgba(142,99,255,.32); border: 1px solid rgba(142,99,255,.55); }
 
 .koa-promo-card h3 {
   margin: 1rem 0 0;
@@ -239,11 +239,50 @@
   line-height: 1.04;
   letter-spacing: -.025em;
 }
-.koa-promo-card p { margin: .9rem 0 0; color: rgba(242,247,255,.66); line-height: 1.68; }
-.koa-promo-card__meta { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.1rem; }
-.koa-promo-card__meta span { padding: .38rem .56rem; border: 1px solid rgba(255,255,255,.09); border-radius: 999px; color: rgba(255,255,255,.56); font-size: .66rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: rgba(255,255,255,.025); }
-.koa-promo-card__link { display: inline-flex; align-items: center; gap: .65rem; margin-top: 1.35rem; color: #fff; font-size: .78rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
-.koa-promo-card__link span { color: var(--promo-aqua); font-size: 1.15rem; transition: transform 180ms ease; }
+
+.koa-promo-card p {
+  margin: .9rem 0 0;
+  color: rgba(242,247,255,.66);
+  line-height: 1.68;
+}
+
+.koa-promo-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1.1rem;
+}
+
+.koa-promo-card__meta span {
+  padding: .38rem .56rem;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 999px;
+  color: rgba(255,255,255,.56);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,.025);
+}
+
+.koa-promo-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  margin-top: 1.35rem;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.koa-promo-card__link span {
+  color: var(--promo-aqua);
+  font-size: 1.15rem;
+  transition: transform 180ms ease;
+}
+
 .koa-promo-card__link:hover span { transform: translateX(4px); }
 
 .koa-promotions__hashtag {
@@ -256,58 +295,63 @@
   border: 1px solid rgba(255,255,255,.11);
   border-radius: 30px;
   background:
-    radial-gradient(circle at 10% 30%, rgba(3,255,246,.11), transparent 32%),
-    radial-gradient(circle at 90% 70%, rgba(157,92,255,.16), transparent 34%),
-    linear-gradient(135deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+    radial-gradient(circle at 10% 30%, rgba(103,242,227,.11), transparent 32%),
+    radial-gradient(circle at 90% 70%, rgba(142,99,255,.16), transparent 34%),
+    rgba(11,15,24,.75);
 }
-.koa-promotions__hashtag h3 { font-size: clamp(1.8rem, 3vw, 3rem); }
-.koa-promotions__hashtag p { max-width: 680px; margin: .8rem 0 0; color: rgba(242,247,255,.63); line-height: 1.7; }
+
+.koa-promotions__hashtag p { margin: .85rem 0 0; color: rgba(242,247,255,.68); line-height: 1.7; }
+
 .koa-promotions__hashtag strong {
-  color: transparent;
-  background: linear-gradient(90deg, var(--promo-aqua), #fff 48%, #caa8ff);
-  -webkit-background-clip: text;
-  background-clip: text;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2rem, 4vw, 4.2rem);
+  font-size: clamp(2rem, 4vw, 3.25rem);
   letter-spacing: -.04em;
-  white-space: nowrap;
-  filter: drop-shadow(0 0 24px rgba(3,255,246,.14));
+  color: #fff;
 }
 
-.koa-promotions--compact { padding: clamp(3.7rem, 7vw, 6rem) 0; }
-.koa-promotions__compact-header { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2rem; }
-.koa-promotions__compact-header h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); }
-.koa-promotions__compact-header > a { flex: 0 0 auto; color: var(--promo-aqua); font-size: .76rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-.koa-promo-card.is-compact .koa-promo-card__art { height: 145px; }
-.koa-promo-card.is-compact .koa-promo-card__body { padding: 1.25rem; }
-.koa-promo-card.is-compact h3 { font-size: 1.55rem; }
-.koa-promo-card.is-compact p { font-size: .9rem; }
-.koa-promo-card.is-compact .koa-promo-card__meta { display: none; }
-.koa-promo-card.is-compact .koa-promo-card--night .koa-promo-card__art::after { font-size: 3rem; }
+.koa-promotions--compact { padding: clamp(3.5rem, 8vw, 6rem) 0; }
 
-@media (max-width: 980px) {
-  .koa-promotions__header { grid-template-columns: 1fr; gap: 1.2rem; }
+.koa-promotions__compact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.koa-promotions__compact-header a {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.koa-promotions__compact-header a span { color: var(--promo-aqua); }
+
+.koa-promo-card.is-compact .koa-promo-card__art { height: 220px; }
+.koa-promo-card.is-compact h3 { font-size: clamp(1.45rem, 2vw, 1.95rem); }
+
+@media (max-width: 1100px) {
   .koa-promotions__grid { grid-template-columns: 1fr; }
-  .koa-promo-card { display: grid; grid-template-columns: minmax(220px, .7fr) 1fr; }
-  .koa-promo-card__art { height: 100%; min-height: 260px; border-right: 1px solid rgba(255,255,255,.08); border-bottom: 0; }
   .koa-promotions__hashtag { grid-template-columns: 1fr; }
-  .koa-promotions__hashtag strong { white-space: normal; }
-  .koa-promo-card.is-compact { grid-template-columns: 180px 1fr; }
-  .koa-promo-card.is-compact .koa-promo-card__art { height: 100%; min-height: 210px; }
 }
 
-@media (max-width: 680px) {
-  .koa-promotions { padding: 4rem 0; }
-  .koa-promo-card,
-  .koa-promo-card.is-compact { display: block; }
+@media (max-width: 900px) {
+  .koa-promotions__header,
+  .koa-promotions__compact-header {
+    grid-template-columns: 1fr;
+    display: grid;
+    align-items: start;
+  }
+}
+
+@media (max-width: 720px) {
   .koa-promo-card__art,
-  .koa-promo-card.is-compact .koa-promo-card__art { height: 190px; min-height: 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
-  .koa-promotions__compact-header { align-items: flex-start; flex-direction: column; }
-  .koa-promotions__hashtag { padding: 1.45rem; }
-  .koa-promotions__hashtag strong { font-size: 2.25rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .koa-promo-card,
-  .koa-promo-card__link span { transition: none; }
+  .koa-promo-card.is-compact .koa-promo-card__art { height: 210px; }
+  .koa-promo-card__body { padding: 1.3rem 1.2rem 1.35rem; }
+  .koa-promotions__hashtag strong { font-size: 2rem; }
 }
