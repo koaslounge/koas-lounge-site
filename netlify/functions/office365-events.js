@@ -6,7 +6,7 @@ exports.handler = async () => {
     const calendarOwner = process.env.MS_CALENDAR_OWNER;
     const calendarName = process.env.MS_CALENDAR_NAME;
     const calendarIdFromEnv = process.env.MS_CALENDAR_ID;
-    const lookAheadDays = parseInt(process.env.MS_LOOKAHEAD_DAYS || "90", 10);
+    const lookAheadDays = Number.parseInt(process.env.MS_LOOKAHEAD_DAYS || "90", 10);
 
     const missing = [];
     if (!tenantId) missing.push("MS_TENANT_ID");
@@ -15,14 +15,10 @@ exports.handler = async () => {
     if (!calendarOwner) missing.push("MS_CALENDAR_OWNER");
 
     if (missing.length) {
-      return {
-        statusCode: 500,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          error: "Missing required environment variables",
-          missing
-        })
-      };
+      return jsonResponse(500, {
+        error: "Missing required environment variables",
+        missing
+      });
     }
 
     const tokenRes = await fetch(
@@ -42,14 +38,10 @@ exports.handler = async () => {
     const tokenData = await tokenRes.json();
 
     if (!tokenRes.ok) {
-      return {
-        statusCode: 500,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          error: "Token request failed",
-          details: tokenData
-        })
-      };
+      return jsonResponse(500, {
+        error: "Token request failed",
+        details: tokenData
+      });
     }
 
     const accessToken = tokenData.access_token;
@@ -58,7 +50,7 @@ exports.handler = async () => {
       const res = await fetch(url, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          Prefer: 'outlook.timezone="Pacific/Honolulu"'
+          Prefer: 'outlook.timezone="Pacific/Honolulu", outlook.body-content-type="text"'
         }
       });
 
@@ -75,13 +67,9 @@ exports.handler = async () => {
 
     if (!calendarId) {
       if (!calendarName) {
-        return {
-          statusCode: 500,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            error: "Set either MS_CALENDAR_ID or MS_CALENDAR_NAME for a non-default calendar."
-          })
-        };
+        return jsonResponse(500, {
+          error: "Set either MS_CALENDAR_ID or MS_CALENDAR_NAME for a non-default calendar."
+        });
       }
 
       const calendarsUrl =
@@ -92,22 +80,20 @@ exports.handler = async () => {
       const calendars = calendarsData.value || [];
 
       const target = calendars.find(
-        c => (c.name || "").trim().toLowerCase() === calendarName.trim().toLowerCase()
+        calendar =>
+          (calendar.name || "").trim().toLowerCase() ===
+          calendarName.trim().toLowerCase()
       );
 
       if (!target) {
-        return {
-          statusCode: 404,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            error: `Calendar named "${calendarName}" was not found for ${calendarOwner}.`,
-            availableCalendars: calendars.map(c => ({
-              name: c.name,
-              id: c.id,
-              isDefaultCalendar: c.isDefaultCalendar
-            }))
-          })
-        };
+        return jsonResponse(404, {
+          error: `Calendar named "${calendarName}" was not found for ${calendarOwner}.`,
+          availableCalendars: calendars.map(calendar => ({
+            name: calendar.name,
+            id: calendar.id,
+            isDefaultCalendar: calendar.isDefaultCalendar
+          }))
+        });
       }
 
       calendarId = target.id;
@@ -115,15 +101,16 @@ exports.handler = async () => {
 
     const start = new Date();
     const end = new Date();
-    end.setDate(end.getDate() + lookAheadDays);
+    end.setDate(end.getDate() + (Number.isFinite(lookAheadDays) ? lookAheadDays : 90));
 
     const graphUrl =
       `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(calendarOwner)}` +
       `/calendars/${encodeURIComponent(calendarId)}/calendarView` +
       `?startDateTime=${encodeURIComponent(start.toISOString())}` +
       `&endDateTime=${encodeURIComponent(end.toISOString())}` +
-      `&$select=subject,start,end,location,bodyPreview,webLink,isCancelled,categories` +
-      `&$orderby=start/dateTime`;
+      `&$select=subject,start,end,location,body,bodyPreview,webLink,isCancelled,categories` +
+      `&$orderby=start/dateTime` +
+      `&$top=200`;
 
     const graphData = await graphGet(graphUrl);
 
@@ -134,15 +121,15 @@ exports.handler = async () => {
         start: event.start?.dateTime || null,
         end: event.end?.dateTime || null,
         location: event.location?.displayName || "",
-        description: event.bodyPreview || "",
+        description: getEventDescription(event),
         url: event.webLink || "",
-        categories: event.categories || []
+        categories: Array.isArray(event.categories) ? event.categories : []
       }));
 
     return {
       statusCode: 200,
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
         "Cache-Control": "public, max-age=120"
       },
       body: JSON.stringify({
@@ -156,12 +143,57 @@ exports.handler = async () => {
       })
     };
   } catch (error) {
-    return {
-      statusCode: 500,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        error: error.message || "Unexpected error"
-      })
-    };
+    return jsonResponse(500, {
+      error: error.message || "Unexpected error"
+    });
   }
 };
+
+function getEventDescription(event) {
+  const bodyContent = event?.body?.content;
+
+  if (typeof bodyContent === "string" && bodyContent.trim()) {
+    if ((event.body.contentType || "").toLowerCase() === "html") {
+      return htmlToPlainText(bodyContent);
+    }
+
+    return normalizeDescription(bodyContent);
+  }
+
+  return normalizeDescription(event?.bodyPreview || "");
+}
+
+function normalizeDescription(value) {
+  return String(value || "")
+    .replace(/\r\n?/g, "\n")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function htmlToPlainText(html) {
+  return normalizeDescription(
+    String(html || "")
+      .replace(/<\s*(br|\/p|\/div|\/li|\/h[1-6])\s*\/?>/gi, "\n")
+      .replace(/<\s*li\b[^>]*>/gi, "• ")
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
+      .replace(/<[^>]+>/g, "")
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&amp;/gi, "&")
+      .replace(/&quot;/gi, '"')
+      .replace(/&#39;|&apos;/gi, "'")
+      .replace(/&lt;/gi, "<")
+      .replace(/&gt;/gi, ">")
+      .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+  );
+}
+
+function jsonResponse(statusCode, payload) {
+  return {
+    statusCode,
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify(payload)
+  };
+}

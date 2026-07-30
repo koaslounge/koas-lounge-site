@@ -366,3 +366,43 @@ body.events-page .empty-state {
     width: 100%;
   }
 }
+/* Full Office 365 descriptions and high-visibility paid-entry badge */
+body.events-page .event-card__desc {
+  display: block !important;
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.65;
+  -webkit-box-orient: initial !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+
+body.events-page .event-card__badges .badge.badge--cover {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #6d28d9 0%, #9333ea 48%, #c026d3 100%) !important;
+  border: 1px solid rgba(233, 213, 255, 0.82) !important;
+  box-shadow:
+    0 9px 26px rgba(126, 34, 206, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+body.events-page .event-card__badges .badge.badge--cover::before {
+  content: "$";
+  display: inline-grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  color: #4c1d95;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 0.66rem;
+  font-weight: 900;
+  line-height: 1;
+}
