@@ -1,0 +1,114 @@
+body.menu-page {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(3, 255, 246, 0.08), transparent 28%),
+    linear-gradient(180deg, #111725 0%, #1d2332 50%, #141926 100%);
+}
+
+body.menu-page .menu-hero {
+  padding: 52px 0 24px;
+}
+
+body.menu-page .menu-hero__wrap {
+  padding: 34px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+    rgba(255,255,255,0.02);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.32);
+}
+
+body.menu-page .menu-hero__eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #03fff6;
+}
+
+body.menu-page .menu-hero__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+body.menu-page .menu-hero__subtitle {
+  margin: 14px 0 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 1.05rem;
+}
+
+body.menu-page .menu-sections {
+  padding: 10px 0 52px;
+}
+
+body.menu-page .menu-section {
+  padding: 24px;
+  margin-bottom: 26px;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025)),
+    rgba(255,255,255,0.02);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.32);
+}
+
+body.menu-page .menu-section__title {
+  margin: 0 0 16px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+}
+
+body.menu-page .menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+body.menu-page .menu-card {
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+    rgba(12,16,26,0.46);
+}
+
+body.menu-page .menu-card__title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+body.menu-page .menu-card__meta {
+  color: rgba(255,255,255,0.72);
+  font-size: 0.95rem;
+}
+
+body.menu-page .menu-card__price {
+  margin-top: 12px;
+  color: #03fff6;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  body.menu-page .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  body.menu-page .menu-hero {
+    padding-top: 38px;
+  }
+
+  body.menu-page .menu-hero__wrap,
+  body.menu-page .menu-section {
+    padding: 22px;
+  }
+}

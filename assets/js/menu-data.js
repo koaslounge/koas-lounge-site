@@ -1,13 +1,13 @@
 window.MENU_DATA = {
   hero: {
-    eyebrow: "Cocktail Menu",
-    title: "Island-inspired drinks. Lounge-made nights.",
-    lead: "Signature cocktails, timeless classics, and easygoing pours crafted for evenings in Pāhoa."
+    eyebrow: "Menu",
+    title: "A cleaner cocktail-program layout.",
+    lead: "This version feels closer to how popular lounge sites present their drinks: more editorial, more structured, and more intentional."
   },
   pricingStrip: [
-    { label: "Well cocktails", price: "$8", value: "Base tier" },
-    { label: "Call cocktails", price: "$13", value: "Signature pour tier" },
-    { label: "Top shelf", price: "$15", value: "Premium tier · doubles +50%" }
+    { label: "Well cocktails", value: "$8 base tier" },
+    { label: "Call cocktails", value: "$13 signature pour tier" },
+    { label: "Top shelf", value: "$15 premium tier · doubles +50%" }
   ],
   signatureSection: {
     eyebrow: "Signature cocktails",
@@ -21,18 +21,18 @@ window.MENU_DATA = {
   },
   pricingSection: {
     eyebrow: "Core pricing",
-    title: "Clear tiers. Easy ordering.",
-    note: "Choose your tier, then ask your bartender about available spirits and featured builds.",
+    title: "Built around clear tiers.",
+    note: "These tiers reflect the structure you shared and can be expanded with your final live menu at any time.",
     items: [
       { name: "Well cocktails", description: "House spirits and core mixed drinks", price: "$8" },
       { name: "Call cocktails", description: "Mid-tier signatures and upgraded pours", price: "$13" },
       { name: "Top shelf cocktails", description: "Premium base spirits and featured builds", price: "$15" },
-      { name: "Double shot upcharge", description: "Applied to the base cocktail tier", price: "+50%" }
+      { name: "Double shot upcharge", description: "Priced at 50% above the base cocktail tier", price: "+50%" }
     ]
   },
   classicsSection: {
     eyebrow: "Guest favorites",
-    title: "Classics and easy-order pours",
+    title: "Classics and easy-order pours.",
     items: [
       { name: "Old Fashioned", description: "Bourbon, bitters, orange", price: "$13" },
       { name: "Espresso Martini", description: "Vodka, coffee liqueur, espresso", price: "$13" },
@@ -42,7 +42,7 @@ window.MENU_DATA = {
   },
   flexibleSection: {
     eyebrow: "Beer, wine & zero-proof",
-    title: "Something for every kind of night",
+    title: "Keep it flexible.",
     items: [
       { name: "Domestic & local beer", description: "Rotating bottles and cans", price: "$5–8" },
       { name: "Wine by the glass", description: "Red, white, and sparkling selections", price: "$8–12" },
@@ -50,11 +50,17 @@ window.MENU_DATA = {
     ]
   },
   notesSection: {
-    eyebrow: "Good to know",
-    title: "A menu that moves with the lounge",
+    eyebrow: "Current note",
+    title: "Use this space for live updates.",
     highlights: [
-      { title: "Rotating selections", text: "Spirit availability, featured cocktails, wine, and beer may change as we bring in new favorites." },
-      { title: "Ask your bartender", text: "Tell us what you like and we’ll help you find the right pour for the night." }
+      {
+        title: "Best next move",
+        text: "Swap these placeholder cocktails for your actual program once your final menu is locked. The layout is already set up to feel like a proper cocktail lounge menu, not a generic restaurant page."
+      },
+      {
+        title: "Food section",
+        text: "Add your current bites here after finalizing what Koa's is actively serving now. This build intentionally leaves that flexible so it stays accurate to the business."
+      }
     ]
   }
 };
