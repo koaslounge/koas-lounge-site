@@ -250,15 +250,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (text.includes("soul")) return "vinyl";
     if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("house")) return "dj";
     if (text.includes("brunch") || text.includes("mimosa")) return "brunch";
-    if (text.includes("social") || return "social";
-    if (text.includes("pool tournament") || return "pool tournament";
-    if (text.includes("shuffleboard") || return "shuffleboard";
-    if (text.includes("mario kart") || return "mario kart";
-    if (text.includes("game") || return "game";
-    if (text.includes("dating") || return "dating";
+    if (text.includes("social") return "social";
+    if (text.includes("pool tournament") return "pool tournament";
+    if (text.includes("shuffleboard") return "shuffleboard";
+    if (text.includes("mario kart") return "mario kart";
+    if (text.includes("game") return "game";
+    if (text.includes("cover") || text.includes("donation")) return "cover";
+    if (text.includes("dating") return "dating";
     if (text.includes("jam") || text.includes("open band") || text.includes("cypher")) return "jam";
     if (text.includes("poetry") || text.includes("story telling") return "open mic";
-    if (text.includes("comedy") || return "comedy";
+    if (text.includes("comedy") return "comedy";
     if (text.includes("trivia")) return "trivia";
     if (
       text.includes("live music") ||
@@ -289,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getTypeLabel(type) {
     switch (type) {
-      case "karaoke": return "Karaoke";
+      case "karaoke": return "Karaoke Night";
       case "dj": return "DJ Night";
       case "brunch": return "Brunch";
       case "social": return "Social";
@@ -302,7 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
       case "shuffleboard": return "Shuffleboard Night";
       case "mario kart": return "Mario Kart Tournament";
       case "game": return "Game Night";
-      case "trivia": return "Trivia";
+      case "cover": return "Cover Charge";
+      case "trivia": return "Trivia Night";
       case "live music": return "Live Music";
       default: return "Special Event";
     }
