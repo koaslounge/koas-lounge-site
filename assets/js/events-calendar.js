@@ -97,16 +97,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Number.isNaN(startDate.getTime())) return null;
 
     const weekday = startDate.getDay();
+    const categories = Array.isArray(event.categories) ? event.categories : [];
 
     return {
       title: event.title || "Untitled Event",
       description: event.description || "",
       location: event.location || "",
       url: event.url || "",
-      categories: Array.isArray(event.categories) ? event.categories : [],
+      categories,
       startDate,
       endDate,
-      type: deriveType(event.title || "", event.description || "", event.categories || []),
+      type: deriveType(event.title || "", event.description || "", categories),
       isHighValueNight: weekday === 5 || weekday === 6
     };
   }
@@ -244,35 +245,79 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function deriveType(title, description, categories) {
-    const text = [title, description, ...(categories || [])].join(" ").toLowerCase();
+    const text = [title, description, ...(categories || [])]
+      .join(" ")
+      .toLowerCase();
 
-    if (text.includes("karaoke")) return "karaoke";
-    if (text.includes("soul")) return "vinyl";
-    if (text.includes("dj") || text.includes("edm") || text.includes("bass") || text.includes("house")) return "dj";
-    if (text.includes("brunch") || text.includes("mimosa")) return "brunch";
-    if (text.includes("jam") || text.includes("open band") || text.includes("cypher")) return "jam";
-    if (text.includes("trivia")) return "trivia";
+    const includesAny = (...terms) => terms.some(term => text.includes(term));
+
+    // Put the most specific event types first.
+    if (includesAny("karaoke")) return "karaoke";
+    if (includesAny("brunch", "mimosa")) return "brunch";
+    if (includesAny("mario kart")) return "mario kart";
+    if (includesAny("pool tournament", "billiards tournament", "8-ball tournament")) return "pool tournament";
+    if (includesAny("shuffleboard")) return "shuffleboard";
+    if (includesAny("trivia")) return "trivia";
+    if (includesAny("speed dating", "dating event", "singles mixer")) return "dating";
+    if (includesAny("comedy", "stand-up", "standup")) return "comedy";
+    if (includesAny("open mic", "poetry", "spoken word", "storytelling", "story telling")) return "open mic";
+    if (includesAny("jam session", "open jam", "open band", "cypher")) return "jam";
+    if (includesAny("vinyl", "record night", "soul magic")) return "vinyl";
+    if (includesAny("dj", "edm", "bass music", "house music")) return "dj";
+
     if (
-      text.includes("live music") ||
-      text.includes("band") ||
-      text.includes("reggae") ||
-      text.includes("rock") ||
-      text.includes("funk") ||
-      text.includes("acoustic") ||
-      text.includes("jazz")
+      includesAny(
+        "live music",
+        "live band",
+        "reggae",
+        "rock",
+        "funk",
+        "acoustic",
+        "always free",
+        "spectacles",
+        "freaky tiki",
+        "tonic oasis",
+        "punacat",
+        "kanaka fyah",
+        "positive motion",
+        "average joes",
+        "hayden james",
+        "troubled in paradise",
+        "chris murphy",
+        "pepper",
+        "dc lewis",
+        "uncle charlie",
+        "jazz"
+      )
     ) return "live music";
+
+    if (includesAny("game night", "gaming night", "video game")) return "game";
+    if (includesAny("social event", "social night", "mixer")) return "social";
+
+    // Keep this last so a phrase such as "$5 cover" does not override
+    // a more useful type such as Live Music or DJ Night.
+    if (includesAny("cover charge", "admission", "suggested donation")) return "cover";
 
     return "special event";
   }
 
   function getTypeLabel(type) {
     switch (type) {
-      case "karaoke": return "Karaoke";
+      case "karaoke": return "Karaoke Night";
       case "dj": return "DJ Night";
       case "brunch": return "Brunch";
+      case "social": return "Social";
       case "vinyl": return "Vinyl Night";
       case "jam": return "Jam Session";
-      case "trivia": return "Trivia";
+      case "open mic": return "Open Mic";
+      case "comedy": return "Comedy Night";
+      case "dating": return "Speed Dating";
+      case "pool tournament": return "Pool Tournament";
+      case "shuffleboard": return "Shuffleboard Night";
+      case "mario kart": return "Mario Kart Tournament";
+      case "game": return "Game Night";
+      case "cover": return "Cover Charge";
+      case "trivia": return "Trivia Night";
       case "live music": return "Live Music";
       default: return "Special Event";
     }
