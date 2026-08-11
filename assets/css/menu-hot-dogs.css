@@ -1,0 +1,359 @@
+/* Koa's Craft Dogs - menu page extension */
+.menu-page .craft-dogs-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(4.5rem, 8vw, 7rem);
+  padding-bottom: clamp(4.5rem, 8vw, 7rem);
+}
+
+.menu-page .craft-dogs-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(31, 211, 187, 0.13), transparent 32%),
+    radial-gradient(circle at 88% 22%, rgba(168, 85, 247, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(6, 24, 31, 0.25), rgba(6, 24, 31, 0.72));
+}
+
+.menu-page .craft-dogs-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.craft-dogs-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: stretch;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.craft-dogs-title-card,
+.craft-dogs-core-card,
+.craft-dog-card,
+.craft-dogs-build-card,
+.craft-dogs-ingredients,
+.craft-dogs-note {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: linear-gradient(145deg, rgba(11, 35, 42, 0.95), rgba(7, 24, 30, 0.9));
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+}
+
+.craft-dogs-title-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: clamp(2rem, 5vw, 4rem);
+}
+
+.craft-dogs-title-card::after {
+  content: "CRAFT DOGS";
+  position: absolute;
+  right: -0.05em;
+  bottom: -0.24em;
+  font: 900 clamp(3.7rem, 10vw, 9rem)/0.8 var(--font-body, sans-serif);
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.025);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.craft-dogs-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #55e8d2;
+  font-size: 0.75rem;
+}
+
+.craft-dogs-kicker::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: currentColor;
+}
+
+.craft-dogs-title-card h2 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(2.6rem, 6vw, 5.25rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
+.craft-dogs-tagline {
+  margin: 0 0 1.35rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 900;
+  color: #f7d38a;
+}
+
+.craft-dogs-title-card .lead {
+  max-width: 62ch;
+  margin-bottom: 0;
+}
+
+.craft-dogs-core-card {
+  border-radius: 28px;
+  padding: clamp(1.5rem, 3vw, 2.3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.craft-dogs-core-card h3,
+.craft-dogs-build-card h3,
+.craft-dogs-ingredients h3 {
+  margin: 0.25rem 0 1rem;
+}
+
+.craft-dogs-core-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.craft-dogs-core-list li {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.craft-dogs-core-list li::before {
+  content: "✓";
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  margin-top: 0.05rem;
+  background: rgba(31, 211, 187, 0.14);
+  color: #55e8d2;
+  font-weight: 900;
+  font-size: 0.78rem;
+}
+
+.craft-dogs-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: 1.4rem;
+}
+
+.craft-dogs-section-heading h3 {
+  margin: 0.25rem 0 0;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+}
+
+.craft-dogs-section-heading p {
+  max-width: 42ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.craft-dogs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.craft-dog-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 185px;
+  border-radius: 22px;
+  padding: 1.65rem;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.craft-dog-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(85, 232, 210, 0.35);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.28);
+}
+
+.craft-dog-card::after {
+  content: "";
+  position: absolute;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  right: -4.5rem;
+  top: -4.5rem;
+  background: radial-gradient(circle, rgba(85, 232, 210, 0.13), transparent 68%);
+}
+
+.craft-dog-card--lava::after {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.19), transparent 68%);
+}
+
+.craft-dog-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+  background: rgba(85, 232, 210, 0.1);
+  border: 1px solid rgba(85, 232, 210, 0.24);
+  color: #72f1dc;
+  font-size: 0.73rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.craft-dog-card h4 {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.craft-dog-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.6;
+}
+
+.craft-dogs-build-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.25rem, 4vw, 3rem);
+  border-radius: 24px;
+  padding: clamp(1.6rem, 4vw, 2.7rem);
+  margin-bottom: 1rem;
+}
+
+.craft-dogs-build-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.craft-dogs-build-step {
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.craft-dogs-build-step strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #fff;
+}
+
+.craft-dogs-build-step span {
+  color: rgba(255, 255, 255, 0.63);
+  font-size: 0.9rem;
+}
+
+.craft-dogs-ingredients {
+  border-radius: 24px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.craft-dogs-ingredient-columns {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+}
+
+.craft-dogs-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+}
+
+.craft-dogs-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.1rem;
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.88rem;
+}
+
+.craft-dogs-note {
+  margin-top: 1rem;
+  border-radius: 18px;
+  padding: 1.15rem 1.3rem;
+  border-left: 3px solid #a855f7;
+  color: rgba(255, 255, 255, 0.69);
+}
+
+.craft-dogs-note strong {
+  color: #fff;
+}
+
+.craft-dogs-positioning {
+  text-align: center;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  max-width: 820px;
+}
+
+.craft-dogs-positioning p {
+  margin: 0 0 0.65rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.craft-dogs-positioning strong {
+  display: block;
+  font-family: var(--font-display, serif);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.15;
+  color: #fff;
+}
+
+.menu-hero-actions .btn-outline[href="#craft-dogs"] {
+  margin-left: 0.35rem;
+}
+
+@media (max-width: 820px) {
+  .craft-dogs-intro,
+  .craft-dogs-build-card,
+  .craft-dogs-ingredient-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .craft-dogs-section-heading {
+    display: block;
+  }
+
+  .craft-dogs-section-heading p {
+    margin-top: 0.7rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .craft-dogs-grid,
+  .craft-dogs-build-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .craft-dog-card {
+    min-height: 0;
+  }
+
+  .menu-hero-actions .btn-outline[href="#craft-dogs"] {
+    margin-left: 0;
+    margin-top: 0.55rem;
+  }
+}
