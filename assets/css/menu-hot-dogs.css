@@ -357,3 +357,18 @@
     margin-top: 0.55rem;
   }
 }
+
+/* Menu hero events-link arrow: render from an ASCII CSS escape so encoding cannot corrupt it. */
+.menu-text-link span[aria-hidden="true"] {
+  font-size: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-text-link span[aria-hidden="true"]::before {
+  content: "\2192";
+  font-size: 1rem;
+  line-height: 1;
+  color: inherit;
+}
