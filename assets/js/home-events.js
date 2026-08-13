@@ -367,24 +367,60 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function containsCoverCharge(description) {
-    const text = String(description || "").toLowerCase();
+    const text = String(description || "")
+      .replace(/\u00a0/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
     if (!text) return false;
 
-    if (
-      /\bno\s+(?:cover|cover charge|admission|admission fee)\b/i.test(text) ||
-      /\bfree\s+admission\b/i.test(text) ||
-      /\bno\s+suggested\s+donation\b/i.test(text)
-    ) {
+    const freePatterns = [
+      /\bno\s+cover\b/i,
+      /\bno\s+cover\s+charge\b/i,
+      /\bno\s+admission\s+(?:fee|charge)\b/i,
+      /\bfree\s+admission\b/i,
+      /\bfree\s+entry\b/i,
+      /\bno\s+entry\s+fee\b/i,
+      /\bno\s+ticket\s+required\b/i,
+      /\bno\s+suggested\s+donation\b/i
+    ];
+
+    if (freePatterns.some((pattern) => pattern.test(text))) {
       return false;
     }
 
-    return (
-      /\bcover\s+(?:charge|fee)\b/i.test(text) ||
-      /\bsuggested\s+(?:donation|cover)\b/i.test(text) ||
-      /\bdonation(?:s)?\s+(?:suggested|appreciated|requested)\b/i.test(text) ||
-      /\$\s*\d+(?:\.\d{1,2})?\s*(?:cover|admission)\b/i.test(text) ||
-      /\b(?:cover|admission)\s*(?::|-|is)?\s*\$?\s*\d+(?:\.\d{1,2})?\b/i.test(text)
-    );
+    const textWithoutCoverBand = text.replace(/\bcover\s+band\b/gi, "");
+
+    const paidPatterns = [
+      /\bcover\s+charge\b/i,
+      /\bcover\s+fee\b/i,
+      /\bsuggested\s+donation\b/i,
+      /\bsuggested\s+cover\b/i,
+      /\bdonations?\s+(?:appreciated|requested|encouraged)\b/i,
+
+      /\$\s*\d+(?:\.\d{1,2})?\s*(?:cover|cover\s+charge|cover\s+fee)\b/i,
+      /\b(?:cover|cover\s+charge|cover\s+fee)\s*(?::|is|of|-)?\s*\$\s*\d+(?:\.\d{1,2})?\b/i,
+
+      /\bpaid\s+admission\b/i,
+      /\badmission\s+(?:fee|charge)\b/i,
+      /\badmission\s*(?::|is|of|-)?\s*\$\s*\d+(?:\.\d{1,2})?\b/i,
+      /\$\s*\d+(?:\.\d{1,2})?\s*(?:admission|admission\s+fee|admission\s+charge)\b/i,
+
+      /\bentry\s+(?:fee|charge)\b/i,
+      /\bentry\s*(?::|is|of|-)?\s*\$\s*\d+(?:\.\d{1,2})?\b/i,
+      /\$\s*\d+(?:\.\d{1,2})?\s*(?:entry|entry\s+fee|entry\s+charge)\b/i,
+
+      /\btickets?\s+(?:are\s+)?(?:required|available|on\s+sale)\b/i,
+      /\bticket\s+(?:price|cost|fee)\b/i,
+      /\btickets?\s*(?::|are|cost|of|-)?\s*\$\s*\d+(?:\.\d{1,2})?\b/i,
+      /\$\s*\d+(?:\.\d{1,2})?\s*(?:tickets?|per\s+ticket)\b/i,
+
+      /\badmission\s+(?:is\s+)?paid\b/i,
+      /\bpaid\s+entry\b/i
+    ];
+
+    return paidPatterns.some((pattern) => pattern.test(textWithoutCoverBand));
   }
 
   function deriveType(title, description, categories) {
