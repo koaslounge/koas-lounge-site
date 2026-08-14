@@ -484,3 +484,27 @@ select {
     align-items: flex-start;
   }
 }
+
+/* KOAS DRAFT PARTY IMAGE FIT START */
+/*
+ * promo-draft-parties.png is a 4:3 graphic with important copy near
+ * the lower edge. "cover" cropping can hide the call-to-action.
+ * Keep the complete artwork visible wherever this asset is rendered.
+ */
+img[src$="promo-draft-parties.png"],
+img[src*="/promo-draft-parties.png?"],
+img[src*="promo-draft-parties.png#"] {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #05070c !important;
+}
+
+/* Also cover inline background-image implementations. */
+[style*="promo-draft-parties.png"] {
+  background-size: contain !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-color: #05070c !important;
+}
+
+/* KOAS DRAFT PARTY IMAGE FIT END */
