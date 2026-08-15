@@ -425,3 +425,83 @@
     min-width: 72px;
   }
 }
+
+
+/* KOAS CRAFT DOG ADDON PRICING START */
+.craft-dogs-addon-pricing {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0.4rem 0 1.8rem;
+}
+
+.craft-dogs-addon-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  min-width: 0;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid rgba(242, 199, 104, 0.20);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(242, 199, 104, 0.045), rgba(255, 255, 255, 0.018)),
+    rgba(255, 255, 255, 0.018);
+}
+
+.craft-dogs-addon-card__copy {
+  min-width: 0;
+}
+
+.craft-dogs-addon-card__copy span,
+.craft-dogs-addon-card__copy small {
+  display: block;
+}
+
+.craft-dogs-addon-card__copy span {
+  margin-bottom: 0.22rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.craft-dogs-addon-card__copy small {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.craft-dogs-addon-card__price {
+  display: grid;
+  justify-items: end;
+  gap: 0.08rem;
+  min-width: 86px;
+}
+
+.craft-dogs-addon-card__price strong {
+  color: #f2c768;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+.craft-dogs-addon-card__price small {
+  color: #f2c768;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .craft-dogs-addon-pricing {
+    grid-template-columns: 1fr;
+  }
+
+  .craft-dogs-addon-card {
+    padding: 1rem;
+  }
+}
+/* KOAS CRAFT DOG ADDON PRICING END */
