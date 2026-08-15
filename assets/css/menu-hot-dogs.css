@@ -177,31 +177,33 @@
 
 .craft-dog-card__top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.8rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .craft-dog-number {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.24);
   font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
 }
 
 .craft-dog-price {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 3.2rem;
-  padding: 0.42rem 0.68rem;
-  border: 1px solid rgba(93, 232, 220, 0.34);
-  border-radius: 999px;
-  background: rgba(93, 232, 220, 0.10);
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 900;
+  flex: 0 0 auto;
+  min-width: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #f2c768;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.1rem, 3vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  box-shadow: none;
 }
 
 .craft-dog-card h4 {
@@ -243,27 +245,30 @@
 .craft-dogs-build-price {
   flex: 0 0 auto;
   display: grid;
-  justify-items: center;
-  gap: 0.1rem;
-  min-width: 84px;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid rgba(93, 232, 220, 0.35);
-  border-radius: 18px;
-  background: rgba(93, 232, 220, 0.09);
+  justify-items: end;
+  gap: 0.12rem;
+  min-width: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
 }
 
 .craft-dogs-build-price span {
-  color: #65e9dd;
-  font-size: 0.66rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .craft-dogs-build-price strong {
-  color: #fff;
-  font-size: 1.5rem;
-  line-height: 1;
+  color: #f2c768;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
 }
 
 .craft-dogs-build-copy p {
