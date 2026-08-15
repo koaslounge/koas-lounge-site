@@ -532,3 +532,27 @@
   }
 }
 /* KOAS CRAFT DOG PRICE AND STEP FIX END */
+
+
+/* KOAS CRAFT DOG SINGLE PRICE START */
+/*
+ * The five signature Craft Dogs share one price, displayed once in the
+ * section heading instead of repeating $10 on every card.
+ */
+.craft-dogs-grid .craft-dog-card__top {
+  justify-content: flex-start;
+}
+
+.craft-dogs-grid .craft-dog-price {
+  display: none !important;
+}
+
+.craft-dogs-section-heading > p strong {
+  color: #f2c768;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+/* KOAS CRAFT DOG SINGLE PRICE END */
