@@ -427,7 +427,7 @@
 }
 
 
-/* KOAS CRAFT DOG ADDON PRICING START */
+/* KOAS CRAFT DOG PRICE AND STEP FIX START */
 .craft-dogs-addon-pricing {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -438,14 +438,14 @@
 .craft-dogs-addon-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1.25rem;
+  gap: 1rem;
   align-items: center;
   min-width: 0;
-  padding: 1.1rem 1.25rem;
+  padding: 1.05rem 1.15rem;
   border: 1px solid rgba(242, 199, 104, 0.20);
   border-radius: 18px;
   background:
-    linear-gradient(180deg, rgba(242, 199, 104, 0.045), rgba(255, 255, 255, 0.018)),
+    linear-gradient(180deg, rgba(242, 199, 104, 0.04), rgba(255, 255, 255, 0.015)),
     rgba(255, 255, 255, 0.018);
 }
 
@@ -472,27 +472,50 @@
 }
 
 .craft-dogs-addon-card__price {
-  display: grid;
-  justify-items: end;
-  gap: 0.08rem;
-  min-width: 86px;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.34rem;
+  min-width: 104px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .craft-dogs-addon-card__price strong {
   color: #f2c768;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2rem, 3vw, 2.7rem);
+  font-size: clamp(1.55rem, 2vw, 1.9rem);
   font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 0.92;
+  letter-spacing: -0.025em;
+  line-height: 1;
 }
 
 .craft-dogs-addon-card__price small {
   color: #f2c768;
-  font-size: 0.68rem;
-  font-weight: 800;
+  font-size: 0.58rem;
+  font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* Override the broader .craft-dogs-build-step span rule so the number is
+   centered horizontally and vertically inside its circle. */
+.craft-dogs-build-step .craft-dogs-build-step__number {
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 2rem;
+  width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 1 !important;
+  text-align: center;
+  background: rgba(93, 232, 220, 0.12);
+  color: #65e9dd;
+  font-size: 0.9rem;
+  font-weight: 900;
 }
 
 @media (max-width: 720px) {
@@ -503,5 +526,9 @@
   .craft-dogs-addon-card {
     padding: 1rem;
   }
+
+  .craft-dogs-addon-card__price {
+    min-width: 96px;
+  }
 }
-/* KOAS CRAFT DOG ADDON PRICING END */
+/* KOAS CRAFT DOG PRICE AND STEP FIX END */
