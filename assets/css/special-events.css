@@ -687,3 +687,59 @@
     padding: 0.95rem 0.95rem 0;
   }
 }
+
+
+/* Koa ticketed event mobile repair v1 */
+@media (max-width: 900px) {
+  .ticketed-event--featured {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .ticketed-event--featured .ticketed-event__media {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    height: auto;
+    align-self: stretch;
+    justify-self: stretch;
+    padding: 1rem 1rem 0;
+  }
+
+  .ticketed-event--featured .ticketed-event__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .ticketed-event--featured {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ticketed-event--featured .ticketed-event__media {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.8rem 0.8rem 0;
+  }
+
+  .ticketed-event--featured .ticketed-event__media img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+    border-radius: 14px;
+  }
+
+  .ticketed-event--featured .ticketed-event__body {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
