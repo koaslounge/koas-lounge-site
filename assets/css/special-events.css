@@ -1,1 +1,534 @@
-.special-events-page{background:#071118;color:#f8fbff}.special-events-page h1,.special-events-page h2,.special-events-page h3{color:#fff}.special-events-kicker{margin:0 0 .75rem;color:#65eadf;font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.special-events-hero{position:relative;min-height:570px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid rgba(103,235,222,.14)}.special-events-hero__media{position:absolute;inset:0;background:radial-gradient(circle at 76% 30%,rgba(129,74,255,.26),transparent 28rem),url("/assets/images/main-room.jpg") center/cover no-repeat;transform:scale(1.025)}.special-events-hero__shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,10,15,.97) 0%,rgba(3,10,15,.82) 45%,rgba(3,10,15,.4) 100%),linear-gradient(180deg,rgba(3,10,15,.22),rgba(3,10,15,.72))}.special-events-hero__content{position:relative;z-index:2;max-width:790px;padding-top:5rem;padding-bottom:5rem}.special-events-hero h1{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(4rem,9vw,7.8rem);line-height:.86;letter-spacing:-.055em}.special-events-hero h1 span{color:#f0c766}.special-events-hero__content>p:not(.special-events-kicker){max-width:670px;margin:1.6rem 0 0;color:rgba(255,255,255,.78);font-size:clamp(1.05rem,2vw,1.28rem);line-height:1.65}.special-events-hero__actions,.special-event-success__actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2rem}.special-events-intro{padding:5rem 0 2rem}.special-events-intro__grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,6vw,6rem);align-items:end}.special-events-intro h2,.special-events-list__header h2,.special-events-help h2{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(2.5rem,5vw,4.4rem);line-height:.95;letter-spacing:-.045em}.special-events-intro__grid>p{margin:0;color:rgba(255,255,255,.66);line-height:1.75}.special-events-list{padding:3rem 0 6rem}.special-events-list__header{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:1.3rem}.special-events-count{padding:.55rem .8rem;border:1px solid rgba(103,235,222,.18);border-radius:999px;color:rgba(255,255,255,.62);font-size:.82rem;font-weight:700}.special-events-status{min-height:1.5rem;margin-bottom:1.3rem;color:rgba(255,255,255,.46);font-size:.84rem}.special-events-featured{margin-bottom:1.2rem}.ticketed-event{overflow:hidden;border:1px solid rgba(103,235,222,.16);border-radius:26px;background:linear-gradient(160deg,rgba(14,34,42,.97),rgba(9,20,28,.98));box-shadow:0 22px 70px rgba(0,0,0,.2)}.ticketed-event--featured{display:grid;grid-template-columns:minmax(320px,.82fr) minmax(0,1.18fr);min-height:430px}.ticketed-event__media{min-height:260px;position:relative;overflow:hidden;background:radial-gradient(circle at 45% 35%,rgba(90,232,217,.17),transparent 16rem),linear-gradient(140deg,#102831,#111422 70%)}.ticketed-event__media img{width:100%;height:100%;min-height:inherit;display:block;object-fit:cover}.ticketed-event__media--fallback{display:grid;place-items:center}.ticketed-event__fallback-mark{width:min(62%,270px);opacity:.68;filter:drop-shadow(0 20px 38px rgba(0,0,0,.25))}.ticketed-event__body{padding:clamp(1.6rem,4vw,3rem)}.ticketed-event--featured .ticketed-event__body{display:flex;flex-direction:column;justify-content:center}.ticketed-event__topline{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem}.ticketed-event__badge{display:inline-flex;align-items:center;min-height:28px;padding:.36rem .65rem;border-radius:999px;background:linear-gradient(135deg,rgba(112,49,205,.95),rgba(170,83,239,.95));border:1px solid rgba(218,184,255,.5);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.ticketed-event__date{color:#65eadf;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.ticketed-event h3{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(2.1rem,4.2vw,4.2rem);line-height:.96;letter-spacing:-.045em}.special-events-grid .ticketed-event h3{font-size:clamp(1.8rem,3vw,2.65rem)}.ticketed-event__description{margin-top:1rem;color:rgba(255,255,255,.72);line-height:1.65}.ticketed-event__description p{margin:.5rem 0}.ticketed-event__meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem 1rem;margin-top:1.35rem}.ticketed-event__meta-item{padding:.78rem .9rem;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.025)}.ticketed-event__meta-label{display:block;margin-bottom:.22rem;color:rgba(255,255,255,.38);font-size:.65rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}.ticketed-event__meta-value{color:rgba(255,255,255,.84);font-size:.92rem;line-height:1.35}.ticketed-event__footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;padding-top:1.3rem;border-top:1px solid rgba(255,255,255,.07)}.ticketed-event__price{color:#f0c766;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(2.2rem,4vw,3.25rem);font-weight:700;line-height:.95;letter-spacing:-.035em}.ticketed-event__price-note{display:block;margin-top:.2rem;color:rgba(255,255,255,.38);font-family:"Inter",sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.ticketed-event__cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.8rem 1.15rem;border:1px solid rgba(218,184,255,.58);border-radius:999px;background:linear-gradient(135deg,#7137ce,#a84fe8);color:#fff;font-weight:800;text-decoration:none;box-shadow:0 12px 30px rgba(120,49,201,.22)}.ticketed-event__cta:hover{transform:translateY(-1px)}.ticketed-event__pending{color:rgba(255,255,255,.45);font-size:.78rem;font-weight:700}.special-events-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}.special-events-grid .ticketed-event__media{min-height:220px;max-height:300px}.special-events-grid .ticketed-event__body{padding:1.5rem}.special-events-empty{padding:4rem 2rem;text-align:center;border:1px solid rgba(103,235,222,.13);border-radius:24px;background:rgba(255,255,255,.02)}.special-events-empty__icon{margin-bottom:.6rem;color:#65eadf;font-size:2rem}.special-events-empty h3{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:2rem}.special-events-empty p{max-width:580px;margin:.8rem auto 1.4rem;color:rgba(255,255,255,.62);line-height:1.6}.special-events-help{padding:0 0 6rem}.special-events-help__card{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:clamp(2rem,5vw,3.5rem);border:1px solid rgba(240,199,102,.18);border-radius:26px;background:radial-gradient(circle at 88% 20%,rgba(130,70,224,.12),transparent 20rem),rgba(255,255,255,.025)}.special-events-help__card p:not(.special-events-kicker){max-width:700px;color:rgba(255,255,255,.64);line-height:1.65}.special-event-success{min-height:72vh;display:grid;place-items:center;padding:7rem 0}.special-event-success__card{max-width:780px;margin:0 auto;padding:clamp(2.2rem,6vw,4.5rem);text-align:center;border:1px solid rgba(103,235,222,.17);border-radius:28px;background:radial-gradient(circle at 50% 0%,rgba(104,235,222,.11),transparent 22rem),rgba(10,28,36,.92)}.special-event-success__mark{display:grid;place-items:center;width:62px;height:62px;margin:0 auto 1.2rem;border-radius:50%;background:rgba(101,234,223,.12);border:1px solid rgba(101,234,223,.25);color:#65eadf;font-size:1.5rem;font-weight:900}.special-event-success h1{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(3rem,7vw,5.5rem);line-height:.95}.special-event-success__card>p:not(.special-events-kicker){max-width:590px;margin:1.2rem auto 0;color:rgba(255,255,255,.66);line-height:1.7}.special-event-success__actions{justify-content:center}@media(max-width:900px){.ticketed-event--featured,.special-events-intro__grid{grid-template-columns:1fr}.special-events-grid{grid-template-columns:1fr}.special-events-help__card{align-items:flex-start;flex-direction:column}}@media(max-width:620px){.special-events-hero{min-height:520px}.special-events-hero__shade{background:rgba(3,10,15,.8)}.special-events-hero__content{padding-top:4rem;padding-bottom:4rem}.special-events-list__header{align-items:flex-start;flex-direction:column;gap:.75rem}.ticketed-event,.special-events-help__card{border-radius:20px}.ticketed-event__meta{grid-template-columns:1fr}.ticketed-event__footer{align-items:flex-start;flex-direction:column}.ticketed-event__cta{width:100%}}
+/* Koa's Lounge - ticketed / paid special events */
+
+.special-events-page {
+  background: #071118;
+  color: #f8fbff;
+}
+
+.special-events-page h1,
+.special-events-page h2,
+.special-events-page h3 {
+  color: #fff;
+}
+
+.special-events-kicker {
+  margin: 0 0 0.75rem;
+  color: #65eadf;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.special-events-hero {
+  position: relative;
+  min-height: 570px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(103, 235, 222, 0.14);
+}
+
+.special-events-hero__media {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 76% 30%, rgba(129, 74, 255, 0.26), transparent 28rem),
+    url("/assets/images/main-room.jpg") center / cover no-repeat;
+  transform: scale(1.025);
+}
+
+.special-events-hero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(3, 10, 15, 0.97) 0%, rgba(3, 10, 15, 0.82) 45%, rgba(3, 10, 15, 0.40) 100%),
+    linear-gradient(180deg, rgba(3, 10, 15, 0.22), rgba(3, 10, 15, 0.72));
+}
+
+.special-events-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 790px;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.special-events-hero h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(4rem, 9vw, 7.8rem);
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+}
+
+.special-events-hero h1 span {
+  color: #f0c766;
+}
+
+.special-events-hero__content > p:not(.special-events-kicker) {
+  max-width: 670px;
+  margin: 1.6rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  line-height: 1.65;
+}
+
+.special-events-hero__actions,
+.special-event-success__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.special-events-intro {
+  padding: 5rem 0 2rem;
+}
+
+.special-events-intro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.special-events-intro h2,
+.special-events-list__header h2,
+.special-events-help h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.special-events-intro__grid > p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  line-height: 1.75;
+}
+
+.special-events-list {
+  padding: 3rem 0 6rem;
+}
+
+.special-events-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.special-events-count {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(103, 235, 222, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.special-events-status {
+  min-height: 1.5rem;
+  margin-bottom: 1.6rem;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.84rem;
+}
+
+.special-events-featured {
+  margin-bottom: 1.2rem;
+}
+
+.ticketed-event {
+  overflow: hidden;
+  border: 1px solid rgba(103, 235, 222, 0.16);
+  border-radius: 26px;
+  background:
+    linear-gradient(160deg, rgba(14, 34, 42, 0.97), rgba(9, 20, 28, 0.98));
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.20);
+}
+
+.ticketed-event--featured {
+  display: grid;
+  grid-template-columns: minmax(300px, 38%) minmax(0, 1fr);
+  min-height: 390px;
+}
+
+.ticketed-event__media {
+  position: relative;
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 1.25rem;
+  background:
+    radial-gradient(circle at 45% 35%, rgba(90, 232, 217, 0.13), transparent 16rem),
+    linear-gradient(145deg, #102831, #0b1720 72%);
+}
+
+/* Event flyers should be shown in full rather than cropped. */
+.ticketed-event__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 520px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 14px;
+}
+
+.ticketed-event__media--fallback {
+  min-height: 360px;
+  padding: 3rem;
+}
+
+/* Override the generic event-image rule so the fallback logo never fills/crops the panel. */
+.ticketed-event__media--fallback .ticketed-event__fallback-mark {
+  width: min(54%, 245px);
+  height: auto;
+  min-height: 0;
+  max-height: 245px;
+  object-fit: contain;
+  border-radius: 0;
+  opacity: 0.52;
+  filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.25));
+}
+
+.ticketed-event__body {
+  padding: clamp(1.75rem, 3.3vw, 2.75rem);
+}
+
+.ticketed-event--featured .ticketed-event__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ticketed-event__topline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.ticketed-event__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0.36rem 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(112, 49, 205, 0.95), rgba(170, 83, 239, 0.95));
+  border: 1px solid rgba(218, 184, 255, 0.50);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.ticketed-event__date {
+  color: #65eadf;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.ticketed-event h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.special-events-grid .ticketed-event h3 {
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
+}
+
+.ticketed-event__description {
+  max-width: 760px;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.65;
+}
+
+.ticketed-event__description p {
+  margin: 0.45rem 0;
+}
+
+.ticketed-event__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.ticketed-event__meta-item {
+  min-width: 0;
+  padding: 0.82rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.ticketed-event__meta-label {
+  display: block;
+  margin-bottom: 0.24rem;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.ticketed-event__meta-value {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.ticketed-event__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ticketed-event__price {
+  color: #f0c766;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+
+.ticketed-event__price-note {
+  display: block;
+  margin-top: 0.35rem;
+  color: rgba(255, 255, 255, 0.40);
+  font-family: "Inter", sans-serif;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.ticketed-event__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.82rem 1.35rem;
+  border: 1px solid rgba(218, 184, 255, 0.58);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7137ce, #a84fe8);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(120, 49, 201, 0.22);
+}
+
+.ticketed-event__cta:hover {
+  transform: translateY(-1px);
+}
+
+.ticketed-event__pending {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.special-events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.special-events-grid .ticketed-event__media {
+  min-height: 250px;
+  max-height: 360px;
+}
+
+.special-events-grid .ticketed-event__body {
+  padding: 1.5rem;
+}
+
+.special-events-empty {
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(103, 235, 222, 0.13);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.special-events-empty__icon {
+  margin-bottom: 0.6rem;
+  color: #65eadf;
+  font-size: 2rem;
+}
+
+.special-events-empty h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+}
+
+.special-events-empty p {
+  max-width: 580px;
+  margin: 0.8rem auto 1.4rem;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.6;
+}
+
+.special-events-help {
+  padding: 0 0 6rem;
+}
+
+.special-events-help__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border: 1px solid rgba(240, 199, 102, 0.18);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 88% 20%, rgba(130, 70, 224, 0.12), transparent 20rem),
+    rgba(255, 255, 255, 0.025);
+}
+
+.special-events-help__card p:not(.special-events-kicker) {
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.64);
+  line-height: 1.65;
+}
+
+.special-event-success {
+  min-height: 72vh;
+  display: grid;
+  place-items: center;
+  padding: 7rem 0;
+}
+
+.special-event-success__card {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(2.2rem, 6vw, 4.5rem);
+  text-align: center;
+  border: 1px solid rgba(103, 235, 222, 0.17);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(104, 235, 222, 0.11), transparent 22rem),
+    rgba(10, 28, 36, 0.92);
+}
+
+.special-event-success__mark {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background: rgba(101, 234, 223, 0.12);
+  border: 1px solid rgba(101, 234, 223, 0.25);
+  color: #65eadf;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.special-event-success h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 0.95;
+}
+
+.special-event-success__card > p:not(.special-events-kicker) {
+  max-width: 590px;
+  margin: 1.2rem auto 0;
+  color: rgba(255, 255, 255, 0.66);
+  line-height: 1.7;
+}
+
+.special-event-success__actions {
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .ticketed-event--featured,
+  .special-events-intro__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticketed-event--featured .ticketed-event__media {
+    min-height: 300px;
+    max-height: 480px;
+  }
+
+  .special-events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .special-events-help__card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 620px) {
+  .special-events-hero {
+    min-height: 520px;
+  }
+
+  .special-events-hero__shade {
+    background: rgba(3, 10, 15, 0.80);
+  }
+
+  .special-events-hero__content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .special-events-list__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ticketed-event,
+  .special-events-help__card {
+    border-radius: 20px;
+  }
+
+  .ticketed-event__media {
+    padding: 0.9rem;
+  }
+
+  .ticketed-event__media--fallback {
+    min-height: 230px;
+    padding: 2rem;
+  }
+
+  .ticketed-event__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .ticketed-event__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ticketed-event__cta {
+    width: 100%;
+  }
+}
