@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Koa's Lounge favicon -->
+  <link rel="icon" href="/assets/images/favicon.ico?v=1" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png?v=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticketed Events | Koa's Lounge</title>
+  <meta name="description" content="Reserve and pay for special ticketed events at Koa's Lounge in Pāhoa, Hawaiʻi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/special-events.css" />
+  <link rel="stylesheet" href="/assets/css/site-footer.css" />
+</head>
+<body class="special-events-page">
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html" aria-label="Koa's Lounge home">
+        <img data-img-key="logo" alt="Koa's Lounge logo">
+        <div class="brand-lockup"><strong>Koa's Lounge</strong><span>Taste Aloha</span></div>
+      </a>
+      <button class="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <div class="nav-shell">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="index.html">Home</a><a href="about.html">About</a><a class="active" href="events.html">Events</a><a href="menu.html">Menu</a><a href="contact.html">Contact</a><a href="band-booking.html">Band Booking</a>
+        </nav>
+        <div class="nav-cta"><a class="btn-outline" href="events.html">All Events</a><a class="btn" href="menu.html">View Menu</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="special-events-hero">
+      <div class="special-events-hero__media" aria-hidden="true"></div>
+      <div class="special-events-hero__shade" aria-hidden="true"></div>
+      <div class="container special-events-hero__content">
+        <p class="special-events-kicker">Reservations &amp; Tickets</p>
+        <h1>Special Events.<br><span>Save your spot.</span></h1>
+        <p>Paint &amp; Sip, ticketed entertainment, workshops, and other limited-capacity experiences at Koa's Lounge.</p>
+        <div class="special-events-hero__actions">
+          <a class="btn" href="#ticketed-events">View Ticketed Events</a>
+          <a class="btn-outline" href="events.html">Full Event Calendar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="special-events-intro">
+      <div class="container special-events-intro__grid">
+        <div><p class="special-events-kicker">A little more than a night out</p><h2>Reserve before you arrive.</h2></div>
+        <p>Ticketed events have limited availability. Choose an event below to see the details, price, and registration information, then use the event's secure payment link to reserve your place.</p>
+      </div>
+    </section>
+
+    <section class="special-events-list" id="ticketed-events">
+      <div class="container">
+        <div class="special-events-list__header">
+          <div><p class="special-events-kicker">Upcoming</p><h2>Ticketed Events</h2></div>
+          <div class="special-events-count" data-special-event-count>Loading...</div>
+        </div>
+        <div class="special-events-status" data-special-events-status>Loading upcoming ticketed events...</div>
+        <div class="special-events-featured" data-special-events-featured></div>
+        <div class="special-events-grid" data-special-events-grid></div>
+        <div class="special-events-empty" data-special-events-empty hidden>
+          <div class="special-events-empty__icon" aria-hidden="true">✦</div>
+          <h3>No ticketed events are currently posted.</h3>
+          <p>Check the full calendar for live music, karaoke, DJs, tournaments, and other upcoming nights at Koa's Lounge.</p>
+          <a class="btn-outline" href="events.html">View Full Calendar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="special-events-help">
+      <div class="container special-events-help__card">
+        <div><p class="special-events-kicker">Questions before you book?</p><h2>We can help.</h2><p>Need accessibility information, help with a reservation, or details about what's included? Contact Koa's Lounge before purchasing.</p></div>
+        <a class="btn" href="contact.html">Contact Koa's</a>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/site-config.js"></script>
+  <script src="/assets/js/image-config.js"></script>
+  <script src="/assets/js/special-events.js"></script>
+  <script src="/assets/js/footer-config.js"></script>
+  <script src="/assets/js/site-footer.js"></script>
+</body>
+</html>
