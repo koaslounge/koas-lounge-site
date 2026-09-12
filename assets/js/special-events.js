@@ -277,18 +277,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     events.forEach((event, index) => {
       const target = index === 0 ? featuredNode : gridNode;
-      target.appendChild(createEventCard(event, true));
+      target.appendChild(createEventCard(event, true, index === 0));
     });
   }
 
-  function createEventCard(event, featured) {
+  function createEventCard(event, featured, highPriority = false) {
     const article = document.createElement("article");
     article.className = `ticketed-event${featured ? " ticketed-event--featured" : ""}`;
 
     const mediaMarkup = event.imageUrl
       ? `
         <div class="ticketed-event__media ticketed-event__media--event">
-          <img src="${escapeAttr(event.imageUrl)}" alt="${escapeAttr(event.title)} event artwork">
+          <img src="${escapeAttr(event.imageUrl)}" alt="${escapeAttr(event.title)} event artwork" loading="${highPriority ? "eager" : "lazy"}" fetchpriority="${highPriority ? "high" : "low"}" decoding="async">
         </div>
       `
       : `

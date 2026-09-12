@@ -1,5 +1,8 @@
 "use strict";
 
+let cachedAccessToken = "";
+let cachedAccessTokenExpiresAt = 0;
+
 exports.handler = async event => {
   try {
     const calendarId = event?.queryStringParameters?.calendarId || "";
@@ -12,33 +15,12 @@ exports.handler = async event => {
       });
     }
 
-    const tenantId = process.env.MS_TENANT_ID;
-    const clientId = process.env.MS_CLIENT_ID;
-    const clientSecret = process.env.MS_CLIENT_SECRET;
     const calendarOwner = process.env.MS_CALENDAR_OWNER;
-
-    if (!tenantId || !clientId || !clientSecret || !calendarOwner) {
+    if (!calendarOwner) {
       return jsonResponse(500, { error: "Missing Microsoft calendar configuration." });
     }
 
-    const tokenRes = await fetch(
-      `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          client_id: clientId,
-          client_secret: clientSecret,
-          scope: "https://graph.microsoft.com/.default",
-          grant_type: "client_credentials"
-        })
-      }
-    );
-
-    const tokenData = await tokenRes.json();
-    if (!tokenRes.ok || !tokenData.access_token) {
-      return jsonResponse(500, { error: "Microsoft token request failed." });
-    }
+    const accessToken = await getAccessToken();
 
     const base =
       `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(calendarOwner)}` +
@@ -46,37 +28,51 @@ exports.handler = async event => {
       `/events/${encodeURIComponent(eventId)}` +
       `/attachments/${encodeURIComponent(attachmentId)}`;
 
-    const metadataRes = await fetch(base + "?$select=id,name,contentType,size", {
-      headers: { Authorization: `Bearer ${tokenData.access_token}` }
-    });
-    const metadata = await metadataRes.json();
+    const attachmentRes = await fetch(
+      base + "?$select=id,name,contentType,size,contentBytes",
+      { headers: { Authorization: `Bearer ${accessToken}` } }
+    );
 
-    if (!metadataRes.ok) {
-      return jsonResponse(metadataRes.status || 404, { error: "Unable to read event image." });
+    if (!attachmentRes.ok) {
+      return jsonResponse(attachmentRes.status || 404, {
+        error: "Unable to read event image."
+      });
     }
 
-    const contentType = String(metadata?.contentType || "").toLowerCase();
-    const name = String(metadata?.name || "");
-    const isImage = contentType.startsWith("image/") || /\.(?:png|jpe?g|gif|webp|heic|heif)$/i.test(name);
+    const attachment = await attachmentRes.json();
+    const contentType = String(attachment?.contentType || "").toLowerCase();
+    const name = String(attachment?.name || "");
+    const isImage =
+      contentType.startsWith("image/") ||
+      /\.(?:png|jpe?g|gif|webp|heic|heif)$/i.test(name);
 
     if (!isImage) {
       return jsonResponse(415, { error: "Attachment is not an image." });
     }
 
     const maxBytes = 5 * 1024 * 1024;
-    if (Number(metadata?.size || 0) > maxBytes) {
+    if (Number(attachment?.size || 0) > maxBytes) {
       return jsonResponse(413, { error: "Event image exceeds 5 MB." });
     }
 
-    const contentRes = await fetch(base + "/$value", {
-      headers: { Authorization: `Bearer ${tokenData.access_token}` }
-    });
+    let bytes;
 
-    if (!contentRes.ok) {
-      return jsonResponse(contentRes.status || 404, { error: "Unable to download event image." });
+    if (typeof attachment?.contentBytes === "string" && attachment.contentBytes) {
+      bytes = Buffer.from(attachment.contentBytes, "base64");
+    } else {
+      const rawRes = await fetch(base + "/$value", {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      if (!rawRes.ok) {
+        return jsonResponse(rawRes.status || 404, {
+          error: "Unable to download event image."
+        });
+      }
+
+      bytes = Buffer.from(await rawRes.arrayBuffer());
     }
 
-    const bytes = Buffer.from(await contentRes.arrayBuffer());
     if (bytes.length > maxBytes) {
       return jsonResponse(413, { error: "Event image exceeds 5 MB." });
     }
@@ -85,20 +81,69 @@ exports.handler = async event => {
       statusCode: 200,
       isBase64Encoded: true,
       headers: {
-        "Content-Type": metadata?.contentType || "image/jpeg",
-        "Cache-Control": "public, max-age=3600, s-maxage=86400"
+        "Content-Type": attachment?.contentType || "image/jpeg",
+        "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
+        "CDN-Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
+        "Netlify-CDN-Cache-Control": "public, durable, max-age=86400, stale-while-revalidate=604800"
       },
       body: bytes.toString("base64")
     };
   } catch (error) {
-    return jsonResponse(500, { error: error.message || "Unable to load event image." });
+    return jsonResponse(500, {
+      error: error.message || "Unable to load event image."
+    });
   }
 };
+
+async function getAccessToken() {
+  const now = Date.now();
+  if (cachedAccessToken && now < cachedAccessTokenExpiresAt) {
+    return cachedAccessToken;
+  }
+
+  const tenantId = process.env.MS_TENANT_ID;
+  const clientId = process.env.MS_CLIENT_ID;
+  const clientSecret = process.env.MS_CLIENT_SECRET;
+
+  if (!tenantId || !clientId || !clientSecret) {
+    throw new Error("Missing Microsoft calendar authentication configuration.");
+  }
+
+  const tokenRes = await fetch(
+    `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id: clientId,
+        client_secret: clientSecret,
+        scope: "https://graph.microsoft.com/.default",
+        grant_type: "client_credentials"
+      })
+    }
+  );
+
+  const tokenData = await tokenRes.json();
+
+  if (!tokenRes.ok || !tokenData.access_token) {
+    throw new Error("Microsoft token request failed.");
+  }
+
+  const expiresInSeconds = Number(tokenData.expires_in || 3600);
+  cachedAccessToken = tokenData.access_token;
+  cachedAccessTokenExpiresAt =
+    now + Math.max(60, expiresInSeconds - 120) * 1000;
+
+  return cachedAccessToken;
+}
 
 function jsonResponse(statusCode, payload) {
   return {
     statusCode,
-    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store"
+    },
     body: JSON.stringify(payload)
   };
 }

@@ -743,3 +743,70 @@
     box-sizing: border-box;
   }
 }
+
+
+/* Koa ticketed event final no-crop image rules v2 */
+/* Desktop: let the attached image determine its own height. */
+@media (min-width: 901px) {
+  .ticketed-event--featured {
+    grid-template-columns: minmax(390px, 0.78fr) minmax(0, 1.22fr);
+    align-items: center;
+  }
+
+  .ticketed-event--featured .ticketed-event__media--event {
+    align-self: center;
+    justify-self: stretch;
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    height: auto;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .ticketed-event--featured .ticketed-event__media--event img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center;
+    border-radius: 16px;
+  }
+}
+
+/* Tablet/mobile: one-column card, full-width image, natural height. */
+@media (max-width: 900px) {
+  .ticketed-event--featured {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .ticketed-event--featured .ticketed-event__media--event {
+    align-self: stretch;
+    justify-self: stretch;
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    height: auto;
+    padding: 0.85rem 0.85rem 0;
+    box-sizing: border-box;
+  }
+
+  .ticketed-event--featured .ticketed-event__media--event img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center;
+  }
+}
