@@ -17,7 +17,9 @@ exports.handler = async event => {
 
     const calendarOwner = process.env.MS_CALENDAR_OWNER;
     if (!calendarOwner) {
-      return jsonResponse(500, { error: "Missing Microsoft calendar configuration." });
+      return jsonResponse(500, {
+        error: "Missing Microsoft calendar configuration."
+      });
     }
 
     const accessToken = await getAccessToken();
@@ -28,60 +30,77 @@ exports.handler = async event => {
       `/events/${encodeURIComponent(eventId)}` +
       `/attachments/${encodeURIComponent(attachmentId)}`;
 
-    const attachmentRes = await fetch(
-      base + "?$select=id,name,contentType,size,contentBytes",
-      { headers: { Authorization: `Bearer ${accessToken}` } }
+    // Fetch only lightweight metadata first. Keeping contentBytes out of this
+    // request avoids a large base64 JSON payload and is Microsoft's recommended
+    // pattern before retrieving /$value.
+    const metadataRes = await fetch(
+      base + "?$select=id,name,contentType,size,isInline",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
     );
 
-    if (!attachmentRes.ok) {
-      return jsonResponse(attachmentRes.status || 404, {
-        error: "Unable to read event image."
+    if (!metadataRes.ok) {
+      return jsonResponse(metadataRes.status || 404, {
+        error: "Unable to read event image metadata."
       });
     }
 
-    const attachment = await attachmentRes.json();
-    const contentType = String(attachment?.contentType || "").toLowerCase();
-    const name = String(attachment?.name || "");
-    const isImage =
-      contentType.startsWith("image/") ||
-      /\.(?:png|jpe?g|gif|webp|heic|heif)$/i.test(name);
+    const metadata = await metadataRes.json();
+    const contentType = String(metadata?.contentType || "").toLowerCase();
+    const name = String(metadata?.name || "").toLowerCase();
 
-    if (!isImage) {
-      return jsonResponse(415, { error: "Attachment is not an image." });
-    }
+    const browserSafeImage =
+      /^(?:image\/jpeg|image\/png|image\/webp|image\/gif)$/.test(contentType) ||
+      /\.(?:png|jpe?g|gif|webp)$/i.test(name);
 
-    const maxBytes = 5 * 1024 * 1024;
-    if (Number(attachment?.size || 0) > maxBytes) {
-      return jsonResponse(413, { error: "Event image exceeds 5 MB." });
-    }
-
-    let bytes;
-
-    if (typeof attachment?.contentBytes === "string" && attachment.contentBytes) {
-      bytes = Buffer.from(attachment.contentBytes, "base64");
-    } else {
-      const rawRes = await fetch(base + "/$value", {
-        headers: { Authorization: `Bearer ${accessToken}` }
+    if (!browserSafeImage) {
+      return jsonResponse(415, {
+        error: "Event attachment is not a browser-safe image. Use JPG, PNG, WebP, or GIF."
       });
+    }
 
-      if (!rawRes.ok) {
-        return jsonResponse(rawRes.status || 404, {
-          error: "Unable to download event image."
-        });
+    // Keep below the practical synchronous-function payload ceiling once the
+    // legacy function response is base64 encoded by Netlify.
+    const maxBytes = 4 * 1024 * 1024;
+    if (Number(metadata?.size || 0) > maxBytes) {
+      return jsonResponse(413, {
+        error: "Event image exceeds 4 MB. Please attach a web-optimized JPG or PNG."
+      });
+    }
+
+    const contentRes = await fetch(base + "/$value", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
       }
+    });
 
-      bytes = Buffer.from(await rawRes.arrayBuffer());
+    if (!contentRes.ok) {
+      return jsonResponse(contentRes.status || 404, {
+        error: "Unable to download event image."
+      });
     }
+
+    const bytes = Buffer.from(await contentRes.arrayBuffer());
 
     if (bytes.length > maxBytes) {
-      return jsonResponse(413, { error: "Event image exceeds 5 MB." });
+      return jsonResponse(413, {
+        error: "Event image exceeds 4 MB. Please attach a web-optimized JPG or PNG."
+      });
     }
+
+    const responseType =
+      contentRes.headers.get("content-type") ||
+      metadata?.contentType ||
+      "image/jpeg";
 
     return {
       statusCode: 200,
       isBase64Encoded: true,
       headers: {
-        "Content-Type": attachment?.contentType || "image/jpeg",
+        "Content-Type": responseType,
         "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
         "CDN-Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
         "Netlify-CDN-Cache-Control": "public, durable, max-age=86400, stale-while-revalidate=604800"
@@ -97,6 +116,7 @@ exports.handler = async event => {
 
 async function getAccessToken() {
   const now = Date.now();
+
   if (cachedAccessToken && now < cachedAccessTokenExpiresAt) {
     return cachedAccessToken;
   }
@@ -113,7 +133,9 @@ async function getAccessToken() {
     `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
     {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       body: new URLSearchParams({
         client_id: clientId,
         client_secret: clientSecret,

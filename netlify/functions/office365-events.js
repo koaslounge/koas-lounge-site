@@ -138,7 +138,8 @@ exports.handler = async () => {
                 "/.netlify/functions/office365-event-image" +
                 `?calendarId=${encodeURIComponent(calendarId)}` +
                 `&eventId=${encodeURIComponent(event.id)}` +
-                `&attachmentId=${encodeURIComponent(attachment.id)}`;
+                `&attachmentId=${encodeURIComponent(attachment.id)}` +
+                `&rev=20260912-v4`;
             }
           } catch (attachmentError) {
             console.warn(
