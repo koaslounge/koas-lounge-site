@@ -203,15 +203,23 @@ function isTicketedSourceEvent(event, description) {
 }
 
 function pickFirstImageAttachment(attachments) {
-  return (Array.isArray(attachments) ? attachments : []).find(attachment => {
+  const list = Array.isArray(attachments) ? attachments : [];
+
+  const browserSafe = list.find(attachment => {
     const contentType = String(attachment?.contentType || "").toLowerCase();
     const name = String(attachment?.name || "").toLowerCase();
 
     return (
-      contentType.startsWith("image/") ||
-      /\.(?:png|jpe?g|gif|webp|heic|heif)$/i.test(name)
+      /^(?:image\/jpeg|image\/png|image\/webp|image\/gif)$/.test(contentType) ||
+      /\.(?:png|jpe?g|gif|webp)$/i.test(name)
     );
-  }) || null;
+  });
+
+  if (browserSafe) return browserSafe;
+
+  /* Do not send HEIC/HEIF to <img>; most browsers cannot render it.
+     Returning null makes the site use the branded fallback instead of a broken image. */
+  return null;
 }
 
 function getEventDescription(event) {
