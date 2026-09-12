@@ -311,12 +311,13 @@
 
 .ticketed-event__price {
   color: #f0c766;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 700;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: clamp(2.35rem, 3.7vw, 3.15rem);
+  font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.035em;
-  margin-bottom: 0.42rem;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.48rem;
 }
 
 .ticketed-event__price-note {

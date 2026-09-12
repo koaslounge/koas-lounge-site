@@ -2,11 +2,14 @@
 
 exports.handler = async event => {
   try {
+    const calendarId = event?.queryStringParameters?.calendarId || "";
     const eventId = event?.queryStringParameters?.eventId || "";
     const attachmentId = event?.queryStringParameters?.attachmentId || "";
 
-    if (!eventId || !attachmentId) {
-      return jsonResponse(400, { error: "eventId and attachmentId are required." });
+    if (!calendarId || !eventId || !attachmentId) {
+      return jsonResponse(400, {
+        error: "calendarId, eventId and attachmentId are required."
+      });
     }
 
     const tenantId = process.env.MS_TENANT_ID;
@@ -39,7 +42,9 @@ exports.handler = async event => {
 
     const base =
       `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(calendarOwner)}` +
-      `/events/${encodeURIComponent(eventId)}/attachments/${encodeURIComponent(attachmentId)}`;
+      `/calendars/${encodeURIComponent(calendarId)}` +
+      `/events/${encodeURIComponent(eventId)}` +
+      `/attachments/${encodeURIComponent(attachmentId)}`;
 
     const metadataRes = await fetch(base + "?$select=id,name,contentType,size", {
       headers: { Authorization: `Bearer ${tokenData.access_token}` }

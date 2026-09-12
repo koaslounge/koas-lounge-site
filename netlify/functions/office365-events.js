@@ -122,10 +122,11 @@ exports.handler = async () => {
         const description = getEventDescription(event);
         let imageUrl = "";
 
-        if (event.id && event.hasAttachments && isTicketedSourceEvent(event, description)) {
+        if (event.id && isTicketedSourceEvent(event, description)) {
           try {
             const attachmentsUrl =
               `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(calendarOwner)}` +
+              `/calendars/${encodeURIComponent(calendarId)}` +
               `/events/${encodeURIComponent(event.id)}/attachments` +
               `?$select=id,name,contentType,size,isInline`;
 
@@ -135,7 +136,8 @@ exports.handler = async () => {
             if (attachment?.id) {
               imageUrl =
                 "/.netlify/functions/office365-event-image" +
-                `?eventId=${encodeURIComponent(event.id)}` +
+                `?calendarId=${encodeURIComponent(calendarId)}` +
+                `&eventId=${encodeURIComponent(event.id)}` +
                 `&attachmentId=${encodeURIComponent(attachment.id)}`;
             }
           } catch (attachmentError) {
@@ -229,6 +231,7 @@ function getEventDescription(event) {
 function normalizeDescription(value) {
   return String(value || "")
     .replace(/\r\n?/g, "\n")
+    .replace(/\[cid:[^\]]+\]\s*/gi, "")
     .replace(/[ \t]+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
