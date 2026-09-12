@@ -621,3 +621,69 @@
     padding: 0.9rem;
   }
 }
+
+
+/* Koa ticketed event image balance fix v1 */
+.ticketed-event--featured {
+  grid-template-columns: minmax(280px, 0.68fr) minmax(0, 1.32fr);
+  align-items: center;
+}
+
+.ticketed-event--featured .ticketed-event__media {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 460px;
+  min-height: 0;
+  height: auto;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.ticketed-event--featured .ticketed-event__media img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: 560px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 18px;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+}
+
+.special-events-grid .ticketed-event__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem;
+  box-sizing: border-box;
+}
+
+.special-events-grid .ticketed-event__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 900px) {
+  .ticketed-event--featured .ticketed-event__media {
+    max-width: 520px;
+    padding: 1rem 1rem 0;
+  }
+
+  .ticketed-event--featured .ticketed-event__media img {
+    max-height: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .ticketed-event--featured .ticketed-event__media {
+    max-width: 100%;
+    padding: 0.95rem 0.95rem 0;
+  }
+}
