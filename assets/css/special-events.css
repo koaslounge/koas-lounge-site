@@ -541,3 +541,36 @@
     width: 100%;
   }
 }
+
+
+/* Koa uniform ticketed event cards v1 */
+.special-events-grid {
+  grid-template-columns: 1fr;
+}
+
+.special-events-grid .ticketed-event h3 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+}
+
+.special-events-grid .ticketed-event__media {
+  min-height: 320px;
+  max-height: 520px;
+}
+
+.special-events-grid .ticketed-event__body {
+  padding: clamp(1.75rem, 3.3vw, 2.75rem);
+}
+
+@media (max-width: 900px) {
+  .special-events-grid .ticketed-event__media {
+    min-height: 300px;
+    max-height: 480px;
+  }
+}
+
+@media (max-width: 620px) {
+  .special-events-grid .ticketed-event__media {
+    min-height: 260px;
+    max-height: 400px;
+  }
+}

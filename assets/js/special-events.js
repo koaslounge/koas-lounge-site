@@ -275,11 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     emptyNode.hidden = true;
 
-    const [featured, ...rest] = events;
-    featuredNode.appendChild(createEventCard(featured, true));
-
-    rest.forEach(event => {
-      gridNode.appendChild(createEventCard(event, false));
+    events.forEach((event, index) => {
+      const target = index === 0 ? featuredNode : gridNode;
+      target.appendChild(createEventCard(event, true));
     });
   }
 
