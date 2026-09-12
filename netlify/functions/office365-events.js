@@ -108,23 +108,56 @@ exports.handler = async () => {
       `/calendars/${encodeURIComponent(calendarId)}/calendarView` +
       `?startDateTime=${encodeURIComponent(start.toISOString())}` +
       `&endDateTime=${encodeURIComponent(end.toISOString())}` +
-      `&$select=subject,start,end,location,body,bodyPreview,webLink,isCancelled,categories` +
+      `&$select=id,subject,start,end,location,body,bodyPreview,webLink,isCancelled,categories,hasAttachments` +
       `&$orderby=start/dateTime` +
       `&$top=200`;
 
     const graphData = await graphGet(graphUrl);
 
-    const events = (graphData.value || [])
-      .filter(event => !event.isCancelled)
-      .map(event => ({
-        title: event.subject || "Untitled Event",
-        start: event.start?.dateTime || null,
-        end: event.end?.dateTime || null,
-        location: event.location?.displayName || "",
-        description: getEventDescription(event),
-        url: event.webLink || "",
-        categories: Array.isArray(event.categories) ? event.categories : []
-      }));
+    const sourceEvents = (graphData.value || [])
+      .filter(event => !event.isCancelled);
+
+    const events = await Promise.all(
+      sourceEvents.map(async event => {
+        const description = getEventDescription(event);
+        let imageUrl = "";
+
+        if (event.id && event.hasAttachments && isTicketedSourceEvent(event, description)) {
+          try {
+            const attachmentsUrl =
+              `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(calendarOwner)}` +
+              `/events/${encodeURIComponent(event.id)}/attachments` +
+              `?$select=id,name,contentType,size,isInline`;
+
+            const attachmentsData = await graphGet(attachmentsUrl);
+            const attachment = pickFirstImageAttachment(attachmentsData.value || []);
+
+            if (attachment?.id) {
+              imageUrl =
+                "/.netlify/functions/office365-event-image" +
+                `?eventId=${encodeURIComponent(event.id)}` +
+                `&attachmentId=${encodeURIComponent(attachment.id)}`;
+            }
+          } catch (attachmentError) {
+            console.warn(
+              `Unable to inspect image attachments for "${event.subject || "Untitled Event"}":`,
+              attachmentError.message || attachmentError
+            );
+          }
+        }
+
+        return {
+          title: event.subject || "Untitled Event",
+          start: event.start?.dateTime || null,
+          end: event.end?.dateTime || null,
+          location: event.location?.displayName || "",
+          description,
+          imageUrl,
+          url: event.webLink || "",
+          categories: Array.isArray(event.categories) ? event.categories : []
+        };
+      })
+    );
 
     return {
       statusCode: 200,
@@ -148,6 +181,36 @@ exports.handler = async () => {
     });
   }
 };
+
+
+function isTicketedSourceEvent(event, description) {
+  const categories = Array.isArray(event?.categories)
+    ? event.categories.join(" ").toLowerCase()
+    : "";
+  const text = String(description || "");
+
+  return (
+    /\bpaid event\b/.test(categories) ||
+    /\bticketed event\b/.test(categories) ||
+    /\bpaid special event\b/.test(categories) ||
+    /\[(?:paid|ticketed)\s+event\]/i.test(text) ||
+    /\bpaid\s+admission\b/i.test(text) ||
+    /\badmission\s+(?:fee|price|is|of|:)\s*\$?\d/i.test(text) ||
+    /\bticket(?:s| price| fee)\s*(?:are|is|:|of)?\s*\$?\d/i.test(text)
+  );
+}
+
+function pickFirstImageAttachment(attachments) {
+  return (Array.isArray(attachments) ? attachments : []).find(attachment => {
+    const contentType = String(attachment?.contentType || "").toLowerCase();
+    const name = String(attachment?.name || "").toLowerCase();
+
+    return (
+      contentType.startsWith("image/") ||
+      /\.(?:png|jpe?g|gif|webp|heic|heif)$/i.test(name)
+    );
+  }) || null;
+}
 
 function getEventDescription(event) {
   const bodyContent = event?.body?.content;

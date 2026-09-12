@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
       startDate,
       endDate,
       paymentUrl: metadata.paymentUrl,
-      imageUrl: metadata.imageUrl,
+      imageUrl: metadata.imageUrl || event.imageUrl || "",
       price: metadata.price,
       capacity: metadata.capacity,
       ages: metadata.ages,
@@ -207,6 +207,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function cleanDescription(description) {
+    description = String(description || "").replace(/\[cid:[^\]]+\]\s*/gi, "");
+
     const labels = [
       "Payment Link",
       "Payment URL",
